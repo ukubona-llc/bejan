@@ -136,12 +136,15 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
 #chordPentadView.active{display:block;}
 #adversarialView{display:none;}
 #adversarialView.active{display:block;}
+#babyfaceView{display:none;}
+#babyfaceView.active{display:block;}
 .video-embed{position:relative;width:100%;padding-top:56.25%;margin:14px 0 26px;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#000;}
 .video-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
 .chat-turn{margin:18px 0;}
 .chat-turn .who{font:600 11px -apple-system,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
 .chat-turn.user .who{color:var(--accent);}
 .chat-turn.gemini .who{color:var(--accent2);}
+.chat-turn.claude .who{color:var(--accent2);}
 .chat-turn .bubble{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;}
 .chat-turn.user .bubble{background:transparent;border-style:dashed;}
 .chat-turn ul{margin:8px 0;padding-left:20px;}
@@ -1731,6 +1734,59 @@ Iterate = freedom through time — recursive trial, error, update, no ceiling</d
     <p class="cap">Until then, it stands as the provisional I′ of the cycle that produced it. — filed at the end of the session, still on the dominant.</p>
   </div>
 </div>
+
+<div id="babyfaceView">
+  <div class="backbar">
+    <button onclick="showView('pentad')">← Back to the pentad</button>
+  </div>
+  <div class="history-doc">
+    <h1>Midnight Star, Not Atlantic Starr</h1>
+    <div class="sub">A phonetic near-miss, a plausible stylistic hypothesis, and a search that closed the case — with Claude.</div>
+
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/sIuWuqq0BTo" title="Atlantic Starr — Always" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <p class="cap">Atlantic Starr, "Always" (1987) — the record the whole session was actually about.</p>
+
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/OrdmPvCeO30" title="Midnight Star — Slow Jam" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <p class="cap">Midnight Star, "Slow Jam" (1983) — Babyface's actual early writing credit, and the source of the phonetic confusion with Atlantic Starr.</p>
+
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/6vr9a46ZZ18" title="The Deele — Two Occasions" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <p class="cap">The Deele, "Two Occasions" (1988) — Babyface's own group with Antonio "L.A." Reid, the collaboration that trained the writing voice behind all of the above.</p>
+
+    <h2>1 · The question</h2>
+    <div class="chat-turn user">
+      <div class="who">You</div>
+      <div class="bubble"><p>Did Babyface write anything for Atlantic Starr?</p></div>
+    </div>
+    <div class="chat-turn claude">
+      <div class="who">Claude</div>
+      <div class="bubble">
+        <p>A search turned up no writing credit linking Babyface to Atlantic Starr. What surfaced instead was the reverse relationship: reference sources describe Atlantic Starr as an influence <em>on</em> Babyface, not a group he wrote for. His actual early-'80s writing credits from that period belong to Midnight Star ("Slow Jam," 1983) and The Whispers — a different "Star" group entirely.</p>
+      </div>
+    </div>
+
+    <h2>2 · Where the hypothesis came from</h2>
+    <div class="chat-turn user">
+      <div class="who">You</div>
+      <div class="bubble"><p>The phonetic similarity between Midnight Star and Atlantic Starr, as well as actual "plausibility" for song "Always" is what brought me here. So I get it, Danke.</p></div>
+    </div>
+    <div class="chat-turn claude">
+      <div class="who">Claude</div>
+      <div class="bubble">
+        <p>Two independent things collapsed into one false lead. First, a name collision: "Midnight Star" and "Atlantic Starr" share enough syllables and the identical trailing "Star(r)" that either could plausibly surface when trying to recall the other. Second, a genuine stylistic plausibility: "Always" is a soft-focus, vocal-blend ballad built on the same quiet-storm chord language Babyface made his name writing — so the misattribution wasn't a random guess, it was a well-formed hypothesis that happened to be wrong. The search closed it: no credit, only an "influenced" relationship running the other direction.</p>
+      </div>
+    </div>
+
+    <h2>3 · Why this belongs on the page</h2>
+    <p>This is a small, low-stakes instance of the same move the rest of the document keeps making explicit: state a plausible hypothesis, then run it against a check that can actually falsify it, and let the falsification stand rather than smoothing it into something softer. It's the same discipline named in <a href="#" onclick="showView('criteria');return false;" style="color:var(--accent2);">Five Criteria for AI</a> as Falsifiability and the V → I′ loop, and the same posture behind the corrected V7/sus4 claim in <a href="#" onclick="showView('chordpentad');return false;" style="color:var(--accent2);">The Harmonic Pentad</a> and the re-routed Scale AI edge in <a href="#" onclick="showView('deepminima');return false;" style="color:var(--accent2);">Deep Minima</a>: a good-sounding claim (phonetic proximity + stylistic fit) gets tested against a source, comes back false, and the record keeps both the original hypothesis and its correction visible instead of quietly deleting the wrong turn.</p>
+    <p class="cap">Honest bound: the "influenced" claim itself rests on a single aggregator bio (Shazam), not on Babyface naming Atlantic Starr as an influence in his own words — that stronger, first-person version of the claim was searched for and not found. Treat "Atlantic Starr influenced Babyface" as editorial consensus, not confirmed self-report.</p>
+  </div>
+</div>
 </main>
 
 <script>
@@ -1803,6 +1859,7 @@ function showView(v){
   document.getElementById('wandererView').classList.toggle('active', v==='wanderer');
   document.getElementById('chordPentadView').classList.toggle('active', v==='chordpentad');
   document.getElementById('adversarialView').classList.toggle('active', v==='adversarial');
+  document.getElementById('babyfaceView').classList.toggle('active', v==='babyface');
   document.getElementById('deepminimaView').classList.toggle('active', v==='deepminima');
   document.getElementById('scalingntpView').classList.toggle('active', v==='scalingntp');
   document.getElementById('sutskeverView').classList.toggle('active', v==='sutskever');
@@ -1858,6 +1915,8 @@ addMenuButton('🎯  Manufacturing Taste', ()=>showView('manufacturingtaste'));
 addDivider();
 addMenuButton('⚔️  Adversarial Intelligence', ()=>showView('adversarial'));
 addDivider();
+addMenuButton('🎶  Midnight Star, Not Atlantic Starr', ()=>showView('babyface'));
+addDivider();
 addMenuButton('🌀  Epilogue', ()=>showView('epilogue'));
 (function(){
   const seen=new Set(); const links=[];
@@ -1907,7 +1966,7 @@ try{
 }catch(e){}
 try{
   const v=new URLSearchParams(location.search).get('view');
-  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'||v==='scalingntp'||v==='sutskever'||v==='manufacturingtaste'||v==='preface'||v==='epilogue'||v==='chordpentad'||v==='adversarial'){ showView(v); }
+  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'||v==='scalingntp'||v==='sutskever'||v==='manufacturingtaste'||v==='preface'||v==='epilogue'||v==='chordpentad'||v==='adversarial'||v==='babyface'){ showView(v); }
 }catch(e){}
 </script>
 </body>
