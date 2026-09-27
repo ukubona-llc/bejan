@@ -104,6 +104,10 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
 /* --- Sandbox Escape (merged view) --- */
 #escapeView{display:none;}
 #escapeView.active{display:block;}
+
+/* --- Gifted Hands (merged view) --- */
+#giftedView{display:none;}
+#giftedView.active{display:block;}
 .c-intro a{color:var(--accent2);}
 .source-strip{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 30px;}
 .source-strip a{font-family:-apple-system,sans-serif;font-size:12px;padding:7px 12px;border-radius:20px;
@@ -232,7 +236,7 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
   </div>
 
   <div class="synth" style="margin-top:22px;">
-    <strong style="color:var(--fg);">Related</strong> — Demis Hassabis's Nobel lecture names three criteria for a problem that suits AI (combinatorial search space, clear objective function, data/simulator). Ukubona adds two more — falsifiability, and trial-and-error as the V→I′ loop — closing the five out into a second pentad: <a href="#" onclick="showView('criteria');return false;" style="color:var(--accent2);">Five Criteria for AI</a>, and a third reading of the same loop — Stata, OpenAI's escaped agents, and the move out of Johns Hopkins — sits at <a href="#" onclick="showView('escape');return false;" style="color:var(--accent2);">Sandbox Escape</a> (all reachable from the app-grid ⠿).
+    <strong style="color:var(--fg);">Related</strong> — Demis Hassabis's Nobel lecture names three criteria for a problem that suits AI (combinatorial search space, clear objective function, data/simulator). Ukubona adds two more — falsifiability, and trial-and-error as the V→I′ loop — closing the five out into a second pentad: <a href="#" onclick="showView('criteria');return false;" style="color:var(--accent2);">Five Criteria for AI</a>, and a third reading of the same loop — Stata, OpenAI's escaped agents, and the move out of Johns Hopkins — sits at <a href="#" onclick="showView('escape');return false;" style="color:var(--accent2);">Sandbox Escape</a>. A fourth note — why scaling embodied skill and maximizing access to it are two different problems — sits at <a href="#" onclick="showView('gifted');return false;" style="color:var(--accent2);">Gifted Hands</a> (all reachable from the app-grid ⠿).
   </div>
 </div>
 
@@ -972,6 +976,37 @@ echo -e "${YELLOW}=========================================================${NC}
     <p class="src">Same generative direction as every T → M → V → E → S in this document — the scalar of one cycle (a grant, a course requirement) becomes the tensor of the next.</p>
   </div>
 </div>
+
+<div id="giftedView">
+  <div class="backbar">
+    <button onclick="showView('pentad')">← Back to the pentad</button>
+  </div>
+  <div class="history-doc">
+    <h1>Gifted Hands: Scale and Access Are Two Different Failures</h1>
+    <div class="sub">Ben Carson's hands, Silicon Valley's actual move, and the gap this document owes it.</div>
+
+    <h2>1 · The claim, stated precisely</h2>
+    <p><em>Gifted Hands</em> — read after a Port of Spain book signing, generative enough to point Yafe toward surgery and Johns Hopkins — names an embodied credential at its most extreme: hands trained over decades into a skill that fits inside exactly one body. That body doesn't scale. But it also, independently, doesn't <em>maximize access</em>. These are not the same failure. A skill can fail to scale while still being reachable by everyone who needs it (a rare local specialist who never leaves town but sees every case referred to him); a skill can also be nominally "scaled" — ten thousand surgeons trained to the same standard — and still leave access gated by geography, referral, insurance, and hospital capital. Carson's hands failed on both axes at once, which is what makes them the clean extreme case, not the general one.</p>
+
+    <h2>2 · Two axes, one table</h2>
+    <table>
+      <tr><th></th><th>Scale (Level III/IV — branching)</th><th>Access (orthogonal — Newtonian diffusion, §4/§8 of the pentad)</th></tr>
+      <tr><td>Carson's hands</td><td>One trainable body; decades per instance; non-transferable</td><td>Gated by whoever can physically reach that one body</td></tr>
+      <tr><td>"Train more surgeons"</td><td>Linear branch multiplication — more bodies, same decades each</td><td>Still capped by the $/sq ft, travel, and licensing constraints Section III of the pentad calls diffusion-bound</td></tr>
+      <tr><td>Silicon Valley's move</td><td>Not more bodies — decoupling the skill from the body it happened to be trained into</td><td>Deployment becomes copyable once decoupled — the convection regime, not the diffusion one</td></tr>
+    </table>
+
+    <h2>3 · What the decoupling actually requires</h2>
+    <p>Two separate unsolved problems have to clear before "deploy gifted hands" is an engineering task rather than a still-biological one: model intelligence good enough to carry the judgment half of surgery (diagnosis, sequencing, adapting mid-procedure), and embodiment dexterous enough to carry the motor half (fine, contact-rich, force-sensitive manipulation — the harder of the two, and the one furthest from solved). Once both hold, "more access to gifted hands" stops being a multi-decade apprenticeship problem and becomes a manufacturing and deployment problem — the same order-of-magnitude jump Section V's Amazon reading draws between a physical store and a fulfillment network.</p>
+    <div class="boxed">Gifted Hands (1 body : 1 patient, decades to train) → unbundle judgment (model) + unbundle dexterity (robot) → deployment = engineering problem → access scales by orders of magnitude, not by training more bodies</div>
+
+    <h2>4 · The gap this document owes the argument</h2>
+    <p class="cap">Honest caveat, in the same spirit as Section I's Bejan caveat: clearing the two technical unknowns above does not by itself maximize access, because a surgical robot at the bedside still sits behind a Level IV physical bottleneck a distributed chatbot never faces — FDA clearance, hospital capital cost, malpractice liability, who is legally allowed to hold the instrument. That's a Level II — Matrix / Objective — problem: who is liable, who pays, what counts as care, not a search-space or dexterity problem. So the honest version of this section's claim is narrower than "engineering solves it": engineering removes the scale bottleneck; a separate, non-engineering renegotiation of liability and reimbursement is still required to convert that removed bottleneck into actual access. Silicon Valley is good at the first move and has no comparable track record forcing the second.</p>
+
+    <h2>5 · Where this sits against Section 9</h2>
+    <p>Section 9 traced Yafe's own Hopkins credential as a Level IV branch that produced, almost as a side effect, the course that let it exit. <em>Gifted Hands</em> is the earlier tensor — the book-signing origin that sent the credential-branch out in the first place. Read back against Section 9, the two decades at Hopkins are the same structure the table above describes: an embodied, non-transferable skill, correctly diagnosed by this artefact's own history as failing to scale, but only now — in this section — separated out from the further, harder claim that clearing the scale problem is the same thing as maximizing access to it.</p>
+  </div>
+</div>
 </main>
 
 <script>
@@ -1021,6 +1056,7 @@ function showView(v){
   document.getElementById('historyView').classList.toggle('active', v==='history');
   document.getElementById('criteriaView').classList.toggle('active', v==='criteria');
   document.getElementById('escapeView').classList.toggle('active', v==='escape');
+  document.getElementById('giftedView').classList.toggle('active', v==='gifted');
   window.scrollTo(0,0);
 }
 
@@ -1041,6 +1077,8 @@ order.forEach(k=>{
 });
 addDivider();
 addMenuButton('⛓  Sandbox Escape', ()=>showView('escape'));
+addDivider();
+addMenuButton('✋  Gifted Hands', ()=>showView('gifted'));
 (function(){
   const seen=new Set(); const links=[];
   document.querySelectorAll('main a[href^="http"]').forEach(a=>{
