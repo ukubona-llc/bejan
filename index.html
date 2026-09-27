@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Constructal Pentad — Flow, Form, Amazon</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='7' fill='%23b0421e'/%3E%3Cpolygon points='20,5 28.82,32.14 5.74,15.36 34.26,15.36 11.18,32.14' fill='none' stroke='white' stroke-width='2.6' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
 <style>
 :root{
   --bg:#f4f1ea; --fg:#181510; --accent:#b0421e; --accent2:#1e5c4a;
@@ -34,10 +35,13 @@ header{ position:relative; height:56px; }
 .waffle{display:grid;grid-template-columns:repeat(3,4px);grid-gap:3px;}
 .waffle span{width:4px;height:4px;border-radius:50%;background:var(--fg);}
 #waffleMenu{position:fixed;top:56px;left:56px;background:var(--card);border:1px solid var(--line);
-  border-radius:6px;padding:6px;display:none;z-index:60;box-shadow:0 6px 20px rgba(0,0,0,.2);}
-#waffleMenu button{display:block;width:220px;text-align:left;padding:8px 10px;border:none;background:transparent;
-  color:var(--fg);font-family:inherit;cursor:pointer;border-radius:4px;font-size:14px;}
-#waffleMenu button:hover{background:var(--line);}
+  border-radius:6px;padding:8px;display:none;z-index:60;box-shadow:0 6px 20px rgba(0,0,0,.2);width:270px;max-height:80vh;overflow-y:auto;}
+#waffleMenu .grouplabel{font-family:-apple-system,sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);padding:8px 8px 4px;}
+#waffleMenu hr{border:0;border-top:1px solid var(--line);margin:6px 2px;}
+#waffleMenu button,#waffleMenu a{display:block;width:100%;text-align:left;padding:8px 10px;border:none;background:transparent;
+  color:var(--fg);font-family:inherit;cursor:pointer;border-radius:4px;font-size:13.5px;box-sizing:border-box;text-decoration:none;line-height:1.3;}
+#waffleMenu button:hover,#waffleMenu a:hover{background:var(--line);}
 main{max-width:900px;margin:0 auto;padding:76px 20px 60px;}
 .eyebrow{color:var(--accent);font-family:-apple-system,sans-serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;}
 h1.title{font-size:28px;margin:6px 0 18px;line-height:1.2;}
@@ -88,6 +92,38 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
 .history-doc .tag{font:600 11px -apple-system,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
 .history-doc .src{font:13px -apple-system,sans-serif;color:var(--muted);border-left:3px solid var(--line);padding-left:12px;margin:10px 0;}
 .history-doc hr{border:0;border-top:1px dashed var(--line);margin:26px 0;}
+
+/* --- Five Criteria (merged view) --- */
+#criteriaView{display:none;}
+#criteriaView.active{display:block;}
+.c-intro a{color:var(--accent2);}
+.source-strip{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 30px;}
+.source-strip a{font-family:-apple-system,sans-serif;font-size:12px;padding:7px 12px;border-radius:20px;
+  border:1px solid var(--line);color:var(--muted);text-decoration:none;}
+.source-strip a:hover{color:var(--fg);border-color:var(--accent2);}
+.c-diag{stroke:var(--line);stroke-width:1.4;}
+.c-diag.active{stroke:var(--accent);stroke-width:2;stroke-dasharray:none;}
+.c-diag.ukubona{stroke-dasharray:4 3;}
+.c-vtx{fill:var(--card);stroke:var(--accent2);stroke-width:2;cursor:pointer;}
+.c-vtx.active{fill:var(--accent);}
+.c-vtx.ukubona{stroke:var(--accent);}
+.c-vlabel{font-family:-apple-system,sans-serif;font-size:12px;fill:var(--fg);cursor:pointer;font-weight:600;}
+.c-legend{display:flex;justify-content:center;gap:22px;margin:-10px 0 26px;font-family:-apple-system,sans-serif;font-size:11.5px;color:var(--muted);flex-wrap:wrap;}
+.c-legend span{display:inline-flex;align-items:center;gap:6px;}
+.c-legend i{width:14px;height:2px;background:var(--line);display:inline-block;}
+.c-legend i.uk{background:var(--accent);}
+.c-slot{display:none;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 26px;margin-bottom:16px;}
+.c-slot.active{display:block;}
+.c-slot .tag{color:var(--accent);font-family:-apple-system,sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
+.c-slot .who{float:right;font-family:-apple-system,sans-serif;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--line);border-radius:20px;padding:3px 10px;}
+.c-slot h2{font-size:20px;margin-bottom:10px;}
+.c-slot p{line-height:1.62;font-size:15px;margin:0 0 10px;}
+.c-slot .cap{border-left:3px solid var(--accent2);padding-left:12px;color:var(--muted);font-size:13.5px;margin-top:12px;}
+#cnav5{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+#cnav5 button{font-family:-apple-system,sans-serif;font-size:12px;padding:7px 12px;border-radius:20px;
+  border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;}
+#cnav5 button.active{background:var(--accent);color:#fff;border-color:var(--accent);}
 </style>
 </head>
 <body>
@@ -185,7 +221,7 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
   </div>
 
   <div class="synth" style="margin-top:22px;">
-    <strong style="color:var(--fg);">Related</strong> — Demis Hassabis's Nobel lecture names three criteria for a problem that suits AI (combinatorial search space, clear objective function, data/simulator). Ukubona adds two more — falsifiability, and trial-and-error as the V→I′ loop — closing the five out into a second pentad: <a href="five-criteria.html" style="color:var(--accent2);">five-criteria.html</a>.
+    <strong style="color:var(--fg);">Related</strong> — Demis Hassabis's Nobel lecture names three criteria for a problem that suits AI (combinatorial search space, clear objective function, data/simulator). Ukubona adds two more — falsifiability, and trial-and-error as the V→I′ loop — closing the five out into a second pentad: <a href="#" onclick="showView('criteria');return false;" style="color:var(--accent2);">Five Criteria for AI</a> (also reachable from the app-grid ⠿).
   </div>
 </div>
 
@@ -419,39 +455,175 @@ stack        / state</pre>
 <p class="src">The last transition — Palantir/state architecture to Marvin Sapp harmonic prediction — is the giveaway: the object of the session was never "economics." It was how a state contains, constrains, and generates its next state.</p>
   </div>
 </div>
+
+<div id="criteriaView">
+  <div class="backbar">
+    <button onclick="showView('pentad')">← Back to the pentad</button>
+  </div>
+  <div class="eyebrow">Ukubona working note</div>
+  <h1 class="title">Five criteria for a problem that suits AI</h1>
+  <p class="intro c-intro">In his 2024 Nobel lecture in Chemistry, <a href="https://www.nobelprize.org/prizes/chemistry/2024/hassabis/lecture/" target="_blank" rel="noopener">Demis Hassabis</a> gave three criteria for what makes a problem tractable for AI — the same three that took AlphaGo through Go and AlphaFold through protein structure. Ukubona LLC's working practice adds two more, closing the set out into a second pentad sharing the vertex-and-diagonal geometry above — solid diagonals below are Hassabis's; dashed ones are Ukubona's addition.</p>
+
+  <div class="source-strip">
+    <a href="https://www.nobelprize.org/prizes/chemistry/2024/hassabis/lecture/" target="_blank" rel="noopener">Hassabis, Nobel Lecture, 8 Dec 2024 ↗</a>
+    <a href="https://alphafold.ebi.ac.uk/" target="_blank" rel="noopener">AlphaFold Protein Structure Database ↗</a>
+  </div>
+
+  <div id="cpentagramWrap" style="display:flex;justify-content:center;margin:10px 0 30px;">
+    <svg viewBox="0 0 400 400" style="width:min(360px,90vw);height:auto;overflow:visible;">
+      <line class="c-diag" id="cd02" x1="200" y1="50" x2="288.2" y2="321.4" onclick="showCrit('III')"/>
+      <line class="c-diag ukubona" id="cd13" x1="342.6" y1="153.6" x2="111.8" y2="321.4" onclick="showCrit('IV')"/>
+      <line class="c-diag ukubona" id="cd24" x1="288.2" y1="321.4" x2="57.4" y2="153.6" onclick="showCrit('V')"/>
+      <line class="c-diag" id="cd30" x1="111.8" y1="321.4" x2="200" y2="50" onclick="showCrit('I')"/>
+      <line class="c-diag" id="cd41" x1="57.4" y1="153.6" x2="342.6" y2="153.6" onclick="showCrit('II')"/>
+      <circle class="c-vtx" data-k="I" cx="200" cy="50" r="15" onclick="showCrit('I')"/>
+      <circle class="c-vtx" data-k="II" cx="342.6" cy="153.6" r="15" onclick="showCrit('II')"/>
+      <circle class="c-vtx" data-k="III" cx="288.2" cy="321.4" r="15" onclick="showCrit('III')"/>
+      <circle class="c-vtx ukubona" data-k="IV" cx="111.8" cy="321.4" r="15" onclick="showCrit('IV')"/>
+      <circle class="c-vtx ukubona" data-k="V" cx="57.4" cy="153.6" r="15" onclick="showCrit('V')"/>
+      <text class="c-vlabel" x="200" y="30" text-anchor="middle" onclick="showCrit('I')">I · Search Space</text>
+      <text class="c-vlabel" x="370" y="150" text-anchor="start" onclick="showCrit('II')">II · Objective</text>
+      <text class="c-vlabel" x="300" y="358" text-anchor="middle" onclick="showCrit('III')">III · Data / Sim</text>
+      <text class="c-vlabel" x="100" y="358" text-anchor="middle" onclick="showCrit('IV')">IV · Falsifiable</text>
+      <text class="c-vlabel" x="30" y="150" text-anchor="start" onclick="showCrit('V')">V · Trial &amp; Error</text>
+    </svg>
+  </div>
+  <div class="c-legend"><span><i></i> Hassabis (3)</span><span><i class="uk"></i> Ukubona (+2)</span></div>
+
+  <div id="cnav5"></div>
+
+  <div class="c-slot" data-k="I">
+    <div class="who">Hassabis</div>
+    <div class="tag">I · Search Space — Substrate</div>
+    <h2>Massive combinatorial search space</h2>
+    <p>The problem has to be big enough that brute enumeration is hopeless — Go's ~10<sup>170</sup> positions, or the ~10<sup>300</sup> possible conformations Levinthal's paradox assigns a single protein. If the space were small enough to search exhaustively, you wouldn't need a learned model to guide you through it; you'd just search it.</p>
+    <p>This is the same substrate role I (Tensor/Soil) plays in the Constructal Pentad above — undifferentiated possibility before any channel has been cut through it.</p>
+  </div>
+
+  <div class="c-slot" data-k="II">
+    <div class="who">Hassabis</div>
+    <div class="tag">II · Objective — Relation</div>
+    <h2>A clear objective function to optimise against</h2>
+    <p>Something has to score a candidate solution — win/loss in Go, distance-to-native-fold in protein structure. Without a metric the search has no gradient to climb; "better" and "worse" aren't defined.</p>
+    <p class="cap">The metric doesn't have to be the whole story — Bejan's constructal law is explicit that "easier flow" is a tendency, not an optimisation target (see the Constructal Pentad, slot II, above). But for a system you intend to search with AI specifically, you need at least a proxy score, even a noisy one.</p>
+  </div>
+
+  <div class="c-slot" data-k="III">
+    <div class="who">Hassabis</div>
+    <div class="tag">III · Data / Simulator — Branching</div>
+    <h2>Lots of data, and/or an accurate, efficient simulator</h2>
+    <p>Either you have enough real examples to learn the shape of the space from (the ~170,000 structures in the Protein Data Bank that seeded AlphaFold), or you have a fast, faithful simulator you can generate unlimited self-play data from (Go's rules, playable by AlphaGo against itself billions of times). Most real problems need one of the two; the strongest ones — Go, protein folding — end up with both.</p>
+  </div>
+
+  <div class="c-slot" data-k="IV">
+    <div class="who">Ukubona +</div>
+    <div class="tag">IV · Falsifiability — Test</div>
+    <h2>The hypothesis has to be able to fail</h2>
+    <p>Hassabis's three criteria describe a space you can search. They don't by themselves guarantee that a candidate answer, once found, can be shown wrong. CASP's atomic-accuracy threshold (&lt;1.0Å average error) is what makes a folded structure falsifiable rather than merely plausible-looking — the same discipline the Constructal Pentad's slot IV (Eigenmodes/Hypothesis) calls the engine-and-brake: propose, then let reality prune the loser.</p>
+    <p>A search space with a scoring function but no way to falsify the winner just produces a confident-sounding answer nobody can hold accountable. Ukubona treats this as a standing requirement, not an implementation detail: if a proposed solution can't in principle be shown wrong, the problem isn't ready for the other four criteria to be applied to it.</p>
+  </div>
+
+  <div class="c-slot" data-k="V">
+    <div class="who">Ukubona +</div>
+    <div class="tag">V · Trial &amp; Error — Feedback (V → I′)</div>
+    <h2>The loop has to close: scalar back into soil</h2>
+    <p>Hassabis's own systems already run this even where his slide doesn't name it as a fifth criterion. AlphaGo "mastered Go through self-learning: playing against itself and learning from its mistakes." AlphaFold2's structure module runs a recycling stage that "iteratively refines the structure prediction" — the output of one pass becomes the input soil of the next.</p>
+    <p>That's the same V → I′ transition the Constructal Pentad names in its own slot V, above: the scalar (a score, a returned review, a folded structure's error) doesn't just get reported — it re-enters the field as next cycle's substrate. Ukubona's addition isn't a new mechanism; it's naming the loop Hassabis's architectures already depend on, and requiring it explicitly before calling a problem AI-tractable.</p>
+    <p class="cap">Without this closing edge, criteria I–III describe a single good search. With it, they describe a system that keeps getting better at searching — which is the actual claim being made when a lab calls something "self-improving."</p>
+  </div>
+
+  <div class="synth">Three plus two, not three-and-two-unrelated: Hassabis's criteria describe when a search is worth running; Ukubona's describe when you can trust and repeat what the search finds. Read together they're one pentad — the same I–V / TMVES structure the Constructal Pentad maps onto rivers and Amazon, mapped here onto the shape of an AI-tractable problem itself.</div>
+
+  <div class="synth" style="margin-top:22px;">
+    <strong style="color:var(--fg);">Sources</strong><br>
+    Hassabis, D. (2024). <em>Accelerating scientific discovery with AI.</em> Nobel Lecture in Chemistry, 8 Dec 2024. <a href="https://www.nobelprize.org/prizes/chemistry/2024/hassabis/lecture/" target="_blank" rel="noopener">nobelprize.org/prizes/chemistry/2024/hassabis/lecture</a><br>
+    Jumper, J. et al. (2021). <em>Highly accurate protein structure prediction with AlphaFold.</em> Nature. — AlphaFold DB: <a href="https://alphafold.ebi.ac.uk/" target="_blank" rel="noopener">alphafold.ebi.ac.uk</a><br>
+    Ukubona LLC, internal working notes — falsifiability and the V→I′ loop as criteria 4 and 5.
+  </div>
+</div>
 </main>
 
 <script>
 const order=['I','II','III','IV','V'];
+const critLabels={I:'Search Space (Hassabis)',II:'Objective (Hassabis)',III:'Data / Simulator (Hassabis)',IV:'Falsifiability (Ukubona)',V:'Trial & Error (Ukubona)'};
 const menu=document.getElementById('waffleMenu');
 const nav5=document.getElementById('nav5');
+const cnav5=document.getElementById('cnav5');
+
+function addGroupLabel(text){
+  const gl=document.createElement('div'); gl.className='grouplabel'; gl.textContent=text; menu.appendChild(gl);
+}
+function addDivider(){
+  const hr=document.createElement('hr'); menu.appendChild(hr);
+}
+function addMenuButton(text, fn){
+  const b=document.createElement('button'); b.textContent=text; b.onclick=()=>{fn(); menu.style.display='none';}; menu.appendChild(b);
+}
+
+/* Pentad view controls */
 order.forEach(k=>{
   const b=document.createElement('button'); b.textContent=k; b.onclick=()=>show(k); nav5.appendChild(b);
-  const m=document.createElement('button'); m.textContent=k+' — '+({I:'Tensor / Soil',II:'Matrix / Objective',III:'Vector / Search',IV:'Eigenmodes / Hypothesis',V:'Scalar / Feedback'})[k];
-  m.onclick=()=>{showView('pentad'); show(k); menu.style.display='none';}; menu.appendChild(m);
 });
-(function(){
-  const div=document.createElement('div'); div.style.cssText='height:1px;background:var(--line);margin:6px 4px;'; menu.appendChild(div);
-  const hist=document.createElement('button'); hist.textContent='⠿ Session History';
-  hist.onclick=()=>{showView('history'); menu.style.display='none';}; menu.appendChild(hist);
-  const five=document.createElement('a'); five.href='five-criteria.html'; five.textContent='⠿ Five Criteria (Hassabis + Ukubona)';
-  five.style.cssText='display:block;width:220px;padding:8px 10px;color:var(--fg);text-decoration:none;font-size:14px;border-radius:4px;';
-  five.onmouseover=()=>five.style.background='var(--line)'; five.onmouseout=()=>five.style.background='transparent';
-  menu.appendChild(five);
-})();
-function showView(v){
-  const p=document.getElementById('pentadView'), h=document.getElementById('historyView');
-  h.classList.toggle('active', v==='history');
-  p.style.display = v==='history' ? 'none' : 'block';
-  window.scrollTo(0,0);
-}
 function show(k){
-  document.querySelectorAll('.slot').forEach(s=>s.classList.toggle('active', s.dataset.k===k));
-  document.querySelectorAll('.vtx').forEach(v=>v.classList.toggle('active', v.dataset.k===k));
+  document.querySelectorAll('#pentadView .slot').forEach(s=>s.classList.toggle('active', s.dataset.k===k));
+  document.querySelectorAll('#pentadView .vtx').forEach(v=>v.classList.toggle('active', v.dataset.k===k));
   document.querySelectorAll('#nav5 button').forEach(b=>b.classList.toggle('active', b.textContent===k));
-  document.querySelectorAll('.diag').forEach(l=>l.classList.remove('active'));
+  document.querySelectorAll('#pentadView .diag').forEach(l=>l.classList.remove('active'));
 }
 show('I');
+
+/* Five Criteria view controls */
+order.forEach(k=>{
+  const b=document.createElement('button'); b.textContent=k; b.onclick=()=>showCrit(k); cnav5.appendChild(b);
+});
+function showCrit(k){
+  document.querySelectorAll('#criteriaView .c-slot').forEach(s=>s.classList.toggle('active', s.dataset.k===k));
+  document.querySelectorAll('#criteriaView .c-vtx').forEach(v=>v.classList.toggle('active', v.dataset.k===k));
+  document.querySelectorAll('#cnav5 button').forEach(b=>b.classList.toggle('active', b.textContent===k));
+  document.querySelectorAll('#criteriaView .c-diag').forEach(l=>l.classList.remove('active'));
+}
+showCrit('I');
+
+/* Top-level view switcher: pentad | history | criteria */
+function showView(v){
+  document.getElementById('pentadView').style.display = v==='pentad' ? 'block' : 'none';
+  document.getElementById('historyView').classList.toggle('active', v==='history');
+  document.getElementById('criteriaView').classList.toggle('active', v==='criteria');
+  window.scrollTo(0,0);
+}
+
+/* Build the app-grid: curated sections for each view, plus every external
+   link on the page, gathered automatically so the grid never drifts out
+   of sync with the document. */
+addGroupLabel('Constructal Pentad');
+order.forEach(k=>{
+  const label=({I:'Tensor / Soil',II:'Matrix / Objective',III:'Vector / Search',IV:'Eigenmodes / Hypothesis',V:'Scalar / Feedback'})[k];
+  addMenuButton(k+' — '+label, ()=>{showView('pentad'); show(k);});
+});
+addDivider();
+addMenuButton('⟳  Session History', ()=>showView('history'));
+addDivider();
+addGroupLabel('Five Criteria for AI');
+order.forEach(k=>{
+  addMenuButton(k+' — '+critLabels[k], ()=>{showView('criteria'); showCrit(k);});
+});
+(function(){
+  const seen=new Set(); const links=[];
+  document.querySelectorAll('main a[href^="http"]').forEach(a=>{
+    const href=a.getAttribute('href');
+    if(seen.has(href)) return; seen.add(href);
+    links.push({href, label:a.textContent.trim().replace(/\s*↗$/,'')});
+  });
+  if(links.length){
+    addDivider();
+    addGroupLabel('External references');
+    links.forEach(l=>{
+      const a=document.createElement('a'); a.href=l.href; a.target='_blank'; a.rel='noopener'; a.textContent=l.label;
+      menu.appendChild(a);
+    });
+  }
+})();
+
 function toggleTheme(){
   const html=document.documentElement;
   const cur = html.getAttribute('data-theme');
@@ -464,7 +636,8 @@ try{
   if(saved) document.documentElement.setAttribute('data-theme', saved);
 }catch(e){}
 try{
-  if(new URLSearchParams(location.search).get('view')==='history'){ showView('history'); }
+  const v=new URLSearchParams(location.search).get('view');
+  if(v==='history'||v==='criteria'){ showView(v); }
 }catch(e){}
 </script>
 </body>
