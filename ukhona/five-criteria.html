@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Five Criteria — What Makes a Problem Suit AI</title>
+<style>
+:root{
+  --bg:#f4f1ea; --fg:#181510; --accent:#b0421e; --accent2:#1e5c4a;
+  --card:#fffdf8; --line:#d8d0c0; --muted:#6b6455;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#14120e; --fg:#eee8da; --accent:#e8813f; --accent2:#5fd1ab; --card:#1d1a14; --line:#332e24; --muted:#a49b87; }
+}
+:root[data-theme="dark"]{ --bg:#14120e; --fg:#eee8da; --accent:#e8813f; --accent2:#5fd1ab; --card:#1d1a14; --line:#332e24; --muted:#a49b87; }
+html,body{height:100%;margin:0;}
+body{
+  background:var(--bg); color:var(--fg); font-family: Georgia, 'Times New Roman', serif;
+  scroll-padding-top:env(safe-area-inset-top,0px);
+}
+h1,h2,h3{font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; letter-spacing:.02em; margin:0;}
+header{ position:relative; height:56px; }
+.corner{position:fixed; top:0; z-index:50; height:56px; display:flex; align-items:center;
+  padding-top:env(safe-area-inset-top,0px);}
+#logoBox{left:0; width:56px; justify-content:center; background:var(--accent); }
+#waffleBox{left:56px;}
+#themeBox{right:0; padding-right:env(safe-area-inset-right,0px);}
+#logo{width:30px;height:30px; transform-origin:50% 50%; animation: sway 120s ease-in-out infinite alternate;}
+@keyframes sway{ from{transform:rotate(0deg)} to{transform:rotate(260deg)} }
+.iconbtn{width:44px;height:44px;border:none;background:transparent;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;color:var(--fg);}
+.waffle{display:grid;grid-template-columns:repeat(3,4px);grid-gap:3px;}
+.waffle span{width:4px;height:4px;border-radius:50%;background:var(--fg);}
+#waffleMenu{position:fixed;top:56px;left:56px;background:var(--card);border:1px solid var(--line);
+  border-radius:6px;padding:10px;display:none;z-index:60;box-shadow:0 6px 20px rgba(0,0,0,.2); width:270px;}
+#waffleMenu .grouplabel{font-family:-apple-system,sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);padding:6px 8px 4px;}
+#waffleMenu a,#waffleMenu button{display:block;width:100%;text-align:left;padding:8px 10px;border:none;background:transparent;
+  color:var(--fg);font-family:-apple-system,sans-serif;cursor:pointer;border-radius:4px;font-size:13.5px;text-decoration:none;
+  box-sizing:border-box; line-height:1.35;}
+#waffleMenu a small,#waffleMenu button small{display:block;color:var(--muted);font-size:11px;margin-top:1px;}
+#waffleMenu a:hover,#waffleMenu button:hover{background:var(--line);}
+#waffleMenu hr{border:0;border-top:1px solid var(--line);margin:6px 2px;}
+main{max-width:900px;margin:0 auto;padding:76px 20px 60px;}
+.eyebrow{color:var(--accent);font-family:-apple-system,sans-serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;}
+h1.title{font-size:28px;margin:6px 0 18px;line-height:1.2;}
+.intro{color:var(--muted);font-size:15px;line-height:1.6;max-width:660px;margin-bottom:10px;}
+.intro a{color:var(--accent2);}
+.source-strip{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 30px;}
+.source-strip a{font-family:-apple-system,sans-serif;font-size:12px;padding:7px 12px;border-radius:20px;
+  border:1px solid var(--line);color:var(--muted);text-decoration:none;}
+.source-strip a:hover{color:var(--fg);border-color:var(--accent2);}
+#pentagramWrap{display:flex;justify-content:center;margin:10px 0 30px;}
+svg.diagram{width:min(360px,90vw);height:auto;overflow:visible;}
+.diag{stroke:var(--line);stroke-width:1.4;}
+.diag.hassabis{stroke-dasharray:none;}
+.diag.ukubona{stroke-dasharray:4 3;}
+.diag.active{stroke:var(--accent);stroke-width:2;stroke-dasharray:none;}
+.vtx{fill:var(--card);stroke:var(--accent2);stroke-width:2;cursor:pointer;}
+.vtx.active{fill:var(--accent);}
+.vtx.ukubona{stroke:var(--accent);}
+.vlabel{font-family:-apple-system,sans-serif;font-size:12px;fill:var(--fg);cursor:pointer;font-weight:600;}
+.legend{display:flex;justify-content:center;gap:22px;margin:-10px 0 26px;font-family:-apple-system,sans-serif;font-size:11.5px;color:var(--muted);flex-wrap:wrap;}
+.legend span{display:inline-flex;align-items:center;gap:6px;}
+.legend i{width:14px;height:2px;background:var(--line);display:inline-block;}
+.legend i.uk{background:var(--accent);}
+.slot{display:none;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 26px;margin-bottom:16px;}
+.slot.active{display:block;}
+.slot .tag{color:var(--accent);font-family:-apple-system,sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
+.slot .who{float:right;font-family:-apple-system,sans-serif;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--line);border-radius:20px;padding:3px 10px;}
+.slot h2{font-size:20px;margin-bottom:10px;}
+.slot p{line-height:1.62;font-size:15px;margin:0 0 10px;}
+.slot .cap{border-left:3px solid var(--accent2);padding-left:12px;color:var(--muted);font-size:13.5px;margin-top:12px;}
+.nav5{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+.nav5 button{font-family:-apple-system,sans-serif;font-size:12px;padding:7px 12px;border-radius:20px;
+  border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;}
+.nav5 button.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.synth{margin-top:6px;font-size:14px;color:var(--muted);line-height:1.6;border-top:1px dashed var(--line);padding-top:18px;}
+.synth a{color:var(--accent2);}
+</style>
+</head>
+<body>
+<header>
+  <div id="logoBox" class="corner">
+    <svg id="logo" viewBox="0 0 40 40"><polygon points="20,5 28.82,32.14 5.74,15.36 34.26,15.36 11.18,32.14" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
+  </div>
+  <div id="waffleBox" class="corner">
+    <button class="iconbtn" onclick="document.getElementById('waffleMenu').style.display = document.getElementById('waffleMenu').style.display==='block'?'none':'block'" aria-label="All links on this page">
+      <div class="waffle"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </button>
+  </div>
+  <div id="themeBox" class="corner">
+    <button class="iconbtn" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle theme">◐</button>
+  </div>
+  <div id="waffleMenu"></div>
+</header>
+
+<main>
+  <div class="eyebrow">Ukubona working note</div>
+  <h1 class="title">Five criteria for a problem that suits AI</h1>
+  <p class="intro">In his 2024 Nobel lecture in Chemistry, <a href="https://www.nobelprize.org/prizes/chemistry/2024/hassabis/lecture/" target="_blank" rel="noopener">Demis Hassabis</a> gave three criteria for what makes a problem tractable for AI — the same three that took AlphaGo through Go and AlphaFold through protein structure. Ukubona LLC's working practice adds two more, closing the set out into a second pentad. The two pentads share a vertex-and-diagonal geometry with the <a href="index.html">Constructal Pentad</a> artefact — solid diagonals below are Hassabis's; dashed ones are Ukubona's addition.</p>
+
+  <div class="source-strip">
+    <a href="https://www.nobelprize.org/prizes/chemistry/2024/hassabis/lecture/" target="_blank" rel="noopener">Hassabis, Nobel Lecture, 8 Dec 2024 ↗</a>
+    <a href="https://alphafold.ebi.ac.uk/" target="_blank" rel="noopener">AlphaFold Protein Structure Database ↗</a>
+    <a href="index.html">← Constructal Pentad</a>
+  </div>
+
+  <div id="pentagramWrap">
+    <svg class="diagram" viewBox="0 0 400 400">
+      <line class="diag hassabis" id="d02" x1="200" y1="50" x2="288.2" y2="321.4" onclick="show('III')"/>
+      <line class="diag ukubona" id="d13" x1="342.6" y1="153.6" x2="111.8" y2="321.4" onclick="show('IV')"/>
+      <line class="diag ukubona" id="d24" x1="288.2" y1="321.4" x2="57.4" y2="153.6" onclick="show('V')"/>
+      <line class="diag hassabis" id="d30" x1="111.8" y1="321.4" x2="200" y2="50" onclick="show('I')"/>
+      <line class="diag hassabis" id="d41" x1="57.4" y1="153.6" x2="342.6" y2="153.6" onclick="show('II')"/>
+      <circle class="vtx" data-k="I" cx="200" cy="50" r="15" onclick="show('I')"/>
+      <circle class="vtx" data-k="II" cx="342.6" cy="153.6" r="15" onclick="show('II')"/>
+      <circle class="vtx" data-k="III" cx="288.2" cy="321.4" r="15" onclick="show('III')"/>
+      <circle class="vtx ukubona" data-k="IV" cx="111.8" cy="321.4" r="15" onclick="show('IV')"/>
+      <circle class="vtx ukubona" data-k="V" cx="57.4" cy="153.6" r="15" onclick="show('V')"/>
+      <text class="vlabel" x="200" y="30" text-anchor="middle" onclick="show('I')">I · Search Space</text>
+      <text class="vlabel" x="370" y="150" text-anchor="start" onclick="show('II')">II · Objective</text>
+      <text class="vlabel" x="300" y="358" text-anchor="middle" onclick="show('III')">III · Data / Sim</text>
+      <text class="vlabel" x="100" y="358" text-anchor="middle" onclick="show('IV')">IV · Falsifiable</text>
+      <text class="vlabel" x="30" y="150" text-anchor="start" onclick="show('V')">V · Trial &amp; Error</text>
+    </svg>
+  </div>
+  <div class="legend"><span><i></i> Hassabis (3)</span><span><i class="uk"></i> Ukubona (+2)</span></div>
+
+  <div class="nav5" id="nav5"></div>
+
+  <div class="slot" data-k="I">
+    <div class="who">Hassabis</div>
+    <div class="tag">I · Search Space — Substrate</div>
+    <h2>Massive combinatorial search space</h2>
+    <p>The problem has to be big enough that brute enumeration is hopeless — Go's ~10<sup>170</sup> positions, or the ~10<sup>300</sup> possible conformations Levinthal's paradox assigns a single protein. If the space were small enough to search exhaustively, you wouldn't need a learned model to guide you through it; you'd just search it.</p>
+    <p>This is the same substrate role I (Tensor/Soil) plays in the Constructal Pentad — undifferentiated possibility before any channel has been cut through it.</p>
+  </div>
+
+  <div class="slot" data-k="II">
+    <div class="who">Hassabis</div>
+    <div class="tag">II · Objective — Relation</div>
+    <h2>A clear objective function to optimise against</h2>
+    <p>Something has to score a candidate solution — win/loss in Go, distance-to-native-fold in protein structure. Without a metric the search has no gradient to climb; "better" and "worse" aren't defined.</p>
+    <p class="cap">The metric doesn't have to be the whole story — Bejan's constructal law is explicit that "easier flow" is a tendency, not an optimisation target (see the Constructal Pentad, slot II). But for a system you intend to search with AI specifically, you need at least a proxy score, even a noisy one.</p>
+  </div>
+
+  <div class="slot" data-k="III">
+    <div class="who">Hassabis</div>
+    <div class="tag">III · Data / Simulator — Branching</div>
+    <h2>Lots of data, and/or an accurate, efficient simulator</h2>
+    <p>Either you have enough real examples to learn the shape of the space from (the ~170,000 structures in the Protein Data Bank that seeded AlphaFold), or you have a fast, faithful simulator you can generate unlimited self-play data from (Go's rules, playable by AlphaGo against itself billions of times). Most real problems need one of the two; the strongest ones — Go, protein folding — end up with both.</p>
+  </div>
+
+  <div class="slot" data-k="IV">
+    <div class="who">Ukubona +</div>
+    <div class="tag">IV · Falsifiability — Test</div>
+    <h2>The hypothesis has to be able to fail</h2>
+    <p>Hassabis's three criteria describe a space you can search. They don't by themselves guarantee that a candidate answer, once found, can be shown wrong. CASP's atomic-accuracy threshold (&lt;1.0Å average error) is what makes a folded structure falsifiable rather than merely plausible-looking — the same discipline the Constructal Pentad's slot IV (Eigenmodes/Hypothesis) calls the engine-and-brake: propose, then let reality prune the loser.</p>
+    <p>A search space with a scoring function but no way to falsify the winner just produces a confident-sounding answer nobody can hold accountable. Ukubona treats this as a standing requirement, not an implementation detail: if a proposed solution can't in principle be shown wrong, the problem isn't ready for the other four criteria to be applied to it.</p>
+  </div>
+
+  <div class="slot" data-k="V">
+    <div class="who">Ukubona +</div>
+    <div class="tag">V · Trial &amp; Error — Feedback (V → I′)</div>
+    <h2>The loop has to close: scalar back into soil</h2>
+    <p>Hassabis's own systems already run this even where his slide doesn't name it as a fifth criterion. AlphaGo "mastered Go through self-learning: playing against itself and learning from its mistakes." AlphaFold2's structure module runs a recycling stage that "iteratively refines the structure prediction" — the output of one pass becomes the input soil of the next.</p>
+    <p>That's the same V → I′ transition the Constructal Pentad names in its own slot V: the scalar (a score, a returned review, a folded structure's error) doesn't just get reported — it re-enters the field as next cycle's substrate. Ukubona's addition isn't a new mechanism; it's naming the loop Hassabis's architectures already depend on, and requiring it explicitly before calling a problem AI-tractable.</p>
+    <p class="cap">Without this closing edge, criteria I–III describe a single good search. With it, they describe a system that keeps getting better at searching — which is the actual claim being made when a lab calls something "self-improving."</p>
+  </div>
+
+  <div class="synth">Three plus two, not three-and-two-unrelated: Hassabis's criteria describe when a search is worth running; Ukubona's describe when you can trust and repeat what the search finds. Read together they're one pentad — the same I–V / TMVES structure the Constructal Pentad maps onto rivers and Amazon, mapped here onto the shape of an AI-tractable problem itself.</div>
+
+  <div class="synth" style="margin-top:22px;">
+    <strong style="color:var(--fg);">Sources</strong><br>
+    Hassabis, D. (2024). <em>Accelerating scientific discovery with AI.</em> Nobel Lecture in Chemistry, 8 Dec 2024. <a href="https://www.nobelprize.org/prizes/chemistry/2024/hassabis/lecture/" target="_blank" rel="noopener">nobelprize.org/prizes/chemistry/2024/hassabis/lecture</a><br>
+    Jumper, J. et al. (2021). <em>Highly accurate protein structure prediction with AlphaFold.</em> Nature. — AlphaFold DB: <a href="https://alphafold.ebi.ac.uk/" target="_blank" rel="noopener">alphafold.ebi.ac.uk</a><br>
+    Ukubona LLC, internal working notes — falsifiability and the V→I′ loop as criteria 4 and 5.
+  </div>
+</main>
+
+<script>
+const order=['I','II','III','IV','V'];
+const labels={I:'Search Space (Hassabis)',II:'Objective (Hassabis)',III:'Data / Simulator (Hassabis)',IV:'Falsifiability (Ukubona)',V:'Trial & Error (Ukubona)'};
+const nav5=document.getElementById('nav5');
+order.forEach(k=>{
+  const b=document.createElement('button'); b.textContent=k; b.onclick=()=>show(k); nav5.appendChild(b);
+});
+function show(k){
+  document.querySelectorAll('.slot').forEach(s=>s.classList.toggle('active', s.dataset.k===k));
+  document.querySelectorAll('.vtx').forEach(v=>v.classList.toggle('active', v.dataset.k===k));
+  document.querySelectorAll('#nav5 button').forEach(b=>b.classList.toggle('active', b.textContent===k));
+  document.querySelectorAll('.diag').forEach(l=>l.classList.remove('active'));
+}
+show('I');
+
+/* --- Self-sufficient app-grid: every link on the page, gathered automatically --- */
+(function(){
+  const menu=document.getElementById('waffleMenu');
+  const seen=new Set();
+  const groups={'On this page':[], 'External':[]};
+  document.querySelectorAll('main a[href]').forEach(a=>{
+    const href=a.getAttribute('href');
+    if(!href || href==='#' || seen.has(href)) return;
+    seen.add(href);
+    const external = /^https?:\/\//.test(href);
+    const label = a.textContent.trim().replace(/\s*↗$/,'');
+    (external ? groups['External'] : groups['On this page']).push({href, label, external});
+  });
+  Object.keys(groups).forEach(g=>{
+    if(!groups[g].length) return;
+    const gl=document.createElement('div'); gl.className='grouplabel'; gl.textContent=g; menu.appendChild(gl);
+    groups[g].forEach(item=>{
+      const a=document.createElement('a'); a.href=item.href; a.textContent=item.label;
+      if(item.external){ a.target='_blank'; a.rel='noopener'; }
+      menu.appendChild(a);
+    });
+  });
+})();
+
+function toggleTheme(){
+  const html=document.documentElement;
+  const cur = html.getAttribute('data-theme');
+  const next = cur==='dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  try{ localStorage.setItem('theme', next); }catch(e){}
+}
+try{
+  const saved = localStorage.getItem('theme');
+  if(saved) document.documentElement.setAttribute('data-theme', saved);
+}catch(e){}
+</script>
+</body>
+</html>

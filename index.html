@@ -27,8 +27,8 @@ header{ position:relative; height:56px; }
 #logoBox{left:0; width:56px; justify-content:center; background:var(--accent); }
 #waffleBox{left:56px;}
 #themeBox{right:0; padding-right:env(safe-area-inset-right,0px);}
-#logo{width:30px;height:30px; animation: spin 9s linear infinite;}
-@keyframes spin{ from{transform:rotate(0)} to{transform:rotate(360deg)} }
+#logo{width:30px;height:30px; transform-origin:50% 50%; animation: sway 120s ease-in-out infinite alternate;}
+@keyframes sway{ from{transform:rotate(0deg)} to{transform:rotate(260deg)} }
 .iconbtn{width:44px;height:44px;border:none;background:transparent;cursor:pointer;
   display:flex;align-items:center;justify-content:center;color:var(--fg);}
 .waffle{display:grid;grid-template-columns:repeat(3,4px);grid-gap:3px;}
@@ -60,12 +60,40 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
   border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;}
 .nav5 button.active{background:var(--accent);color:#fff;border-color:var(--accent);}
 .synth{margin-top:6px;font-size:14px;color:var(--muted);line-height:1.6;border-top:1px dashed var(--line);padding-top:18px;}
+
+/* --- Session History (embedded verbatim) --- */
+:root{--mono:#fdfaf2;}
+:root:not([data-theme="light"]){--mono:#fdfaf2;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--mono:#100f0b;}}
+:root[data-theme="dark"]{--mono:#100f0b;}
+#historyView{display:none;}
+#historyView.active{display:block;}
+.backbar{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+.backbar button{font-family:-apple-system,sans-serif;font-size:12px;padding:7px 12px;border-radius:20px;
+  border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;}
+.backbar button:hover{color:var(--fg);border-color:var(--accent2);}
+.history-doc{font:16px/1.65 Georgia,'Times New Roman',serif;}
+.history-doc h1{font:600 26px/1.3 -apple-system,sans-serif;margin:0 0 6px;}
+.history-doc .sub{color:var(--muted);font:14px -apple-system,sans-serif;margin-bottom:28px;}
+.history-doc h2{font:600 12px -apple-system,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  border-bottom:1px solid var(--line);padding-bottom:8px;margin:34px 0 14px;}
+.history-doc h3{font:600 16px -apple-system,sans-serif;margin:18px 0 6px;}
+.history-doc p{margin:0 0 12px;}
+.history-doc table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13.5px;display:block;overflow-x:auto;}
+.history-doc th,.history-doc td{border:1px solid var(--line);padding:.45rem .6rem;text-align:left;vertical-align:top;}
+.history-doc th{background:var(--card);font-family:-apple-system,sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);}
+.history-doc pre{background:var(--mono);border:1px solid var(--line);border-radius:8px;padding:14px 16px;overflow-x:auto;
+  font:13px/1.5 ui-monospace,Menlo,Consolas,monospace;margin:14px 0;}
+.history-doc .boxed{border:1px solid var(--accent);border-radius:8px;padding:12px 16px;margin:14px 0;font:14.5px/1.5 ui-monospace,Menlo,Consolas,monospace;background:var(--card);}
+.history-doc .tag{font:600 11px -apple-system,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.history-doc .src{font:13px -apple-system,sans-serif;color:var(--muted);border-left:3px solid var(--line);padding-left:12px;margin:10px 0;}
+.history-doc hr{border:0;border-top:1px dashed var(--line);margin:26px 0;}
 </style>
 </head>
 <body>
 <header>
   <div id="logoBox" class="corner">
-    <svg id="logo" viewBox="0 0 40 40"><polygon points="20,3 23.82,14.74 36.17,14.75 26.18,22.01 29.99,33.75 20,26.5 10.01,33.75 13.82,22.01 3.83,14.75 16.18,14.74" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>
+    <svg id="logo" viewBox="0 0 40 40"><polygon points="20,5 28.82,32.14 5.74,15.36 34.26,15.36 11.18,32.14" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
   </div>
   <div id="waffleBox" class="corner">
     <button class="iconbtn" onclick="document.getElementById('waffleMenu').style.display = document.getElementById('waffleMenu').style.display==='block'?'none':'block'" aria-label="Sections">
@@ -79,6 +107,7 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
 </header>
 
 <main>
+<div id="pentadView">
   <div class="eyebrow">Ukubona working note</div>
   <h1 class="title">One law, three currencies: rivers, Amazon, and the pentad</h1>
   <p class="intro">Bejan's constructal law says a finite-size flow system that persists in time must keep evolving toward configurations that give easier access to whatever flows through it. Bezos named the company after the river with the largest discharge volume on Earth before a single warehouse existed. What follows maps the flywheel onto I–V / TMVES as five pentadic slots — not five separate ideas, but one law observed in five places along the same loop.</p>
@@ -152,8 +181,244 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
   <div class="synth" style="margin-top:22px;">
     <strong style="color:var(--fg);">Cross-reference — the brake outrunning the engine</strong><br>
     Thiel's recurring complaint was that the West stopped producing real progress — bits raced ahead while atoms stalled. The frontier-AI user-growth curve is the empirical rebuttal, and it reads as a constructal event rather than an abstract counter-argument: a new channel (Gemini, ChatGPT, Claude, Grok) reached billion-user scale faster than any prior flow architecture, Amazon included, because it inherited Level V's digital leverage from day one instead of climbing up through a Level IV Newtonian bottleneck first. That's why the institutions built to defend the old substrate — a Pope, a King, entire governments — are visibly reacting: once a channel's discharge volume steepens enough, it forces the surrounding soil (I) to redraw itself, whether or not the soil consented. See <a href="https://ukubona-llc.github.io/frontier-ai-user-growth/" target="_blank" rel="noopener" style="color:var(--accent2);">ukubona-llc.github.io/frontier-ai-user-growth</a> for the chart and the Pichai/Hassabis victory-lap timeline it's drawn from.<br><br>
-    The fuller recursive trajectory this artefact compresses — T-Pain vs. the MD/PhD pedigree, the Marx/Nietzsche split, Karp vs. Thiel on Exit vs. Voice/Force, resolving into a gospel chord's voice-leading — is preserved verbatim, tables and ASCII diagrams included, at <a href="ukhona/session-history.html" style="color:var(--accent2);">session-history.html</a>. That session is the second substrate this page's Amazon reading was built to test the law against.
+    The fuller recursive trajectory this artefact compresses — T-Pain vs. the MD/PhD pedigree, the Marx/Nietzsche split, Karp vs. Thiel on Exit vs. Voice/Force, resolving into a gospel chord's voice-leading — is preserved verbatim, tables and ASCII diagrams included, in the <a href="#" onclick="showView('history');return false;" style="color:var(--accent2);">session history</a> (also reachable from the app-grid ⠿, top left). That session is the second substrate this page's Amazon reading was built to test the law against.
   </div>
+
+  <div class="synth" style="margin-top:22px;">
+    <strong style="color:var(--fg);">Related</strong> — Demis Hassabis's Nobel lecture names three criteria for a problem that suits AI (combinatorial search space, clear objective function, data/simulator). Ukubona adds two more — falsifiability, and trial-and-error as the V→I′ loop — closing the five out into a second pentad: <a href="five-criteria.html" style="color:var(--accent2);">five-criteria.html</a>.
+  </div>
+</div>
+
+<div id="historyView">
+  <div class="backbar">
+    <button onclick="showView('pentad')">← Back to the pentad</button>
+  </div>
+  <div class="history-doc">
+<h1>Payoff → Leverage → Structure → Substrate → Value → Agency → Prediction</h1>
+<div class="sub">Extracted session history, pentadic tables, and ASCII diagrams — one recursive diagnostic trajectory across four screenshots.</div>
+
+<h2>1 · History</h2>
+
+<h3>Screenshot 1 — The core paradox</h3>
+<p>Session opens on T-Pain earning an estimated $50,000–60,000/hour on Twitch, driven by sponsorships like a $250,000 two-hour deal with 7-Eleven — set against an MD/MPH/PhDc, 20-year Johns Hopkins pedigree, where value is tied to credentialing and linear labor. Mapped via the Pentadic Fractal Tree: <b>Level IV (Branches → Newtonian Limit)</b> — high-pedigree medicine as a linear transducer, output capped by the physics of presence, 1:1 ratio, high-dissipation somatic process; vs. <b>Level V (Canopy / Dissipative)</b> — T-Pain and generative engines (Muse Code, Scale AI) decoupled from the somatic branch, infinite digital leverage, same energy to reach one person or hundreds of thousands.</p>
+
+<h3>Screenshot 2 — Homeostatic myth and the two critiques</h3>
+<p>The myth: a weekend off resets an individual to baseline. Reality: <b>I. SOIL (Harmony, Energy, Somatic substrate)</b> is depleting — Society/Institutions/Harmony logged at −59%. Without a feedback loop returning the canopy's fruit-fall to nourish the base, the operator withers rather than evolves. Two critiques of the escapism this produces: <b>Marx</b> ("Opium of the People") — entertainment as structural analgesic, commodifying free time into a secondary profit center; <b>Nietzsche</b> ("Narcotic Comfort") — escapism as the <i>Last Man</i> (<i>Der Letzte Mensch</i>), comfort-seeking in place of active allostatic adaptation. Applied to Karp vs. Thiel (Karp's <i>The Technological Republic</i>): Karp reads Thiel's tech-libertarianism and exit-seeking as the Last Man's ultimate mutation — abdication of the state's hard architecture.</p>
+
+<h3>Screenshot 3 — The structural audit and next steps</h3>
+<p>Thiel: <b>Level III (Cache/Routing) & Level V (Agency)</b> — Western institutions entropically withering, optimal play is <i>Exit</i>. Karp: <b>Level I (Soil Integrity) & Level IV (Branches)</b> — weaponize computation for <i>Voice/Force</i>, defend the physical substrate. The irony: Palantir is the child of both — Thiel engineered the scalable routing engine, Karp built the ideological framing to sell a surveillance apparatus to a bleeding Western elite. One engineers the escape pod; the other weaponizes the engine room. Open next steps offered: map the remaining three "-ean" lenses (Darwinian, Smithian, Shannonian) across Branches, or formalize the SAPATA state observer for allostatic self-tracking.</p>
+
+<h3>Screenshot 4 — Marvin Sapp, "Thirsty"</h3>
+<p>YouTube: <i>Gospel Players NEED to Know These Chords! | Marvin Sapp "Thirsty"</i>, channel George Granville (6.67K subscribers), 108 views · 3h ago. On-screen chord: <b>A♭9(13)sus4</b>. Keyboard notes highlighted: A – E – G – A♯ – D – F♯ – A. Tags: #GospelPiano #MarvinSapp #Thirsty.</p>
+
+<hr>
+
+<h2>2 · The main pentadic table</h2>
+<p class="tag">Trajectory across the whole session, read against Marx and Nietzsche</p>
+<table>
+<tr><th>Pentad</th><th>Trajectory in the session</th><th>Screenshot evidence</th><th>Marx</th><th>Nietzsche</th></tr>
+<tr><td>T — Tensor</td><td>Encounter / raw field</td><td>T-Pain ~$50–60k/hr vs. MD/MPH/PhDc pedigree; medicine, Twitch, sponsorship, academia</td><td>Material conditions of labor</td><td>Given values / inherited valuations</td></tr>
+<tr><td>M — Matrix</td><td>Relations become visible</td><td>Credential × presence × labor × energy × distribution × attention × scalability</td><td>Capital ↔ labor ↔ commodity</td><td>Rank ↔ value ↔ ressentiment ↔ herd</td></tr>
+<tr><td>V — Vector</td><td>System has a direction</td><td>Linear transduction → digital leverage</td><td>Capital reorganizes production toward accumulation</td><td>Valuation drives a direction of human becoming</td></tr>
+<tr><td>E — Eigenmode</td><td>What persists beneath the motion</td><td>Value decouples from embodied labor; scalable attention survives the individual act</td><td>Alienation / structural reproduction</td><td>Narcotic comfort / Last Man / nihilistic exhaustion</td></tr>
+<tr><td>S — Scalar</td><td>Visible payoff</td><td>Doctor's income ≪ T-Pain's digital income</td><td>Wage as visible expression of production relations</td><td>Income as visible expression of what society values</td></tr>
+<tr><td>T′</td><td>The scalar feeds back into the field</td><td>Entertainment → attention → sponsorship → capital → institutions → labor</td><td>Reproduction of the relations of production</td><td>Reproduction of the values/human type</td></tr>
+<tr><td>M′</td><td>New matrix</td><td>Allostatic depletion + entertainment + corporate monetization</td><td>Free time itself becomes commodifiable</td><td>Comfort becomes an organizing value</td></tr>
+<tr><td>V′</td><td>New vector</td><td>Escapism → analgesia rather than adaptation; Exit vs Voice/Force</td><td>Alienation reproduced</td><td>Last Man / overcoming vs comfort</td></tr>
+<tr><td>E′</td><td>Persistent institutional mode</td><td>Karp–Thiel contradiction; Palantir as scalable data-routing + state architecture</td><td>Capital/state/labor contradiction</td><td>Exit vs active world-building</td></tr>
+<tr><td>S′</td><td>New scalar/choice</td><td>Exit vs Voice/Force; private escape vs institutional intervention</td><td>Who controls production?</td><td>What kind of human/value system is being produced?</td></tr>
+<tr><td>T″</td><td>Entirely new observed field</td><td>Marvin Sapp chord lesson appears</td><td>—</td><td>—</td></tr>
+<tr><td>M″</td><td>Relational structure</td><td>A♭9(13)sus4 → common tones / tension / resolution</td><td>—</td><td>—</td></tr>
+<tr><td>V″</td><td>Trajectory prediction</td><td>Which voicing/token comes next?</td><td>—</td><td>—</td></tr>
+<tr><td>E″</td><td>Persistent harmonic identity</td><td>Sus13 preserves tones while delaying commitment</td><td>—</td><td>—</td></tr>
+<tr><td>S″</td><td>Next chord</td><td>The player commits to the next voicing</td><td>—</td><td>—</td></tr>
+</table>
+
+<hr>
+
+<h2>3 · The session is recursive, not linear</h2>
+<p>It did not run T→M→V→E→S once. It started at S and diagnosed backward:</p>
+<pre>                    OBSERVED
+                       ↓
+             S₀ = DOCTOR ≪ T-PAIN
+                       │
+                       │ "WHY?"
+                       ↓
+             E₀ = LEVERAGE / VALUE MODE
+                       │
+                       │ "HOW?"
+                       ↓
+             V₀ = LINEAR → SCALABLE
+                       │
+                       │ "WHAT RELATIONS?"
+                       ↓
+             M₀ = LABOR × PRESENCE ×
+                  ENERGY × DISTRIBUTION
+                       │
+                       │ "WHAT WORLD?"
+                       ↓
+             T₀ = ECONOMY / INSTITUTIONS /
+                  TECHNOLOGY / HUMAN BODY</pre>
+<div class="boxed">Diagnostic reverse traversal:  S → E → V → M → T</div>
+<div class="boxed">The pentad itself is generative:  T → M → V → E → S</div>
+<p>The reader/model diagnoses backward; the system generates forward.</p>
+
+<h2>4 · Marx and Nietzsche as inverse operators</h2>
+<pre>                         S
+                 ┌───────┴────────┐
+                 ↓                ↓
+              MARX            NIETZSCHE
+                 ↓                ↓
+        "Who produces,       "What values
+         who owns,            this?"
+         who extracts?"
+                 │                │
+                 ↓                ↓
+              MATRIX          EIGENMODE
+                 │                │
+       production relations    valuation /
+       labor / capital         human type
+                 │                │
+                 └───────┬────────┘
+                         ↓
+                    UKUBONA
+                         ↓
+               "What update rule
+                reproduces this?"</pre>
+<table>
+<tr><th>Thinker</th><th>Diagnostic depth</th><th>Question</th></tr>
+<tr><td>Marx</td><td>M → V</td><td>What relations of production generate this distribution?</td></tr>
+<tr><td>Nietzsche</td><td>V → E</td><td>What valuation generates this kind of human being?</td></tr>
+<tr><td>Ukubona</td><td>E → S → T′</td><td>What persistent mode generates the scalar, and what does that scalar do to the next state?</td></tr>
+</table>
+
+<h2>5 · The substrate cascade</h2>
+<pre>S₀
+│ doctor ≪ T-Pain
+↓
+E₀
+│ value detached from embodied labor
+↓
+V₀
+│ linear → digital leverage
+↓
+M₀
+│ labor / capital / attention / distribution
+↓
+T₀
+│ human substrate
+↓
+┌───────────────────────────┐
+│ ALLOSTATIC DEPLETION      │
+│ work → exhaustion         │
+│ exhaustion → entertainment│
+│ entertainment → attention │
+│ attention → sponsorship   │
+│ sponsorship → capital     │
+└─────────────┬─────────────┘
+              ↓
+             T₁</pre>
+<div class="boxed">Marx: free time becomes commodity</div>
+<div class="boxed">Nietzsche: free time becomes narcotic</div>
+<div class="boxed">Ukubona: what happens to the substrate after repeated cycles?</div>
+
+<h2>6 · Karp–Thiel as the next recursive iteration</h2>
+<pre>DEPLETED SUBSTRATE
+       │
+       ↓
+      V′
+ ┌─────┴─────┐
+ ↓           ↓
+EXIT       VOICE/FORCE
+Thiel        Karp
+ ↓           ↓
+private      institutional
+parallel     intervention
+stack        / state</pre>
+<table>
+<tr><th></th><th>Thiel direction</th><th>Karp direction</th></tr>
+<tr><td>Starting information</td><td>Latent possibility</td><td>Observed institutional data</td></tr>
+<tr><td>Movement</td><td>Possibility → trajectory → exit</td><td>Observation → structure → intervention</td></tr>
+<tr><td>Core action</td><td>Exit</td><td>Voice/Force</td></tr>
+<tr><td>Ukubona interpretation</td><td>Change the reachable state space</td><td>Change the state itself</td></tr>
+</table>
+<div class="boxed">Thiel: scalable possibility + Karp: institutional intervention → a new agentic machine</div>
+
+<h2>7 · Economics and harmony as the same operation</h2>
+<table>
+<tr><th>Economics</th><th>Harmony</th></tr>
+<tr><td>Doctor ≪ T-Pain</td><td>A♭9(13)sus4</td></tr>
+<tr><td>"What generates this?"</td><td>"What follows?"</td></tr>
+<tr><td>Latent value architecture</td><td>Latent harmonic grammar</td></tr>
+<tr><td>Linear → scalable</td><td>Tension → resolution</td></tr>
+<tr><td>Relations among variables</td><td>Relations among notes</td></tr>
+<tr><td>Next economic state</td><td>Next chord</td></tr>
+</table>
+<div class="boxed">T_notes → M_interval-relations → V_voice-leading-trajectory → E_harmonic-identity → S_next-voicing → T_next</div>
+<p>The chord is not a label; it is a state containing a constrained set of possible next states — which is why D♭7/E♭ = E♭sus13 mattered.</p>
+
+<h2>8 · The entire screenshot trajectory</h2>
+<pre>                         ┌───────────────────────┐
+                         │ S₀  DOCTOR ≪ T-Pain    │
+                         └──────────┬────────────┘
+                                    ↓
+                         ┌───────────────────────┐
+                         │ E₀  VALUE / LEVERAGE   │
+                         └──────────┬────────────┘
+                                    ↓
+                         ┌───────────────────────┐
+                         │ V₀  LINEAR → DIGITAL   │
+                         └──────────┬────────────┘
+                                    ↓
+                         ┌───────────────────────┐
+                         │ M₀  LABOR × ATTENTION ×│
+                         │     DISTRIBUTION×SCALE │
+                         └──────────┬────────────┘
+                                    ↓
+                         ┌───────────────────────┐
+                         │ T₀  HUMAN/INSTITUTIONAL│
+                         │     SUBSTRATE          │
+                         └──────────┬────────────┘
+                                    ↓
+                         ┌───────────────────────┐
+                         │ ALLOSTATIC DEPLETION   │
+                         └──────────┬────────────┘
+                                    ↓
+                     ┌──────────────┴──────────────┐
+                     ↓                             ↓
+                  MARX                         NIETZSCHE
+             alienation /                  nihilism /
+             commodification                Last Man
+                     │                             │
+                     └──────────────┬──────────────┘
+                                    ↓
+                         ┌───────────────────────┐
+                         │ KARP ↔ THIEL           │
+                         │ VOICE ↔ EXIT           │
+                         └──────────┬────────────┘
+                                    ↓
+                         ┌───────────────────────┐
+                         │ PALANTIR               │
+                         │ DATA→STRUCTURE→        │
+                         │ INTERVENTION           │
+                         └──────────┬────────────┘
+                                    ↓
+                         ┌───────────────────────┐
+                         │ S″  A♭9(13)sus4        │
+                         └──────────┬────────────┘
+                                    ↓
+                         ┌───────────────────────┐
+                         │ NEXT HARMONIC STATE    │
+                         └──────────┬────────────┘
+                                    ↓
+                                   T′</pre>
+
+<h2>9 · The whole thing, one equation</h2>
+<div class="boxed">S$(doctor/T-Pain) → E(leverage) → V(linear→digital) → M(relations) → T(human substrate) → T′(depletion) → M′(Marx/Nietzsche) → V′(Exit/Voice) → E′(institutional mode) → S′(Palantir) → T″(harmonic field) → ⋯</div>
+<div class="boxed">PAYOFF → LEVERAGE → STRUCTURE → SUBSTRATE → VALUE → AGENCY → PREDICTION</div>
+<p class="src">The last transition — Palantir/state architecture to Marvin Sapp harmonic prediction — is the giveaway: the object of the session was never "economics." It was how a state contains, constrains, and generates its next state.</p>
+  </div>
+</div>
 </main>
 
 <script>
@@ -163,8 +428,23 @@ const nav5=document.getElementById('nav5');
 order.forEach(k=>{
   const b=document.createElement('button'); b.textContent=k; b.onclick=()=>show(k); nav5.appendChild(b);
   const m=document.createElement('button'); m.textContent=k+' — '+({I:'Tensor / Soil',II:'Matrix / Objective',III:'Vector / Search',IV:'Eigenmodes / Hypothesis',V:'Scalar / Feedback'})[k];
-  m.onclick=()=>{show(k); menu.style.display='none';}; menu.appendChild(m);
+  m.onclick=()=>{showView('pentad'); show(k); menu.style.display='none';}; menu.appendChild(m);
 });
+(function(){
+  const div=document.createElement('div'); div.style.cssText='height:1px;background:var(--line);margin:6px 4px;'; menu.appendChild(div);
+  const hist=document.createElement('button'); hist.textContent='⠿ Session History';
+  hist.onclick=()=>{showView('history'); menu.style.display='none';}; menu.appendChild(hist);
+  const five=document.createElement('a'); five.href='five-criteria.html'; five.textContent='⠿ Five Criteria (Hassabis + Ukubona)';
+  five.style.cssText='display:block;width:220px;padding:8px 10px;color:var(--fg);text-decoration:none;font-size:14px;border-radius:4px;';
+  five.onmouseover=()=>five.style.background='var(--line)'; five.onmouseout=()=>five.style.background='transparent';
+  menu.appendChild(five);
+})();
+function showView(v){
+  const p=document.getElementById('pentadView'), h=document.getElementById('historyView');
+  h.classList.toggle('active', v==='history');
+  p.style.display = v==='history' ? 'none' : 'block';
+  window.scrollTo(0,0);
+}
 function show(k){
   document.querySelectorAll('.slot').forEach(s=>s.classList.toggle('active', s.dataset.k===k));
   document.querySelectorAll('.vtx').forEach(v=>v.classList.toggle('active', v.dataset.k===k));
@@ -182,6 +462,9 @@ function toggleTheme(){
 try{
   const saved = localStorage.getItem('theme');
   if(saved) document.documentElement.setAttribute('data-theme', saved);
+}catch(e){}
+try{
+  if(new URLSearchParams(location.search).get('view')==='history'){ showView('history'); }
 }catch(e){}
 </script>
 </body>
