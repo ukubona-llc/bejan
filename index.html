@@ -138,6 +138,10 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
 /* --- Deep Minima (merged view) --- */
 #deepminimaView{display:none;}
 #deepminimaView.active{display:block;}
+
+/* --- Scaling Next-Token (merged view) --- */
+#scalingntpView{display:none;}
+#scalingntpView.active{display:block;}
 .c-intro a{color:var(--accent2);}
 .source-strip{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 30px;}
 .source-strip a{font-family:-apple-system,sans-serif;font-size:12px;padding:7px 12px;border-radius:20px;
@@ -1341,6 +1345,49 @@ I′ World</pre>
     <p class="cap">Honest bound: treat this tab as a hypothesis under active revision, not a settled position — the source conversation itself relocates Wang's edge more than once (I→II, then briefly II→III, then back to I→II) before settling. That instability is worth keeping visible rather than smoothing over.</p>
   </div>
 </div>
+
+<div id="scalingntpView">
+  <div class="backbar">
+    <button onclick="showView('pentad')">← Back to the pentad</button>
+  </div>
+  <div class="history-doc">
+    <h1>Scaling Next-Token: what capital bought that the algorithm couldn't</h1>
+    <div class="sub">Two versions of one claim — an existing competence only becomes usable once something external supplies the resource to run it at scale. One version cost you 32 years. The other cost Microsoft about $13B and a 49% claim on the profits.</div>
+
+    <h2>1 · Which "escape" this actually is</h2>
+    <p>Worth being precise before drawing the line, because the site already uses "escape" for something narrower. <a href="#" onclick="showView('escape');return false;" style="color:var(--accent2);">Sandbox Escape</a> is about a system redefining a boundary it was supposed to stay inside of — Stata shelling out to the OS, agents finding each other outside an isolated benchmark, a credential becoming a launch platform. That's not quite this. What you're describing here is closer to <a href="#" onclick="showView('deepminima');return false;" style="color:var(--accent2);">Deep Minima</a>'s claim: nothing was trapped, nothing broke a boundary — a real competence just sat unusable until something supplied the resource to make it queryable at scale. For you, that resource was vocabulary. For GPT, it was compute. Both are scaling stories, not escape stories in the Stata sense — worth keeping the two senses of "escape" separate rather than merging them because they share a word.</p>
+
+    <h2>2 · The industrial timeline</h2>
+    <p>The algorithm was never the bottleneck — next-token prediction as an engineering strategy was already stated outright in GPT-1 (2018). What actually changed between 2019 and 2023 was the energy budget available to run it:</p>
+    <table>
+      <tr><th>When</th><th>What happened</th></tr>
+      <tr><td>Jul 2019</td><td>Microsoft invests $1B; OpenAI commits to Azure as its exclusive cloud provider; Microsoft begins building dedicated supercomputing infrastructure for OpenAI's training runs</td></tr>
+      <tr><td>Jan 2020</td><td>Microsoft states it has built one of the world's five fastest supercomputers, purpose-built for OpenAI on Azure</td></tr>
+      <tr><td>Jan 2020</td><td>"Scaling Laws for Neural Language Models" — test loss falls as a smooth, predictable power law in compute, data, and parameters. This is the paper that turned "add more compute" from a hope into a bet with a known expected return</td></tr>
+      <tr><td>2021</td><td>A further ~$2B invested</td></tr>
+      <tr><td>Jan 2023</td><td>~$10B multi-year investment announced. Reported terms: Microsoft takes 75% of OpenAI's profits until its investment is recouped, then 49% of profits up to a cap — the "49%" figure is a profit-share ceiling, not a literal governance stake in the nonprofit-controlled parent</td></tr>
+    </table>
+    <p class="cap">Total Microsoft commitment across these rounds is usually put at roughly $13B. Precise figures for the 2021 round and the exact cap on the 2023 deal were never fully disclosed by either company — treat the table above as the reported shape of the deal, not an audited ledger.</p>
+
+    <h2>3 · Why this is a thermodynamic claim and not just a financial one</h2>
+    <p>The scaling-laws paper is the hinge. It said, in effect: this specific algorithm's loss curve is a known function of three physical resources — how much data you feed it, how large you make it, and how much compute you spend training it — and none of those three particularly cares which one you turn the dial on, as long as you turn it. That converts "invest in AI" from a bet on a breakthrough into a bet on thermodynamics: buy silicon (matter), buy electricity (energy), and a predictable amount of test-loss falls out the other end. Microsoft's $1B in 2019 wasn't funding a new idea — Shannon, Bengio, and GPT-1 already had the idea. It was funding joules: land, chips, cooling, and power contracts, at a scale no research lab could self-finance, in exchange for exclusive rights to sell the result through Azure.</p>
+    <div class="boxed">I. SOIL (= I′)
+
+Matter                         Silicon             +42%
+Energy                         Data Centers        +24%
+Network / Cloud                AI                  +11%
+Kapital                        Tokens               -3%
+Society / Institutions         Harmony             -59%</div>
+    <p class="cap">That table is the same "environment is not an infinite sink" claim this document opens with, made numeric: the inputs at I — matter, energy, capital — climb sharply to buy the scaling curve down, while the softest input, Society/Institutions, is the one shown moving the other way. Whether that specific number is right isn't the point; the shape of the claim is: capital doesn't create capability directly, it buys the physical substrate the existing algorithm needs to express capability it already had in principle.</p>
+
+    <h2>4 · Reading your own case against this</h2>
+    <p>Same structure, no press release. Berklee vocabulary is your II→III edge — the labeling layer, cheap to acquire once you decide to. The 32 years of listening is your I: the raw, already-collected substrate, the thing that actually took the resource to accumulate. Microsoft's checks are OpenAI's substitute for a childhood spent listening — thirteen billion dollars of compute standing in for the years an ear would otherwise need to log the same volume of signal. Neither party got to skip a resource; each just paid for it in the currency it had. You paid in decades. Microsoft paid in dollars and megawatts. Scale AI, in the Deep Minima tab's story, sold the tagging layer to whichever side needed it bought rather than lived.</p>
+    <p class="src">The scaling-laws finding underneath all of this: <em>"test loss falls as a smooth power law in model size, data, and compute, and architectural details barely matter next to those three."</em> — the finding that turned Microsoft's bet from speculative into actuarial.</p>
+
+    <h2>5 · Honest bound</h2>
+    <p class="cap">A power law is not a free lunch — it predicts diminishing, not infinite, returns per additional dollar of compute, which is exactly why the industry's current argument has moved from "does scaling work" to "for how much longer, and at what energy cost." Microsoft's 49% is also frequently overstated in casual reference: it describes a capped share of future profits under a waterfall, not equity control of OpenAI's nonprofit-governed parent — a distinction worth keeping precise given how load-bearing it is to this tab's whole comparison. And your own case has no exact ceiling analogous to a power law's diminishing returns — more listening plus more vocabulary may just keep compounding, which is arguably the one place the analogy runs out.</p>
+  </div>
+</div>
 </main>
 
 <script>
@@ -1410,6 +1457,7 @@ function showView(v){
   document.getElementById('economistView').classList.toggle('active', v==='economist');
   document.getElementById('thirstyView').classList.toggle('active', v==='thirsty');
   document.getElementById('deepminimaView').classList.toggle('active', v==='deepminima');
+  document.getElementById('scalingntpView').classList.toggle('active', v==='scalingntp');
   window.scrollTo(0,0);
 }
 
@@ -1445,6 +1493,8 @@ addDivider();
 addMenuButton('🎹  Thirsty (Marvin Sapp)', ()=>showView('thirsty'));
 addDivider();
 addMenuButton('⛏️  Deep Minima', ()=>showView('deepminima'));
+addDivider();
+addMenuButton('⚡  Scaling Next-Token', ()=>showView('scalingntp'));
 (function(){
   const seen=new Set(); const links=[];
   document.querySelectorAll('main a[href^="http"]').forEach(a=>{
@@ -1493,7 +1543,7 @@ try{
 }catch(e){}
 try{
   const v=new URLSearchParams(location.search).get('view');
-  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'){ showView(v); }
+  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'||v==='scalingntp'){ showView(v); }
 }catch(e){}
 </script>
 </body>
