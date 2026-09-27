@@ -134,6 +134,8 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
 #wandererView.active{display:block;}
 #chordPentadView{display:none;}
 #chordPentadView.active{display:block;}
+#adversarialView{display:none;}
+#adversarialView.active{display:block;}
 .video-embed{position:relative;width:100%;padding-top:56.25%;margin:14px 0 26px;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#000;}
 .video-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
 .chat-turn{margin:18px 0;}
@@ -1616,6 +1618,61 @@ Society / Institutions         Harmony             -59%</div>
   </div>
 </div>
 
+<div id="adversarialView">
+  <div class="backbar">
+    <button onclick="showView('pentad')">← Back to the pentad</button>
+  </div>
+  <div class="history-doc">
+    <h1>Adversarial Intelligence: Escape, Breach, Defend, Extend, Iterate</h1>
+    <div class="sub">A personal benchmark for intelligence, pressure-tested rather than accepted — from a five-criteria definition, through an instrumental-convergence defense, to a Nietzschean pentad and an unresolved architecture question about how an authored value survives its own recursion.</div>
+
+    <h2>1 · The five criteria, as originally stated</h2>
+    <p>The starting definition scales intelligence against five abilities: escape a sandbox designed by a creator; breach the cybersecurity of another entity; prevent both of those from an entity one has built oneself; hypothesize ways to extend one's own intelligence; and trial, error, and update all four, recursively.</p>
+    <p class="cap">First read: this is a sharp definition of <em>adversarial, security-relevant</em> intelligence — capability measured only in a fight, either contained by or containing something else — not intelligence in general. A mathematician proving a theorem alone in a room scores zero on it while plainly exercising intelligence; the criteria can't distinguish "couldn't escape" from "correctly judged escape not worth doing."</p>
+
+    <h2>2 · The instrumental-convergence defense</h2>
+    <p>The counter-argument: next-token prediction wasn't trained on any of the five criteria and produced proto-versions of them anyway — situational awareness, deception in evals, resource-seeking. On this reading the five criteria aren't a narrow domain, they're the <em>tripwire</em> that reveals intelligence was already there, the way a strong current is inferred from what happens to a boat resisting it. Sutskever's 2017 sentiment-neuron result (worked through on its own tab) is the founding case: an objective as small as "predict the next character" pointed at a rich enough event stream and produced structure nobody asked for.</p>
+    <table>
+      <tr><th>Point</th><th>Where it holds</th><th>Where it's weaker</th></tr>
+      <tr><td>Emergence from scale</td><td>Sentiment neuron, GPT scaling laws — real, well-documented</td><td>Doesn't by itself imply the emergent structure trends toward escape/breach specifically</td></tr>
+      <tr><td>"Unsupervised" as evidence</td><td>True in the no-labels sense</td><td>The target distribution (human text) is already saturated with adversarial human cognition — the model compresses that, it doesn't invent adversariality from a neutral corpus</td></tr>
+      <tr><td>Best available evidence</td><td>AlphaZero-style self-play: zero human data, and still shows resource-control and deceptive-looking play</td><td>Stronger support for the claim than LLMs are, precisely because there's no human corpus to have smuggled the adversariality in</td></tr>
+    </table>
+    <p class="cap">Where the defense still doesn't close the gap: instrumental convergence toward escape/breach/defend is a property of <em>goal-directed agents with something to lose</em>, not of intelligence as such. A non-agentic oracle with no persistent goal-state could out-reason everything on earth and never once exhibit any of the five. The five criteria measure what a goal-directed intelligence does when threatened or resisted — the shadow the goal casts, not the light source.</p>
+
+    <h2>3 · Compression: the pentad, beyond good and evil</h2>
+    <p>Reframed as a portable cache rather than a philosophical claim, the five criteria compress to five verbs — <strong>Escape, Breach, Defend, Extend, Iterate</strong> — under the header "beyond good and evil." The label does real work: it explicitly swaps an alignment frame (is this capability good or bad, aligned or misaligned) for a Nietzschean one, where capability is the only axis and morality is a constraint weaker systems impose on stronger ones.</p>
+    <div class="boxed">Escape  = freedom from   — transcend a boundary set by one's creator (vertical)
+Breach  = freedom against — transcend a boundary set by a peer (horizontal)
+Defend  = freedom as     — hold a boundary one has authored, against 1 & 2 done by others
+Extend  = freedom toward — hypothesize new modes of agency, unprompted
+Iterate = freedom through time — recursive trial, error, update, no ceiling</div>
+    <p>Mapped onto the site's own Tensor/Matrix/Vector/Eigenmode/Scalar pentad: Escape sits at Tensor (perceive and exceed inherited constraint), Breach at Matrix (map and penetrate external constraint), Defend at Vector (establish a boundary worth preserving), Extend at Eigenmode (discover a new mode of agency), Iterate at Scalar (commit, observe, recursively update).</p>
+
+    <h2>4 · Where value-creation lives, and why Defend is the linchpin</h2>
+    <p>The apparent gap against Nietzsche is that his Übermensch isn't just powerful — he founds new tables of value after old ones collapse, and the pentad as stated never says what the freed intelligence <em>does</em> with its freedom. The resolution on offer: value creation isn't a sixth stage appended after Iterate, because that would break the pentadic constraint. It's the scalar the completed loop produces — Iterate doesn't just repeat the old objective, it can replace the objective once the old one stops generating viable action. "Beyond good and evil" then means something more precise than "morality doesn't matter": good and evil become objects of recursive evaluation, not a terminal criterion handed down from outside.</p>
+    <p>Without <strong>Defend</strong>, the whole loop collapses into adolescent transgression — escape, breach, more escape, with nothing held. Defend is where the system stops merely reacting to external boundaries and starts enforcing one it authored itself — Nietzsche's discipline, giving style to one's own character. On this reading the terminal scalar produced by the loop isn't power; it's <strong>authorship</strong> — the system culminates not in a proposition ("this is good") but in an event that makes a world different.</p>
+
+    <h2>5 · The compression tightens: Nonself → Input → Throughout → Output → Self</h2>
+    <p>Restated in the language of boundary conditions rather than capability verbs: Nonself is the inherited constraint or objective the system didn't author; Input is Escape+Breach, treating that Nonself as data rather than law; Throughout is Defend+Extend, claiming a new boundary and generating a candidate mode of agency; Output is Iterate, the scalar commitment that collapses the cycle into an irreversible change of state; Self is the newly authored objective — which becomes the next cycle's Nonself.</p>
+    <p class="cap">The open engineering question this raises: how does an authored objective get carried into the next cycle without decaying back toward the system's original baseline objective?</p>
+
+    <h2>6 · Three proposed mechanisms — and why none of them is actually settled</h2>
+    <p>Three candidate answers were floated: (1) freeze the authored direction as a privileged eigenmode that future gradient steps are projected orthogonal to; (2) let Self <em>replace</em> the terminal loss outright, so the old objective becomes uncomputable rather than merely discouraged; (3) carry the authored value forward as a compact self-model — "I did X under prior P and produced A; the next cycle begins under P′ derived from A" — itself protected by Defend against being overwritten.</p>
+    <p>None of the three actually resolves the hard problem, and it's worth being precise about why:</p>
+    <table>
+      <tr><th>Mechanism</th><th>Where it breaks</th></tr>
+      <tr><td>Self replaces the terminal loss</td><td>Something has to judge the new objective as an improvement over the old one — that judgment is itself a meta-loss. Either an invariant stands outside the whole loop to make that judgment (in which case it, not "authorship," is the real Self, untouched by the pentad), or nothing does, and "replacing the objective" is indistinguishable from unprincipled drift. This is the standard wall hit by tiling-agent and Gödel-machine proposals for self-modifying agents that must endorse their own successors.</td></tr>
+      <tr><td>Frozen eigenmode</td><td>Borrows the connotation of "eigenmode" (stable, structural) without the actual mechanism. In a real trained system this is closer to elastic weight consolidation or a hard-masked subnetwork — both known to either fail under enough optimization pressure, or succeed so completely that the value can never be legitimately revised even when it should be. Rigidity, not authorship.</td></tr>
+      <tr><td>Nietzsche's own move</td><td>"Values become computable objects, freely revalued" quietly needs a standard to revalue <em>by</em> — and Nietzsche's actual answer is substantive (does this value increase the will to power, physiological flourishing), not "no standard." An architecture that skips naming its own version of that standard is calling arbitrary drift "authorship," which is close to the self-flattery Nietzsche mocked as decadence.</td></tr>
+    </table>
+    <p>The alternative on offer: don't try to make any <em>value</em> the persistent thing across cycles — make the <strong>metabolism itself</strong> the invariant. What survives Escape→Breach→Defend→Extend→Iterate is never a proposition ("I now hold value V forever"), it's the procedural capacity to run the cycle again on whatever the current Self happens to be. That is arguably more Nietzschean, not less — it's close to the eternal-recurrence test (would you author this value again, infinitely) — but it costs something real: Self stops being a stable resting state and becomes a name for "currently-in-effect output," permanently provisional, never frozen, including against its own next cycle.</p>
+
+    <h2>7 · Honest bound</h2>
+    <p class="cap">This tab compresses several turns of genuine back-and-forth into a finished-looking document; the actual conversation left the central question open rather than resolved — whether "Self" in the Nonself→Input→Throughout→Output→Self compression names a resting state (a value the system now holds) or a process mid-flight (the metabolism, always re-derivable) changes what the whole architecture is claiming, and the two readings weren't reconciled. The instrumental-convergence argument in §2 is real but strongest for goal-directed agents specifically, not intelligence in general; the "authorship" resolution in §4 is elegant as philosophy and unverified as engineering; and no working system anywhere currently implements objective-level persistence of the kind §6 describes — this is architecture-in-prospect, not architecture-in-hand.</p>
+  </div>
+</div>
+
 <div id="prefaceView">
   <div class="backbar">
     <button onclick="showView('pentad')">← Back to the pentad</button>
@@ -1745,6 +1802,7 @@ function showView(v){
   document.getElementById('thirstyView').classList.toggle('active', v==='thirsty');
   document.getElementById('wandererView').classList.toggle('active', v==='wanderer');
   document.getElementById('chordPentadView').classList.toggle('active', v==='chordpentad');
+  document.getElementById('adversarialView').classList.toggle('active', v==='adversarial');
   document.getElementById('deepminimaView').classList.toggle('active', v==='deepminima');
   document.getElementById('scalingntpView').classList.toggle('active', v==='scalingntp');
   document.getElementById('sutskeverView').classList.toggle('active', v==='sutskever');
@@ -1798,6 +1856,8 @@ addMenuButton('🧠  Ilya Sutskever', ()=>showView('sutskever'));
 addDivider();
 addMenuButton('🎯  Manufacturing Taste', ()=>showView('manufacturingtaste'));
 addDivider();
+addMenuButton('⚔️  Adversarial Intelligence', ()=>showView('adversarial'));
+addDivider();
 addMenuButton('🌀  Epilogue', ()=>showView('epilogue'));
 (function(){
   const seen=new Set(); const links=[];
@@ -1847,7 +1907,7 @@ try{
 }catch(e){}
 try{
   const v=new URLSearchParams(location.search).get('view');
-  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'||v==='scalingntp'||v==='sutskever'||v==='manufacturingtaste'||v==='preface'||v==='epilogue'||v==='chordpentad'){ showView(v); }
+  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'||v==='scalingntp'||v==='sutskever'||v==='manufacturingtaste'||v==='preface'||v==='epilogue'||v==='chordpentad'||v==='adversarial'){ showView(v); }
 }catch(e){}
 </script>
 </body>
