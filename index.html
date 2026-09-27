@@ -22,19 +22,21 @@ body{
   scroll-padding-top:env(safe-area-inset-top,0px);
 }
 h1,h2,h3{font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; letter-spacing:.02em; margin:0;}
-header{ position:relative; height:56px; }
-.corner{position:fixed; top:0; z-index:50; height:56px; display:flex; align-items:center;
+header{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line);
   padding-top:env(safe-area-inset-top,0px);}
-#logoBox{left:0; width:56px; justify-content:center; background:var(--accent); }
-#waffleBox{left:56px;}
-#themeBox{right:0; padding-right:env(safe-area-inset-right,0px);}
-#logo{width:30px;height:30px; transform-origin:50% 50%; animation: sway 120s ease-in-out infinite alternate;}
+.header-inner{max-width:900px;margin:0 auto;height:56px;display:flex;align-items:center;justify-content:space-between;
+  padding-left:calc(20px + env(safe-area-inset-left,0px)); padding-right:calc(20px + env(safe-area-inset-right,0px));}
+.brand{display:flex;align-items:center;gap:10px;font-family:-apple-system,sans-serif;font-size:14px;font-weight:600;color:var(--fg);}
+#logo{width:24px;height:24px; color:var(--accent); transform-origin:50% 50%; animation: sway 120s ease-in-out infinite alternate;}
 @keyframes sway{ from{transform:rotate(0deg)} to{transform:rotate(260deg)} }
-.iconbtn{width:44px;height:44px;border:none;background:transparent;cursor:pointer;
+.header-right{display:flex;align-items:center;gap:4px;position:relative;}
+.iconbtn{width:40px;height:40px;border:none;background:transparent;cursor:pointer;border-radius:8px;
   display:flex;align-items:center;justify-content:center;color:var(--fg);}
+.iconbtn:hover{background:var(--line);}
 .waffle{display:grid;grid-template-columns:repeat(3,4px);grid-gap:3px;}
 .waffle span{width:4px;height:4px;border-radius:50%;background:var(--fg);}
-#waffleMenu{position:fixed;top:56px;left:56px;background:var(--card);border:1px solid var(--line);
+.menuWrap{position:relative;}
+#waffleMenu{position:absolute;top:calc(100% + 8px);right:0;background:var(--card);border:1px solid var(--line);
   border-radius:6px;padding:8px;display:none;z-index:60;box-shadow:0 6px 20px rgba(0,0,0,.2);width:270px;max-height:80vh;overflow-y:auto;}
 #waffleMenu .grouplabel{font-family:-apple-system,sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--muted);padding:8px 8px 4px;}
@@ -42,7 +44,8 @@ header{ position:relative; height:56px; }
 #waffleMenu button,#waffleMenu a{display:block;width:100%;text-align:left;padding:8px 10px;border:none;background:transparent;
   color:var(--fg);font-family:inherit;cursor:pointer;border-radius:4px;font-size:13.5px;box-sizing:border-box;text-decoration:none;line-height:1.3;}
 #waffleMenu button:hover,#waffleMenu a:hover{background:var(--line);}
-main{max-width:900px;margin:0 auto;padding:76px 20px 60px;}
+main{max-width:900px;margin:0 auto;padding:32px 20px 60px;
+  padding-left:calc(20px + env(safe-area-inset-left,0px)); padding-right:calc(20px + env(safe-area-inset-right,0px));}
 .eyebrow{color:var(--accent);font-family:-apple-system,sans-serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;}
 h1.title{font-size:28px;margin:6px 0 18px;line-height:1.2;}
 .intro{color:var(--muted);font-size:15px;line-height:1.6;max-width:640px;margin-bottom:28px;}
@@ -128,18 +131,21 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
 </head>
 <body>
 <header>
-  <div id="logoBox" class="corner">
-    <svg id="logo" viewBox="0 0 40 40"><polygon points="20,5 28.82,32.14 5.74,15.36 34.26,15.36 11.18,32.14" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
+  <div class="header-inner">
+    <div class="brand">
+      <svg id="logo" viewBox="0 0 40 40"><polygon points="20,5 28.82,32.14 5.74,15.36 34.26,15.36 11.18,32.14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      <span>Ukubona</span>
+    </div>
+    <div class="header-right">
+      <div class="menuWrap">
+        <button class="iconbtn" onclick="document.getElementById('waffleMenu').style.display = document.getElementById('waffleMenu').style.display==='block'?'none':'block'" aria-label="Sections">
+          <div class="waffle"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </button>
+        <div id="waffleMenu"></div>
+      </div>
+      <button class="iconbtn" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle theme">◐</button>
+    </div>
   </div>
-  <div id="waffleBox" class="corner">
-    <button class="iconbtn" onclick="document.getElementById('waffleMenu').style.display = document.getElementById('waffleMenu').style.display==='block'?'none':'block'" aria-label="Sections">
-      <div class="waffle"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-    </button>
-  </div>
-  <div id="themeBox" class="corner">
-    <button class="iconbtn" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle theme">◐</button>
-  </div>
-  <div id="waffleMenu"></div>
 </header>
 
 <main>
