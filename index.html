@@ -146,6 +146,10 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
 /* --- Ilya Sutskever (merged view) --- */
 #sutskeverView{display:none;}
 #sutskeverView.active{display:block;}
+
+/* --- Manufacturing Taste (merged view) --- */
+#manufacturingtasteView{display:none;}
+#manufacturingtasteView.active{display:block;}
 .c-intro a{color:var(--accent2);}
 .source-strip{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 30px;}
 .source-strip a{font-family:-apple-system,sans-serif;font-size:12px;padding:7px 12px;border-radius:20px;
@@ -1313,6 +1317,7 @@ E |-------| </pre>
     <p>The "2016–2017" framing is close in spirit but not quite the sequence the source material below lays out. Scale AI was founded in 2016, in OpenAI's own early robotics-and-Gym era, well before the GPT line existed to need labeling. The actual inflection is closer to 2019 onward, once GPT-scale pretraining made "which completions are good" the live bottleneck rather than "is there enough text":</p>
     <div class="boxed">2019–2022 — bottleneck: "how do pretrained models behave usefully?" → human feedback / labeling / RLHF<br>Nov 2022 onward — bottleneck: "how do we improve an already spectacular interface?" → larger, specialized post-training<br>2023–24 — bottleneck: "how do we customize increasingly capable models?" → fine-tuning + specialized human data<br>2025 — bottleneck: "can this be internalized?" → Scale becomes less central, and by mid-2025 OpenAI was winding down that reliance as Meta absorbed Wang and much of Scale</div>
     <p class="cap">So "stuck without Scale, unstuck with Scale" is fair; "2016–2017" is the founding of the labeling company, not yet the moment OpenAI needed it — that need only appears once there's a large enough pretrained model for selection to become the live constraint.</p>
+    <p class="cap">Correction: "Scale AI's labeling" above blurs two different products across two eras. 2016–2019 Scale labeled <em>perception</em> data — bounding boxes on street scenes, LIDAR point clouds, satellite imagery, mostly for self-driving cars. 2019+ Scale (or comparable labeling operations) labeled <em>preferences over text</em> — humans ranking a model's own candidate completions. Those aren't the same kind of tagging; the second is what actually fed RLHF. The distinction, and what unsupervised pretraining leaves for supervised post-training to fix, is worked through properly in <a href="#" onclick="showView('manufacturingtaste');return false;" style="color:var(--accent2);">Manufacturing Taste</a>.</p>
 
     <h2>5 · From the source material, verbatim</h2>
     <p class="src">On why the bottleneck moved downstream: <em>"The key is that OpenAI did not initially need Alexandr Wang because it needed a better 'perception' system. It needed him when perception had become so abundant that the bottleneck moved downstream into the cache/routing layer."</em></p>
@@ -1420,6 +1425,46 @@ Society / Institutions         Harmony             -59%</div>
     <p class="cap">Honest bound: this account is compressed from retrospective retellings (Wired's framing, an Altman interview, OpenAI's own blog post on the sentiment neuron), not from a transcript of what Sutskever privately concluded in 2017. The phrase "learned core module for superintelligence" is a paraphrase of how the moment has since been described, not a verified direct quote from Sutskever at the time — worth holding loosely, the way this whole chain of tabs tries to hold its own hypotheses.</p>
   </div>
 </div>
+
+<div id="manufacturingtasteView">
+  <div class="backbar">
+    <button onclick="showView('pentad')">← Back to the pentad</button>
+  </div>
+  <div class="history-doc">
+    <h1>Manufacturing Taste: unsupervised emergence vs. what Scale AI actually sold</h1>
+    <div class="sub">Radford and Sutskever's sentiment neuron is the emergence of unsupervised learning as a serious bet. That leaves a completely different problem unsolved — and it is not benchmarking.</div>
+
+    <h2>1 · Two different learning problems, easy to blur</h2>
+    <p>The sentiment-neuron result, worked through in <a href="#" onclick="showView('sutskever');return false;" style="color:var(--accent2);">Ilya Sutskever</a>, is real evidence for a specific claim: raw next-token prediction on unlabeled text can spontaneously produce internal structure nobody asked for. No sentiment labels were shown to that model, and it built a sentiment detector anyway. Scaled up, that claim becomes GPT-1/2/3 — enormous pretraining, zero human labels, purely "predict the next token" over the widest text corpus available. That is the emergence of unsupervised learning as a load-bearing engineering bet, not just a curiosity.</p>
+    <p>What that leaves completely unsolved is a different problem. A model trained only to predict the next token has learned to imitate the <em>distribution</em> of internet text — which contains brilliant answers, wrong answers, toxic answers, and confident nonsense, all at roughly the likelihood the internet actually contains them. Nothing about "predict what comes next" tells the model which of its own possible completions a person would actually want. That is not a knowledge gap. The competence is already in there, the same way it was already in your ear before Berklee vocabulary. It is a preference gap.</p>
+
+    <h2>2 · What Scale AI's business actually was</h2>
+    <p>Not benchmarking, and not machine labels being checked against human ones. Two specific products, both humans <em>generating</em> training signal rather than grading a finished model:</p>
+    <table>
+      <tr><th>Product</th><th>What a human does</th><th>What it trains</th></tr>
+      <tr><td>Demonstrations</td><td>Writes out the ideal response to a prompt from scratch</td><td>Supervised fine-tuning (SFT) — the base model is fine-tuned directly on these examples</td></tr>
+      <tr><td>Comparisons</td><td>Is shown several of the model's own candidate completions and ranks them best to worst</td><td>A separate reward model, then used via reinforcement learning to steer the base model toward what humans preferred (RLHF)</td></tr>
+    </table>
+    <p>Benchmarking — scoring a finished model's output against a fixed, pre-labeled test set — is a real and separate thing Scale AI and others also do, but it is evaluation, downstream of training. It measures whether the taste-shaping worked. It isn't what did the shaping.</p>
+
+    <h2>3 · The correction this forces on the earlier chronology</h2>
+    <p>The <a href="#" onclick="showView('deepminima');return false;" style="color:var(--accent2);">Deep Minima</a> tab described Scale AI's role loosely as "labeling," which is true but flattens two different products across two different eras of the same company:</p>
+    <div class="boxed">2016–2019 — Scale AI labels <em>perception</em> data: bounding boxes on street scenes, LIDAR point clouds, satellite imagery — mostly for self-driving cars and defense customers.<br>2019 onward — the labeling relevant to OpenAI shifts to <em>preferences over text</em>: humans writing demonstrations and ranking a language model's own completions.</div>
+    <p class="cap">Both are "humans labeling data for a machine," which is why it's easy to collapse them into one story. But bounding a car in a photo and ranking which of two paragraphs sounds more helpful are not the same skill, the same workforce, or the same kind of ground truth — one has a checkable right answer (is the box around the car or not), the other is manufacturing a preference where no single right answer exists.</p>
+
+    <h2>4 · The pipeline, stated cleanly</h2>
+    <table>
+      <tr><th>Stage</th><th>Learning type</th><th>Who / what supplies it</th></tr>
+      <tr><td>Pretraining</td><td>Unsupervised — raw text, no labels</td><td>Radford's execution of Sutskever's generalized bet, run at GPT-scale</td></tr>
+      <tr><td>Post-training (SFT)</td><td>Supervised — human-written demonstrations</td><td>Scale AI-style labeling operations</td></tr>
+      <tr><td>Post-training (RLHF)</td><td>Supervised, via a learned reward model — human preference rankings</td><td>Scale AI-style labeling operations, at much greater volume</td></tr>
+    </table>
+    <p>Comparisons are the closer analogy to what was asked about — not a benchmark, which grades a finished answer against a known correct one, but closer to manufacturing the taste the model gets trained toward in the first place. The reward model doesn't check the base model's homework; it becomes the standard the base model gets pushed to match.</p>
+
+    <h2>5 · Honest bound</h2>
+    <p class="cap">This tab treats "unsupervised" and "supervised" as a clean binary for clarity, and the real pipeline is messier: RLHF's reward model is itself trained in a supervised way but then used inside a reinforcement-learning loop, which is a third category by strict textbook definition; some pretraining corpora are lightly filtered or deduplicated using human judgment before training even starts, which is a small supervised thumb on an otherwise unsupervised scale. The two-stage story here — unsupervised pretraining, then supervised post-training — is the right shape for understanding what problem each stage solves. It is not a claim that the two stages are hermetically sealed from each other in practice.</p>
+  </div>
+</div>
 </main>
 
 <script>
@@ -1491,6 +1536,7 @@ function showView(v){
   document.getElementById('deepminimaView').classList.toggle('active', v==='deepminima');
   document.getElementById('scalingntpView').classList.toggle('active', v==='scalingntp');
   document.getElementById('sutskeverView').classList.toggle('active', v==='sutskever');
+  document.getElementById('manufacturingtasteView').classList.toggle('active', v==='manufacturingtaste');
   window.scrollTo(0,0);
 }
 
@@ -1530,6 +1576,8 @@ addDivider();
 addMenuButton('⚡  Scaling Next-Token', ()=>showView('scalingntp'));
 addDivider();
 addMenuButton('🧠  Ilya Sutskever', ()=>showView('sutskever'));
+addDivider();
+addMenuButton('🎯  Manufacturing Taste', ()=>showView('manufacturingtaste'));
 (function(){
   const seen=new Set(); const links=[];
   document.querySelectorAll('main a[href^="http"]').forEach(a=>{
@@ -1578,7 +1626,7 @@ try{
 }catch(e){}
 try{
   const v=new URLSearchParams(location.search).get('view');
-  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'||v==='scalingntp'||v==='sutskever'){ showView(v); }
+  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'||v==='scalingntp'||v==='sutskever'||v==='manufacturingtaste'){ showView(v); }
 }catch(e){}
 </script>
 </body>
