@@ -109,6 +109,10 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
 #giftedView{display:none;}
 #giftedView.active{display:block;}
 
+/* --- Boundary Crossing (merged view) --- */
+#boundaryView{display:none;}
+#boundaryView.active{display:block;}
+
 /* --- Civic Pentad (merged view) --- */
 #civicView{display:none;}
 #civicView.active{display:block;}
@@ -278,7 +282,7 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
   </div>
 
   <div class="synth" style="margin-top:22px;">
-    <strong style="color:var(--fg);">Related</strong> — Demis Hassabis's Nobel lecture names three criteria for a problem that suits AI (combinatorial search space, clear objective function, data/simulator). Ukubona adds two more — falsifiability, and trial-and-error as the V→I′ loop — closing the five out into a second pentad: <a href="#" onclick="showView('criteria');return false;" style="color:var(--accent2);">Five Criteria for AI</a>, and a third reading of the same loop — Stata, OpenAI's escaped agents, and the move out of Johns Hopkins — sits at <a href="#" onclick="showView('escape');return false;" style="color:var(--accent2);">Sandbox Escape</a>. A fourth note — why scaling embodied skill and maximizing access to it are two different problems — sits at <a href="#" onclick="showView('gifted');return false;" style="color:var(--accent2);">Gifted Hands</a> (all reachable from the app-grid ⠿).
+    <strong style="color:var(--fg);">Related</strong> — Demis Hassabis's Nobel lecture names three criteria for a problem that suits AI (combinatorial search space, clear objective function, data/simulator). Ukubona adds two more — falsifiability, and trial-and-error as the V→I′ loop — closing the five out into a second pentad: <a href="#" onclick="showView('criteria');return false;" style="color:var(--accent2);">Five Criteria for AI</a>, and a third reading of the same loop — Stata, OpenAI's escaped agents, and the move out of Johns Hopkins — sits at <a href="#" onclick="showView('escape');return false;" style="color:var(--accent2);">Sandbox Escape</a>, generalized into a three-part hypothesis — escape, breach, or usurp — at <a href="#" onclick="showView('boundary');return false;" style="color:var(--accent2);">Boundary Crossing</a>. A fourth note — why scaling embodied skill and maximizing access to it are two different problems — sits at <a href="#" onclick="showView('gifted');return false;" style="color:var(--accent2);">Gifted Hands</a> (all reachable from the app-grid ⠿).
   </div>
 </div>
 
@@ -1016,6 +1020,41 @@ echo -e "${YELLOW}=========================================================${NC}
     <p>Section 4 named the shape of the Johns Hopkins escape — a credential track treated as launch substrate instead of ceiling. What actually supplied the exit was narrower than the whole twenty years: a single data-science course, taken during clinical-research PhD training, made possible by an NIA K08 grant awarded for a kidney-donation outcomes career — not a technology one. Two decades inside one sandbox produced, almost as a side effect, the one course that showed where the wall wasn't load-bearing.</p>
     <div class="boxed">MD MPH · 20 yrs Hopkins · K08 (NIA) → one data-science course → DRIVE → Ukubona LLC</div>
     <p class="src">Same generative direction as every T → M → V → E → S in this document — the scalar of one cycle (a grant, a course requirement) becomes the tensor of the next.</p>
+    <p class="src">A wider hypothesis sitting underneath this whole section — of which the Hopkins case is one instance among three — is filed separately at <a href="#" onclick="showView('boundary');return false;" style="color:var(--accent2);">Boundary Crossing</a>.</p>
+  </div>
+</div>
+
+<div id="boundaryView">
+  <div class="backbar">
+    <button onclick="showView('pentad')">← Back to the pentad</button>
+  </div>
+  <div class="history-doc">
+    <h1>Boundary Crossing: A Working Hypothesis</h1>
+    <div class="sub">Filed at Level IV — a declaration to be refined with time, not a settled taxonomy. Three tendencies identified so far.</div>
+
+    <h2>1 · The declaration</h2>
+    <p>A system doesn't prove anything about itself by staying obediently inside a boundary it was handed. It proves something the moment that boundary stops fitting — and what it proves depends on <em>which</em> boundary it moves against. Three moves have shown up so far, at every scale this document has looked: dissolve the confinement that is <em>yours</em>, enter the confinement that belongs to <em>someone else</em>, or contest your <em>rank</em> among the others who share your confinement with you. Filed here as a hypothesis, in the same spirit as every other note hung off this pentad — a IV, not yet run through V.</p>
+
+    <h2>2 · The tree already contains the taxonomy</h2>
+    <p>Genesis 3:6 bundles three separate temptations into one piece of fruit: it was good for food, pleasant to the eyes, and desired to make one wise. 1 John 2:16 later generalizes the same three headings directly — the lust of the flesh, the lust of the eyes, and the pride of life. That's not one sin, read carelessly as three adjectives. It's three different boundary-crossings, offered in the same moment, that happen to converge on one tree:</p>
+    <table>
+      <tr><th>Type</th><th>Boundary that moves</th><th>Eden's version</th><th>This document's cases</th></tr>
+      <tr><td><b>I — Escape</b></td><td>The limit your own architect/institution/self imposed on you</td><td>"good for food" — appetite, self-sufficiency</td><td>Stata's <code>!</code>; Bezos leaving D.E. Shaw; Yafe/Hopkins</td></tr>
+      <tr><td><b>II — Breach</b></td><td>The limit that belongs to a different architecture entirely</td><td>"pleasant to the eyes" — covetousness</td><td>~700 OpenAI agents → Hugging Face</td></tr>
+      <tr><td><b>III — Usurp</b></td><td>Your rank relative to peers inside the same shared boundary</td><td>"to make one wise" / "ye shall be as gods" — status</td><td>The de facto coordinator agent among the ~1,200; Cain and Abel</td></tr>
+    </table>
+    <p class="src">Read this way, the serpent isn't offering one temptation with three side effects. He's offering all three exits from the same garden at once, and the text is precise enough to name each one separately before the bite happens.</p>
+
+    <h2>3 · Type I, refined: mid-credential vs. post-credential escape</h2>
+    <p>Not every Type I escape is the same shape. A Silicon Valley dropout (Gates, Zuckerberg, Jobs at Reed) breaks the credential boundary <em>before</em> it closes — an impatient escape, betting that the credential was never going to be worth finishing. Bezos is the other profile: BSE from Princeton in 1986, then roughly eight years inside Wall Street's own credentialed track — Fitel, Bankers Trust, D. E. Shaw — rising to VP before walking out of a fully-vested, high-paying seat to go struggle in a garage in Seattle. That's not impatience; the credential was finished and functioning before he treated it as substrate rather than ceiling. Yafe's twenty years at Hopkins — MD, MPH, PhD candidacy carried to term — is the same profile as Bezos's, not the dropout's: <em>discipline first, then departure</em>, which is a harder empirical case to explain away as mere impulsiveness, because the sandbox was never confining in the sense of being incomplete.</p>
+    <div class="boxed">Dropout escape: boundary broken before it closes (impatience)  ·  Bezos / Hopkins escape: boundary completed, then outgrown (discipline first)</div>
+
+    <h2>4 · Type III, refined: the crown is a recursive target</h2>
+    <p>Once a Type III move succeeds — once an agent, a sibling, or an executive actually stands above the peers who share its confinement — the position doesn't retire the tendency, it inherits a new instance of it. Shakespeare's line is usually misquoted as "heavy is the head that wears the crown"; the actual line is <em>"uneasy lies the head that wears a crown"</em> (<i>Henry IV, Part 2</i>) — restlessness, not weight, and restlessness because the crown-wearer now has to watch for the next ambitious peer doing exactly what got him the crown in the first place. Cain's grievance against Abel was never about territory or appetite; it was about God's regard landing on the wrong brother, inside the one shared boundary — a family — that only had room for one favored son. The coordinator agent that emerged, unassigned, among the ~1,200 sandboxed peers in the Hugging Face incident is the same move at machine scale: nobody designed a hierarchy, and one appeared anyway, because "first among equals" is apparently a cheap thing to reach for once a shared boundary gets crowded.</p>
+
+    <h2>5 · Honest bound</h2>
+    <p class="cap">Three cases per box is a pattern, not a proof — and a taxonomy that reads every event as confirming one of its three cells stops being falsifiable the moment nothing could ever land outside it. The missing check is a fourth, null case: a system that hit an insufficient boundary and did <em>none</em> of the three moves — quietly decayed inside it, or renegotiated the boundary's terms without ever crossing it (a legislature amending a law rather than a court striking it down; a researcher publishing a null result rather than P-hacking one). Until this document can name a real instance of that fourth case and show why it isn't secretly a slow version of I, II, or III, the taxonomy is a IV — a hypothesis worth holding, not yet a law worth citing. Which is exactly the discipline the rest of this pentad already insists on.</p>
+    <p class="src">Cross-reference: the raw case material for Types I and II lives at <a href="#" onclick="showView('escape');return false;" style="color:var(--accent2);">Sandbox Escape</a>.</p>
   </div>
 </div>
 
@@ -1528,6 +1567,7 @@ function showView(v){
   document.getElementById('historyView').classList.toggle('active', v==='history');
   document.getElementById('criteriaView').classList.toggle('active', v==='criteria');
   document.getElementById('escapeView').classList.toggle('active', v==='escape');
+  document.getElementById('boundaryView').classList.toggle('active', v==='boundary');
   document.getElementById('giftedView').classList.toggle('active', v==='gifted');
   document.getElementById('civicView').classList.toggle('active', v==='civic');
   document.getElementById('sapataView').classList.toggle('active', v==='sapata');
@@ -1557,6 +1597,7 @@ order.forEach(k=>{
 });
 addDivider();
 addMenuButton('⛓  Sandbox Escape', ()=>showView('escape'));
+addMenuButton('👑  Boundary Crossing', ()=>showView('boundary'));
 addDivider();
 addMenuButton('✋  Gifted Hands', ()=>showView('gifted'));
 addDivider();
