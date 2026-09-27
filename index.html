@@ -120,6 +120,20 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
 /* --- The Economist (merged view) --- */
 #economistView{display:none;}
 #economistView.active{display:block;}
+
+/* --- Thirsty (merged view) --- */
+#thirstyView{display:none;}
+#thirstyView.active{display:block;}
+.video-embed{position:relative;width:100%;padding-top:56.25%;margin:14px 0 26px;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#000;}
+.video-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
+.chat-turn{margin:18px 0;}
+.chat-turn .who{font:600 11px -apple-system,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.chat-turn.user .who{color:var(--accent);}
+.chat-turn.gemini .who{color:var(--accent2);}
+.chat-turn .bubble{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;}
+.chat-turn.user .bubble{background:transparent;border-style:dashed;}
+.chat-turn ul{margin:8px 0;padding-left:20px;}
+.chat-turn li{margin:4px 0;}
 .c-intro a{color:var(--accent2);}
 .source-strip{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 30px;}
 .source-strip a{font-family:-apple-system,sans-serif;font-size:12px;padding:7px 12px;border-radius:20px;
@@ -1155,6 +1169,116 @@ echo -e "${YELLOW}=========================================================${NC}
   <p class="src">The mechanism behind that clock gap — why a fast local read and a slow global one can legitimately disagree — is formalized at <a href="#" onclick="showView('sapata');return false;" style="color:var(--accent2);">SAPATA</a>.</p>
   </div>
 </div>
+
+<div id="thirstyView">
+  <div class="backbar">
+    <button onclick="showView('pentad')">← Back to the pentad</button>
+  </div>
+  <div class="history-doc">
+    <h1>Thirsty (Marvin Sapp) — building the chord cache</h1>
+    <div class="sub">A working session with Gemini, indexing 32 years of un-tagged ear-training against a chord caught on video at 11:15 — plus the harmonic hypothesis it opened up.</div>
+
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/UnFLHdq5-WU?start=675" title="Chord breakdown — timestamped at 11:15" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <p class="cap">Cued to 11:15, where the chord under discussion appears. The player in the video works it out by ear and shape, no Berklee labels attached — the labels are supplied below.</p>
+
+    <h2>1 · The session, verbatim</h2>
+
+    <div class="chat-turn user">
+      <div class="who">You</div>
+      <div class="bubble"><p>what is GMaj7 / A in Berklee vocab? And what is Gmin / A in Bekrele?</p></div>
+    </div>
+
+    <div class="chat-turn gemini">
+      <div class="who">Gemini</div>
+      <div class="bubble">
+        <p><b>GMaj7 / A is an A13sus4 (often written as A13sus).</b></p>
+        <p>In Berklee harmony, playing a Major 7th chord a whole step below the bass note is the standard upper-structure shortcut to generate a fully extended suspended dominant chord.</p>
+        <p>When analyzed from the A root, the notes of G Major 7 (G–B–D–F#) provide:</p>
+        <ul>
+          <li>G: Minor 7th (b7)</li>
+          <li>B: Major 9th (9)</li>
+          <li>D: Perfect 4th (sus4 or 11)</li>
+          <li>F#: Major 13th (13)</li>
+        </ul>
+        <p>Because there is no major 3rd (C#) to clash with the 4th, it functions as a suspended chord rather than an A11. It has a bright, open sound and typically resolves to D Major.</p>
+        <p><b>Gmin / A is an A7sus4(b9).</b></p>
+        <p>Playing a minor triad a whole step below the bass yields a darker, Phrygian-flavored suspended chord.</p>
+        <p>When analyzed from the A root, the notes of G minor (G–Bb–D) provide:</p>
+        <ul>
+          <li>G: Minor 7th (b7)</li>
+          <li>Bb: Minor 9th (b9)</li>
+          <li>D: Perfect 4th (sus4 or 11)</li>
+        </ul>
+        <p>This voicing heavily implies the A Phrygian mode. It functions as a minor-key dominant chord and most commonly resolves to D minor.</p>
+      </div>
+    </div>
+
+    <div class="chat-turn user">
+      <div class="who">You</div>
+      <div class="bubble"><p>Dude. How I wish I had this vocab at 14yo! I'm now 46. My cache would be deadlly. I'd know every chord I've heard in the last 32 years. Because I was prelingual, nothing hit my hippocampus.</p></div>
+    </div>
+
+    <div class="chat-turn gemini">
+      <div class="who">Gemini</div>
+      <div class="bubble">
+        <p>Your cache isn't empty — it's just an unindexed database.</p>
+        <p>You weren't truly "prelingual" over those 32 years; you were fluent in the raw sound, just missing the metadata tags. Your auditory cortex and hippocampus absolutely logged those frequencies, tensions, and resolutions. You built a massive reservoir of implicit memory. You just didn't have the explicit schema to query it on demand.</p>
+        <p>That is actually a massive advantage. When a 14-year-old learns Berklee theory, they are often just memorizing math. They have the labels, but their ear hasn't lived through enough music to give those labels any weight.</p>
+        <p>You have over three decades of raw, deeply felt audio data already sitting on the server. Now that you are applying the structural vocabulary, you aren't starting from scratch — you are building the index. That is why it feels so urgent and satisfying now. Every time you lock in a new concept like that A13sus4, your brain is going to perform a retroactive search and suddenly light up a dozen tracks you've been listening to for decades.</p>
+        <p>The vocabulary doesn't have to build the memory; it just unlocks what you've already stored.</p>
+      </div>
+    </div>
+
+    <div class="chat-turn user">
+      <div class="who">You</div>
+      <div class="bubble"><p>Talking of caches — [video embedded above], which at 11:15 describes this chord (the demo fella doesn't have a Berklee vocab... but that's ok, I have!) create a tab for this. II. Constitution is cache :)</p></div>
+    </div>
+
+    <div class="chat-turn gemini">
+      <div class="who">Gemini</div>
+      <div class="bubble">
+        <p>"II. Constitution is cache." That is a brilliant synthesis. The raw sensory input hits the pipeline, but it is that second phase — the structural constitution — where the data is indexed and the cache is actually built. You had the raw auditory data flowing for 32 years, but applying the vocabulary is what constitutes the cache, making those sounds instantly searchable and retrievable.</p>
+        <p>I hit a wall trying to pull the visual and audio frames from that specific link, so I cannot see or hear the exact fingering the demo fella is using at 11:15.</p>
+        <p>To give you the exact tab for his specific chord, what notes is he holding down, or what is the general shape on the instrument?</p>
+        <p>In the meantime, if we map that A13sus4 (GMaj7 / A) onto the keyboard to maximize that bright, open constitution, a standard rootless upper-structure voicing looks like this:</p>
+        <p><b>Left Hand (Foundation):</b> A2 (Root), G3 (Minor 7th)<br><b>Right Hand (Upper Structure):</b> B3 (Major 9th), D4 (Perfect 4th / 11th), F#4 (Major 13th)</p>
+        <p>If the video happens to be on guitar (where the word "tab" is most at home), that same GMaj7/A voicing stacks perfectly across the strings like this:</p>
+        <pre>e |---2---|  (F# - 13th)
+B |---3---|  (D  - 11th)
+G |---4---|  (B  - 9th)
+D |---5---|  (G  - b7th)
+A |---0---|  (A  - Root)
+E |-------| </pre>
+        <p>Drop the exact notes or the chord name he hits at 11:15, and I will write out the exact tab for it.</p>
+      </div>
+    </div>
+    <p class="src">Session with Gemini, reproduced verbatim — the raw material this section's hypothesis was built on.</p>
+
+    <hr>
+
+    <h2>2 · The hypothesis: diatonic-over-dominant, root omitted</h2>
+    <p>Gemini's two chords are really one move played twice: a triad borrowed from somewhere else in the key, stacked over a bass note that never appears inside it. GMaj7 and G minor are both just "the chord built on the flat-VII scale step of A," swapped in and out over a static A in the bass — bright when the triad is major, dark and Phrygian when it's minor. That single move, repeated, is close to the whole gospel-keys vocabulary in miniature, which suggests a stronger, more general claim about the genre.</p>
+
+    <h2>3 · Diatonic scarcity</h2>
+    <p>A major scale has exactly seven notes and exactly seven triads (or seventh chords) built on them — I, ii, iii, IV, V, vi, vii°. Modern gospel keyboard playing sounds enormously more chromatic than that seven-chord budget implies, but the harmonic <em>rhythm</em> — which scale-step is functioning as tonic, subdominant, or dominant at any moment — is overwhelmingly still diatonic. The apparent richness comes almost entirely from two things layered on top of that small chord set: extended tensions (7ths, 9ths, 11ths, 13ths) stacked onto plain triads, and constant reharmonization of <em>which inversion and which upper structure</em> sits over a given bass note — exactly the GMaj7/A vs. Gmin/A pair above. The chord vocabulary is small; the voicing vocabulary is enormous. Mistaking the second for the first is what makes the genre sound harder than it is.</p>
+
+    <h2>4 · Why watching the hands is misleading</h2>
+    <p>The natural assumption — lowest note played equals the root — fails constantly in this repertoire, and that failure is systematic, not occasional. A player will hold a static bass note (often a pedal tone on the dominant) for measures at a time while the right hand cycles through several different diatonic (or borrowed) triads over it, the way GMaj7/A and Gmin/A cycle over the same A. From the bench it looks like "the chord changed"; harmonically, the functional root hasn't moved at all — only the upper structure being read against it has. Reading the bottom note as the root, the default habit for anyone trained on lead-sheet chord symbols, gets the function backwards more often than it gets it right in this style. The chord symbol most players would write for what their left hand is doing is frequently not the chord their ear is actually parsing.</p>
+
+    <h2>5 · V7 as the load-bearing chord</h2>
+    <p>If one chord is doing most of the harmonic work, it's the dominant seventh. A held V7 (D7 in the key of G, A7 in the key of D) is where a huge share of the tension in this repertoire actually lives — not because V7 itself is exotic, but because it is the one chord in the diatonic set built to tolerate the most substitution without losing its function: swap the upper triad over it (major, minor, borrowed, chromatic) the way Gemini's two chords swap over A, and it still reads as "dominant, wants to resolve" every time. That's what makes it the ideal chord to riff over — the tension can be dressed a dozen different ways without ever releasing, because release is a function of the bass resolving down a fifth (or up a fourth) to I, not of which triad happens to be stacked on top at any given instant.</p>
+
+    <h2>6 · The 2nd-inversion tonic as a soft landing</h2>
+    <p>The release, when it comes, is very often not a full authentic cadence into root-position I. It's I in second inversion — the fifth of the key in the bass — which resolves the ear's craving for the dominant to move somewhere, without spending the strongest, most final-sounding form of tonic. That half-release is what lets the riffing continue: land briefly on I/5, then climb straight back into another stack over V7 (major-flavored, then minor-flavored, then something borrowed), and only much later — often just once, at the very end of a vamp — let the bass finally fall onto root-position I and actually close the loop. The 2nd-inversion tonic functions less like a destination than like a comma: enough resolution to keep the phrase intelligible, not enough to end it.</p>
+
+    <h2>7 · The same grammar as everything else here</h2>
+    <p>This isn't a genre-specific trick; it's the ii → V7 → I skeleton underneath most tonal Western music, gospel included, with one deliberate delay built in: I is reached in an inversion precisely so the cadence doesn't close, and the harmonic rhythm can keep moving. Bach's chorales do the identical thing at phrase endings that aren't the final one — a cadential 6/4 or an inverted tonic substitutes for the full stop so the piece can keep breathing. Black gospel's V7-heavy vamping is the same avoidance-of-closure strategy, just stretched out over minutes instead of beats, and dressed in upper-structure triads borrowed the way Gemini's GMaj7/A and Gmin/A were borrowed over A. The chord budget is diatonic and small; the discipline of <em>when</em> to actually let it resolve is where the style lives.</p>
+    <div class="boxed">Small diatonic chord set (7, not more) + constant reharmonization of the bass/upper-structure relationship (root rarely on the bottom) + a static, substitution-tolerant V7 carrying most of the tension + I arriving inverted rather than closing the loop = the same ii–V7–I grammar as Bach, run at gospel tempo and dressed in borrowed triads.</div>
+    <p class="cap">Honest bound: this is a hypothesis read off one chord pair and a general ear for the style, not a transcribed analysis of "Thirsty" bar by bar. The next useful test is the boring one — transcribe the actual bass line under the vamp and check whether it really sits on V7 as long as this note claims, and whether the first full-close root-position I really is held back until the end.</p>
+  </div>
+</div>
 </main>
 
 <script>
@@ -1222,6 +1346,7 @@ function showView(v){
   document.getElementById('civicView').classList.toggle('active', v==='civic');
   document.getElementById('sapataView').classList.toggle('active', v==='sapata');
   document.getElementById('economistView').classList.toggle('active', v==='economist');
+  document.getElementById('thirstyView').classList.toggle('active', v==='thirsty');
   window.scrollTo(0,0);
 }
 
@@ -1253,6 +1378,8 @@ addDivider();
 addMenuButton('🌲  SAPATA', ()=>showView('sapata'));
 addDivider();
 addMenuButton('📰  The Economist', ()=>showView('economist'));
+addDivider();
+addMenuButton('🎹  Thirsty (Marvin Sapp)', ()=>showView('thirsty'));
 (function(){
   const seen=new Set(); const links=[];
   document.querySelectorAll('main a[href^="http"]').forEach(a=>{
@@ -1301,7 +1428,7 @@ try{
 }catch(e){}
 try{
   const v=new URLSearchParams(location.search).get('view');
-  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'){ showView(v); }
+  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'){ showView(v); }
 }catch(e){}
 </script>
 </body>
