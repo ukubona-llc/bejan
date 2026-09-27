@@ -112,6 +112,10 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
 /* --- Civic Pentad (merged view) --- */
 #civicView{display:none;}
 #civicView.active{display:block;}
+
+/* --- SAPATA (merged view) --- */
+#sapataView{display:none;}
+#sapataView.active{display:block;}
 .c-intro a{color:var(--accent2);}
 .source-strip{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 30px;}
 .source-strip a{font-family:-apple-system,sans-serif;font-size:12px;padding:7px 12px;border-radius:20px;
@@ -1013,6 +1017,35 @@ echo -e "${YELLOW}=========================================================${NC}
   </div>
 </div>
 
+<div id="sapataView">
+  <div class="backbar">
+    <button onclick="showView('pentad')">← Back to the pentad</button>
+  </div>
+  <div class="history-doc">
+    <h1>SAPATA: The Clock Belongs to the Agency</h1>
+    <div class="sub">Scale-Aware Perception–Agency Temporal Alignment — Bruce McEwen's allostasis, formalized as a state equation.</div>
+
+    <h2>1 · The equation</h2>
+    <div class="boxed">State<sub>t</sub> = Σ Event<sub>i</sub></div>
+    <p>State is not a dashboard reading the present moment; it is the accumulated history of every trajectory that has run so far. Push one more experiment through it — State<sub>t</sub> → experiment → Event<sub>t+1</sub> → State<sub>t+1</sub> — and the loop looks identical to Bejan's I→V→I′ everywhere else in this document, except SAPATA makes explicit what the Constructal Pentad leaves implicit: I′ is not a refreshed copy of I. It is I plus everything the last cycle deposited into it. That is the allostatic claim against the homeostatic one — the substrate doesn't reset to baseline between cycles, it carries the load forward.</p>
+
+    <h2>2 · Two clocks that need not agree</h2>
+    <p>Bezos's own experimentation anecdote is the cleanest illustration: an A/B test drops a metric this week (Δ Y<sub>t</sub> &lt; 0), and a conventional optimization loop rejects the change on the spot. But the intervention also seeded a slower-moving state variable — customer trust (S<sub>t+1</sub>) — that only pays off several cycles later (Δ S<sub>t+k</sub> &gt; 0, eventually Δ Y<sub>t+k</sub> &gt; 0). Reading only the fast clock calls the change a failure; reading the slow one shows it was reshaping the environment the next decision gets made inside. SAPATA names the two clocks directly:</p>
+    <table>
+      <tr><th>Local clock — N<sub>b</sub>(t)</th><th>Global / generational clock — N(t)</th></tr>
+      <tr><td>What happened immediately after this branch's intervention — sales, latency, a single ruling, one executive order this week</td><td>What repeated interventions caused the system to become — trust, precedent, statute, institutional memory</td></tr>
+    </table>
+    <p>A branch can sit at N<sub>b</sub>=17 local events while the global ring counter is still at N=4: seventeen local experiments have run, but their consequences haven't yet constituted a new ring. Only once enough of them accumulate does I<sub>N</sub> → I<sub>N+1</sub> — a new baseline — actually occur.</p>
+
+    <h2>3 · Why this is the civic pentad's asymmetry, formalized</h2>
+    <p>This is the exact mechanism behind the clock-speed gap in the <a href="#" onclick="showView('civic');return false;" style="color:var(--accent2);">Civic Pentad</a>. An executive order is a local-clock event — it can look successful on N<sub>b</sub>(t) the week it's issued. But the global clock it has to answer to runs at III and IV: litigation and legislative session, the calendars on which case law and codified statute actually accumulate into a new ring. Reading an unchallenged executive order's short-run success as settled is the SAPATA error named above, transposed one register up — mistaking a local-clock reading for a global-clock one. The boxed relation from §2 of the SAPATA notes is exactly V<sub>t</sub> → I<sub>t+1</sub> → II<sub>t+1</sub>: the order doesn't just produce an outcome, it modifies the constitutional environment the next case gets read against, and it takes enough of those local events — enough adversarial III cycles — before the global ring advances into something IV can codify or, rarer still, before II itself moves.</p>
+    <div class="boxed">Local clock (V, executive speed) accumulates → Global clock (III→IV, litigation/legislative speed) only advances once enough local events have deposited into it → the gap between the two clocks <em>is</em> the bottleneck named in the Civic Pentad's closing note, not a separate phenomenon</div>
+
+    <h2>4 · Honest bound</h2>
+    <p class="cap">SAPATA doesn't collapse the two clocks into one — it only gives the formal reason they diverge. It's a state-observer, not a compressor: it can tell you why a fast local reading and a slow global one can legitimately disagree, but it cannot make the global clock run faster. That's the same non-negotiable point the Civic Pentad's closing note already makes about III and IV's own calendars — this section just supplies the equation underneath it.</p>
+  </div>
+</div>
+
 <div id="civicView">
   <div class="backbar">
     <button onclick="showView('pentad')">← Back to the pentad</button>
@@ -1079,6 +1112,7 @@ echo -e "${YELLOW}=========================================================${NC}
   <p>Gifted Hands forced this pentad out because embodied AI doesn't just add a product category at Level III/IV of the Constructal Pentad — it adds a new class of event to civic-pentad I that II's surface reading was never written to cover. A robot-assisted or fully autonomous surgical action is, at the plain-text layer, unclassifiable: not obviously "the practice of medicine" under licensure statutes written for a human practitioner, not obviously a plain product-liability case either, since judgment as well as manufacture is involved. That gap doesn't resolve at II. It falls straight to III, exactly where two adversarial readings meet and the text alone doesn't decide — which means the Level II problem flagged in the Gifted Hands section (who is liable, who is licensed, who pays) is not, in the first instance, a legislative problem. It's a judicial one, and only becomes a legislative one once enough adversarial cases have generated case law that IV can codify.</p>
   <p>That sequencing is the real constraint on maximizing access to embodied AI, and it's harder than the engineering problem Gifted Hands names in §3. The Constructal Pentad's Level V digital leverage let Amazon and frontier-AI products cycle their own I→V→I′ loop in an afternoon. The civic pentad has no equivalent afternoon: III runs on the calendar of litigation, IV on the calendar of a legislative session, and only V moves at executive speed — and an executive order that outruns III/IV is exactly the "outside constitutional bounds" case that gets challenged and, more often than not, reversed rather than ratified. So the bottleneck on deploying gifted hands at scale, once the model-intelligence and dexterity problems clear, isn't primarily technical anymore. It's this pentad's own cycle time, and the engineering curve cannot compress a branch it doesn't run on.</p>
   <p class="cap">Honest bound on the claim above: most near-term embodied-AI deployment won't need a fresh constitutional answer at all — device-approval statutes already contemplate physician-supervised robotic tools (the da Vinci system has operated inside existing FDA and licensure frameworks for two decades without a landmark III ruling). The slow, uncompressible III→IV sequence above applies specifically to the frontier case Gifted Hands names — full decoupling of surgical judgment from a licensed human body — not to today's supervised-robotic middle ground.</p>
+  <p class="src">The mechanism behind that clock gap — why a fast local read and a slow global one can legitimately disagree — is formalized at <a href="#" onclick="showView('sapata');return false;" style="color:var(--accent2);">SAPATA</a>.</p>
   </div>
 </div>
 </main>
@@ -1138,7 +1172,7 @@ function showCivic(k){
 }
 showCivic('I');
 
-/* Top-level view switcher: pentad | history | criteria | escape | gifted | civic */
+/* Top-level view switcher: pentad | history | criteria | escape | gifted | civic | sapata */
 function showView(v){
   document.getElementById('pentadView').style.display = v==='pentad' ? 'block' : 'none';
   document.getElementById('historyView').classList.toggle('active', v==='history');
@@ -1146,6 +1180,7 @@ function showView(v){
   document.getElementById('escapeView').classList.toggle('active', v==='escape');
   document.getElementById('giftedView').classList.toggle('active', v==='gifted');
   document.getElementById('civicView').classList.toggle('active', v==='civic');
+  document.getElementById('sapataView').classList.toggle('active', v==='sapata');
   window.scrollTo(0,0);
 }
 
@@ -1173,6 +1208,8 @@ addGroupLabel('Civic Pentad');
 order.forEach(k=>{
   addMenuButton(k+' — '+civicLabels[k], ()=>{showView('civic'); showCivic(k);});
 });
+addDivider();
+addMenuButton('🌲  SAPATA', ()=>showView('sapata'));
 (function(){
   const seen=new Set(); const links=[];
   document.querySelectorAll('main a[href^="http"]').forEach(a=>{
@@ -1221,7 +1258,7 @@ try{
 }catch(e){}
 try{
   const v=new URLSearchParams(location.search).get('view');
-  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'){ showView(v); }
+  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'){ showView(v); }
 }catch(e){}
 </script>
 </body>
