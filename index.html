@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Constructal Pentad — Flow, Form, Amazon</title>
+<style>
+:root{
+  --bg:#f4f1ea; --fg:#181510; --accent:#b0421e; --accent2:#1e5c4a;
+  --card:#fffdf8; --line:#d8d0c0; --muted:#6b6455;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#14120e; --fg:#eee8da; --accent:#e8813f; --accent2:#5fd1ab; --card:#1d1a14; --line:#332e24; --muted:#a49b87; }
+}
+:root[data-theme="dark"]{ --bg:#14120e; --fg:#eee8da; --accent:#e8813f; --accent2:#5fd1ab; --card:#1d1a14; --line:#332e24; --muted:#a49b87; }
+html,body{height:100%;margin:0;}
+body{
+  background:var(--bg); color:var(--fg); font-family: Georgia, 'Times New Roman', serif;
+  scroll-padding-top:env(safe-area-inset-top,0px);
+}
+h1,h2,h3{font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; letter-spacing:.02em; margin:0;}
+header{
+  position:relative; height:56px;
+}
+.corner{position:fixed; top:0; z-index:50; height:56px; display:flex; align-items:center;
+  padding-top:env(safe-area-inset-top,0px);}
+#logoBox{left:0; width:56px; justify-content:center; background:var(--accent); }
+#waffleBox{left:56px;}
+#themeBox{right:0; padding-right:env(safe-area-inset-right,0px);}
+#logo{width:30px;height:30px; animation: spin 9s linear infinite;}
+@keyframes spin{ from{transform:rotate(0)} to{transform:rotate(360deg)} }
+.iconbtn{width:44px;height:44px;border:none;background:transparent;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;color:var(--fg);}
+.waffle{display:grid;grid-template-columns:repeat(3,4px);grid-gap:3px;}
+.waffle span{width:4px;height:4px;border-radius:50%;background:var(--fg);}
+#waffleMenu{position:fixed;top:56px;left:56px;background:var(--card);border:1px solid var(--line);
+  border-radius:6px;padding:6px;display:none;z-index:60;box-shadow:0 6px 20px rgba(0,0,0,.2);}
+#waffleMenu button{display:block;width:220px;text-align:left;padding:8px 10px;border:none;background:transparent;
+  color:var(--fg);font-family:inherit;cursor:pointer;border-radius:4px;font-size:14px;}
+#waffleMenu button:hover{background:var(--line);}
+main{max-width:900px;margin:0 auto;padding:76px 20px 60px;}
+.eyebrow{color:var(--accent);font-family:-apple-system,sans-serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;}
+h1.title{font-size:28px;margin:6px 0 18px;line-height:1.2;}
+.intro{color:var(--muted);font-size:15px;line-height:1.6;max-width:640px;margin-bottom:28px;}
+#pentagramWrap{display:flex;justify-content:center;margin:10px 0 30px;}
+svg{width:min(360px,90vw);height:auto;overflow:visible;}
+.diag{stroke:var(--line);stroke-width:1.4;}
+.diag.active{stroke:var(--accent);stroke-width:2;}
+.vtx{fill:var(--card);stroke:var(--accent2);stroke-width:2;cursor:pointer;}
+.vtx.active{fill:var(--accent);}
+.vlabel{font-family:-apple-system,sans-serif;font-size:12px;fill:var(--fg);cursor:pointer;font-weight:600;}
+.slot{display:none;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 26px;margin-bottom:16px;}
+.slot.active{display:block;}
+.slot .tag{color:var(--accent);font-family:-apple-system,sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
+.slot h2{font-size:20px;margin-bottom:10px;}
+.slot p{line-height:1.62;font-size:15px;margin:0 0 10px;}
+.slot .cap{border-left:3px solid var(--accent2);padding-left:12px;color:var(--muted);font-size:13.5px;margin-top:12px;}
+.nav5{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+.nav5 button{font-family:-apple-system,sans-serif;font-size:12px;padding:7px 12px;border-radius:20px;
+  border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;}
+.nav5 button.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.synth{margin-top:6px;font-size:14px;color:var(--muted);line-height:1.6;border-top:1px dashed var(--line);padding-top:18px;}
+</style>
+</head>
+<body>
+<header>
+  <div id="logoBox" class="corner">
+    <svg id="logo" viewBox="0 0 40 40"><polygon points="20,3 23.82,14.74 36.17,14.75 26.18,22.01 29.99,33.75 20,26.5 10.01,33.75 13.82,22.01 3.83,14.75 16.18,14.74" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>
+  </div>
+  <div id="waffleBox" class="corner">
+    <button class="iconbtn" onclick="document.getElementById('waffleMenu').style.display = document.getElementById('waffleMenu').style.display==='block'?'none':'block'" aria-label="Sections">
+      <div class="waffle"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </button>
+  </div>
+  <div id="themeBox" class="corner">
+    <button class="iconbtn" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle theme">◐</button>
+  </div>
+  <div id="waffleMenu"></div>
+</header>
+
+<main>
+  <div class="eyebrow">Ukubona working note</div>
+  <h1 class="title">One law, three currencies: rivers, Amazon, and the pentad</h1>
+  <p class="intro">Bejan's constructal law says a finite-size flow system that persists in time must keep evolving toward configurations that give easier access to whatever flows through it. Bezos named the company after the river with the largest discharge volume on Earth before a single warehouse existed. What follows maps the flywheel onto I–V / TMVES as five pentadic slots — not five separate ideas, but one law observed in five places along the same loop.</p>
+
+  <div id="pentagramWrap">
+    <svg viewBox="0 0 400 400">
+      <line class="diag" id="d02" x1="200" y1="50" x2="288.2" y2="321.4" onclick="show('III')"/>
+      <line class="diag" id="d13" x1="342.6" y1="153.6" x2="111.8" y2="321.4" onclick="show('IV')"/>
+      <line class="diag" id="d24" x1="288.2" y1="321.4" x2="57.4" y2="153.6" onclick="show('V')"/>
+      <line class="diag" id="d30" x1="111.8" y1="321.4" x2="200" y2="50" onclick="show('I')"/>
+      <line class="diag" id="d41" x1="57.4" y1="153.6" x2="342.6" y2="153.6" onclick="show('II')"/>
+      <circle class="vtx" data-k="I" cx="200" cy="50" r="15" onclick="show('I')"/>
+      <circle class="vtx" data-k="II" cx="342.6" cy="153.6" r="15" onclick="show('II')"/>
+      <circle class="vtx" data-k="III" cx="288.2" cy="321.4" r="15" onclick="show('III')"/>
+      <circle class="vtx" data-k="IV" cx="111.8" cy="321.4" r="15" onclick="show('IV')"/>
+      <circle class="vtx" data-k="V" cx="57.4" cy="153.6" r="15" onclick="show('V')"/>
+      <text class="vlabel" x="200" y="30" text-anchor="middle" onclick="show('I')">I · Tensor</text>
+      <text class="vlabel" x="370" y="150" text-anchor="start" onclick="show('II')">II · Matrix</text>
+      <text class="vlabel" x="300" y="358" text-anchor="middle" onclick="show('III')">III · Vector</text>
+      <text class="vlabel" x="100" y="358" text-anchor="middle" onclick="show('IV')">IV · Eigenmodes</text>
+      <text class="vlabel" x="30" y="150" text-anchor="start" onclick="show('V')">V · Scalar</text>
+    </svg>
+  </div>
+
+  <div class="nav5" id="nav5"></div>
+
+  <div class="slot" data-k="I">
+    <div class="tag">I · Tensor / Soil — Substrate</div>
+    <h2>Customer clicks, tagged by ID</h2>
+    <p>Every click carrying a customer ID is the undifferentiated raw field — Bejan's uniform rain falling on uniform soil before any channel exists (§3). No preference has been expressed yet; there's only attributable flow, waiting to be shaped.</p>
+    <p>Naming the company "Amazon" was not branding at this layer — it was a hypothesis about which physical law the company would be tested against: build for the largest possible discharge volume before the first channel is cut.</p>
+  </div>
+
+  <div class="slot" data-k="II">
+    <div class="tag">II · Matrix / Objective — Relation</div>
+    <h2>"Maximize customer satisfaction" vs. the fixed shelf</h2>
+    <p>Walmart's reference frame is Newtonian: a fixed store, fixed inventory, value measured against a stationary local point you must travel to. Amazon's stated objective is relative to the customer, not to any shelf — closer to a moving frame than a fixed one.</p>
+    <p class="cap">Honest caveat: Bejan explicitly refuses to frame the constructal law as an optimization statement — §2 lists eleven contradictory ad hoc "optimality" principles (min entropy, max entropy, min resistance, max resistance...) that the law replaces precisely because none of them is general. "Objective function" is a business-layer add-on riding on top of the law, not something the law itself licenses. The law fixes only the tendency — toward easier flow — not the metric you optimize.</p>
+  </div>
+
+  <div class="slot" data-k="III">
+    <div class="tag">III · Vector / Search — Branching</div>
+    <h2>Combinatorial search, selection by clients</h2>
+    <p>Customers are the erosion mechanism: each click a grain dislodged, each purchase a channel reinforced. Left free to search, this converges — exactly as Bejan's multi-scale porous media do (§9) — to a "bidisperse" catalog: a handful of blockbuster channels carrying most of the flow, surrounded by an enormous number of small ones. Nobody designs the long tail; it's what unconstrained flow-search generates.</p>
+    <p>Books → music → video is quadrupling (§3): each new category is a daughter channel opened only once it can inherit the same dissipative, digitally-leveraged architecture as the first — branch propagation, not "diversification."</p>
+  </div>
+
+  <div class="slot" data-k="IV">
+    <div class="tag">IV · Eigenmodes / Hypothesis — Test</div>
+    <h2>A/B tests, and the store you don't have to walk to</h2>
+    <p>Cheap tests resolving in hours are Bejan's engine-and-brake (§6) sped up: a small, controlled amount of energy (dev time, ad spend) is dissipated to learn which configuration flows easier, the loser is pruned. Evolutionary time compressed to an afternoon.</p>
+    <p>The Newtonian constraint being removed is the physical store — $7/sq ft, diffusion-bound: local, resistant, capped by the customer's need to be physically present. A fulfillment center at $0.2/sq ft plus a shipping network is the convection regime. Bejan (§8): diffusion wins at short times and small scales, streams win at larger ones — "nature always chooses this arrangement, and not the opposite." Past a scale threshold, the law doesn't let you stay a bookstore.</p>
+    <p class="cap">This is also where labor differentiates into distinct eigenmodes of one tensor: clerk, picker, driver, engineer — plural branches of the same Amazon-flow, not competing ideologies about which labor is "real."</p>
+  </div>
+
+  <div class="slot" data-k="V">
+    <div class="tag">V · Scalar / Technology — Feedback</div>
+    <h2>Reviews, returns, email → I′</h2>
+    <p>Customer feedback closes the loop and becomes next cycle's I. This is Bejan's actual time-arrow: "existing configurations are replaced by globally easier-flowing configurations" — not once, as a headline, but standing, generation after generation.</p>
+    <p>The flywheel isn't a metaphor for the constructal law. It is the constructal law running on itself, one order of magnitude faster than a river re-cuts its bed after a flood.</p>
+  </div>
+
+  <div class="synth">Same law, different currency. A river moves water toward the sea; a lung moves blood toward tissue; Amazon moves goods, attention, and capital toward a customer. What's constant isn't the substance flowing — it's the tendency to keep generating easier access for it. TMVES / the pentad is a compressed way of narrating that same tendency inside cognition, business, or a chord's voice-leading. The tree overlap runs both ways: it isn't that Amazon happens to look tree-shaped — it's that anything persisting under a flow constraint has no other shape available to it.</div>
+
+  <div class="synth" style="margin-top:22px;">
+    <strong style="color:var(--fg);">Note</strong> — this is the vocabulary Ukubona has been circling for 17 months without a name for the underlying law itself. It has one: Adrian Bejan's constructal law.<br>
+    Bejan, A. &amp; Lorente, S. (2010). <em>The constructal law of design and evolution in nature.</em> Phil. Trans. R. Soc. B, 365(1545), 1335–1347. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2871904/" target="_blank" rel="noopener" style="color:var(--accent2);">pmc.ncbi.nlm.nih.gov/articles/PMC2871904</a><br>
+    Duke University, Pratt School of Engineering — <a href="https://mems.duke.edu/impact/research/energy/bejan-constructal-law/" target="_blank" rel="noopener" style="color:var(--accent2);">mems.duke.edu — Bejan &amp; the Constructal Law</a>
+  </div>
+</main>
+
+<script>
+const order=['I','II','III','IV','V'];
+const menu=document.getElementById('waffleMenu');
+const nav5=document.getElementById('nav5');
+order.forEach(k=>{
+  const b=document.createElement('button'); b.textContent=k; b.onclick=()=>show(k); nav5.appendChild(b);
+  const m=document.createElement('button'); m.textContent=k+' — '+({I:'Tensor / Soil',II:'Matrix / Objective',III:'Vector / Search',IV:'Eigenmodes / Hypothesis',V:'Scalar / Feedback'})[k];
+  m.onclick=()=>{show(k); menu.style.display='none';}; menu.appendChild(m);
+});
+function show(k){
+  document.querySelectorAll('.slot').forEach(s=>s.classList.toggle('active', s.dataset.k===k));
+  document.querySelectorAll('.vtx').forEach(v=>v.classList.toggle('active', v.dataset.k===k));
+  document.querySelectorAll('#nav5 button').forEach(b=>b.classList.toggle('active', b.textContent===k));
+  document.querySelectorAll('.diag').forEach(l=>l.classList.remove('active'));
+}
+show('I');
+function toggleTheme(){
+  const html=document.documentElement;
+  const cur = html.getAttribute('data-theme');
+  const next = cur==='dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  try{ localStorage.setItem('theme', next); }catch(e){}
+}
+try{
+  const saved = localStorage.getItem('theme');
+  if(saved) document.documentElement.setAttribute('data-theme', saved);
+}catch(e){}
+</script>
+</body>
+</html>
