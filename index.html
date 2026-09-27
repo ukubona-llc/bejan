@@ -116,6 +116,10 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
 /* --- SAPATA (merged view) --- */
 #sapataView{display:none;}
 #sapataView.active{display:block;}
+
+/* --- The Economist (merged view) --- */
+#economistView{display:none;}
+#economistView.active{display:block;}
 .c-intro a{color:var(--accent2);}
 .source-strip{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 30px;}
 .source-strip a{font-family:-apple-system,sans-serif;font-size:12px;padding:7px 12px;border-radius:20px;
@@ -1043,6 +1047,31 @@ echo -e "${YELLOW}=========================================================${NC}
 
     <h2>4 · Honest bound</h2>
     <p class="cap">SAPATA doesn't collapse the two clocks into one — it only gives the formal reason they diverge. It's a state-observer, not a compressor: it can tell you why a fast local reading and a slow global one can legitimately disagree, but it cannot make the global clock run faster. That's the same non-negotiable point the Civic Pentad's closing note already makes about III and IV's own calendars — this section just supplies the equation underneath it.</p>
+    <p class="src">The temptation to read the slow clock as mere obstruction rather than a legitimate ledger has its own 1843 statement of principle, at <a href="#" onclick="showView('economist');return false;" style="color:var(--accent2);">The Economist</a>.</p>
+  </div>
+</div>
+
+<div id="economistView">
+  <div class="backbar">
+    <button onclick="showView('pentad')">← Back to the pentad</button>
+  </div>
+  <div class="history-doc">
+    <h1>The Economist: Intelligence vs. Timid Ignorance</h1>
+    <div class="sub">First published 1843 — James Wilson's founding prospectus, and the constructal reading of its mission.</div>
+
+    <h2>1 · The founding statement</h2>
+    <p class="src">"[The Economist] is to take part in a severe contest between intelligence, which presses forward, and an unworthy, timid ignorance obstructing our progress." — James Wilson, prospectus, 1843.</p>
+    <p>Wilson wrote this to launch a magazine arguing for free trade against the Corn Laws — a specific 1840s political fight. But strip the Victorian politics off it and the sentence is a flow-vs-resistance claim, dated a full century before Bejan gave the same idea a thermodynamic name: intelligence is the current seeking the easier-flowing configuration; ignorance is the fixed obstruction the current has to cut through or route around. It is, almost exactly, this document's own I→V loop restated as a moral contest rather than a physical law — "presses forward" is Bejan's arrow, "obstructing" is the resistance every channel in this pentad has had to argue its way past.</p>
+
+    <h2>2 · Where the mirror is honest</h2>
+    <p>Read against the <b>Constructal Pentad</b>'s own vocabulary, Wilson's "intelligence" sits at V — trial, error, and the confidence to keep pressing a configuration until it finds the easier path — and his "ignorance" sits wherever a fixed frame (II) is defended past the point it can be justified on its own terms. That's a fair description of plenty of what this pentad calls obstruction: a Level II objective function mistaken for a score to maximize, a stationary shelf treated as sacred rather than provisional, a market position defended by incumbency rather than merit.</p>
+
+    <h2>3 · Where the mirror breaks</h2>
+    <p>But the <b>Civic Pentad</b> exists precisely because that same rhetoric — obstruction as unworthy ignorance to be swept aside — is exactly wrong when the obstruction is III or IV doing their actual job. Litigation's slow calendar and a legislative session's friction aren't ignorance obstructing progress; they're the load-bearing resistance that keeps V's executive speed inside constitutional bounds, the same way <b>SAPATA</b>'s global clock isn't a sluggish version of the local one — it's the ledger the local clock owes an answer to. Wilson's 1843 mission is the purest historical statement of the instinct this whole document keeps having to complicate: remove the friction, and you remove whatever the friction was accounting for.</p>
+    <div class="boxed">Intelligence pressing forward, unqualified → Muse's high-throughput instinct, Level V without a Level I′ ledger. Intelligence pressing forward, qualified by an allostatic account of what resistance is actually doing → Ukubona's position: press where resistance is genuine ignorance, hold where it's III/IV's own clock.</div>
+
+    <h2>4 · Honest bound</h2>
+    <p class="cap">This isn't a rebuttal of Wilson — free trade against the Corn Laws was a case where the obstruction really was rent-seeking dressed up as principle, and intelligence pressing forward was the right side of that specific fight. The caution is narrower: an 1843 mission statement written for one fight doesn't generalize into "all obstruction is ignorance." Whether a given resistance is Wilson's timid ignorance or the Civic Pentad's legitimate III/IV friction is itself a case-by-case judgment this document can't shortcut — which is, not incidentally, exactly what a judiciary is for.</p>
   </div>
 </div>
 
@@ -1172,7 +1201,7 @@ function showCivic(k){
 }
 showCivic('I');
 
-/* Top-level view switcher: pentad | history | criteria | escape | gifted | civic | sapata */
+/* Top-level view switcher: pentad | history | criteria | escape | gifted | civic | sapata | economist */
 function showView(v){
   document.getElementById('pentadView').style.display = v==='pentad' ? 'block' : 'none';
   document.getElementById('historyView').classList.toggle('active', v==='history');
@@ -1181,6 +1210,7 @@ function showView(v){
   document.getElementById('giftedView').classList.toggle('active', v==='gifted');
   document.getElementById('civicView').classList.toggle('active', v==='civic');
   document.getElementById('sapataView').classList.toggle('active', v==='sapata');
+  document.getElementById('economistView').classList.toggle('active', v==='economist');
   window.scrollTo(0,0);
 }
 
@@ -1210,6 +1240,8 @@ order.forEach(k=>{
 });
 addDivider();
 addMenuButton('🌲  SAPATA', ()=>showView('sapata'));
+addDivider();
+addMenuButton('📰  The Economist', ()=>showView('economist'));
 (function(){
   const seen=new Set(); const links=[];
   document.querySelectorAll('main a[href^="http"]').forEach(a=>{
@@ -1258,7 +1290,7 @@ try{
 }catch(e){}
 try{
   const v=new URLSearchParams(location.search).get('view');
-  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'){ showView(v); }
+  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'){ showView(v); }
 }catch(e){}
 </script>
 </body>
