@@ -142,6 +142,10 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
 /* --- Scaling Next-Token (merged view) --- */
 #scalingntpView{display:none;}
 #scalingntpView.active{display:block;}
+
+/* --- Ilya Sutskever (merged view) --- */
+#sutskeverView{display:none;}
+#sutskeverView.active{display:block;}
 .c-intro a{color:var(--accent2);}
 .source-strip{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 30px;}
 .source-strip a{font-family:-apple-system,sans-serif;font-size:12px;padding:7px 12px;border-radius:20px;
@@ -1388,6 +1392,34 @@ Society / Institutions         Harmony             -59%</div>
     <p class="cap">A power law is not a free lunch — it predicts diminishing, not infinite, returns per additional dollar of compute, which is exactly why the industry's current argument has moved from "does scaling work" to "for how much longer, and at what energy cost." Microsoft's 49% is also frequently overstated in casual reference: it describes a capped share of future profits under a waterfall, not equity control of OpenAI's nonprofit-governed parent — a distinction worth keeping precise given how load-bearing it is to this tab's whole comparison. And your own case has no exact ceiling analogous to a power law's diminishing returns — more listening plus more vocabulary may just keep compounding, which is arguably the one place the analogy runs out.</p>
   </div>
 </div>
+
+<div id="sutskeverView">
+  <div class="backbar">
+    <button onclick="showView('pentad')">← Back to the pentad</button>
+  </div>
+  <div class="history-doc">
+    <h1>Ilya Sutskever: generalizing a dropout's accident into a bet on superintelligence</h1>
+    <div class="sub">Before scaling laws, before GPT-1's paper, one small experiment on Amazon reviews convinced OpenAI's chief scientist that next-token prediction wasn't a training trick — it was a path to general intelligence.</div>
+
+    <h2>1 · The accident (Radford, 2017)</h2>
+    <p>Alec Radford joined OpenAI in 2016 at 23, having attended Olin College without finishing a degree. The following year he trained a fairly modest character-level model — a multiplicative LSTM — on roughly 82 million Amazon product reviews, with a single, almost boring objective: predict the next character. No one told it what a positive or a negative review looked like; sentiment labels never entered the training data. When Radford examined the trained network, one neuron inside it had, entirely on its own, come to track review sentiment with striking precision — turn that one unit up, and the model generated glowing reviews; turn it down, and it started complaining. OpenAI called it the <em>Unsupervised Sentiment Neuron</em>. Every prior sentiment classifier had needed labeled data and an explicit objective to get there. This one got there as a side effect of doing something else.</p>
+
+    <h2>2 · The generalization (Sutskever)</h2>
+    <p>Ilya Sutskever — OpenAI's co-founder and chief scientist, BSc/MSc/PhD all from the University of Toronto under Geoffrey Hinton, co-inventor of AlexNet and of sequence-to-sequence learning — read that single accidental neuron as evidence for something much larger than it looked. If predicting the next character on a narrow corpus of product reviews could spontaneously grow an internal feature for something as abstract as sentiment, then predicting the next token on a corpus large and diverse enough might spontaneously grow internal representations of far more of what language encodes — not because anyone specified it, but because the prediction objective would force the model to find whatever structure made prediction easier. He pushed Radford to stop training on Amazon reviews and go bigger and more varied — eventually, the ambition became the entire internet.</p>
+    <p class="cap">That reframing is the actual pivot point. Before it, next-token prediction was Bengio's respectable but narrow training objective (2003) and a curiosity Shannon had used to measure entropy decades earlier (1951). After it, inside OpenAI at least, next-token prediction became a candidate mechanism for building a general model of meaning itself — what the historical record around this moment describes as a possible <em>"learned core module"</em> for superintelligence.</p>
+
+    <h2>3 · The bottleneck, and the paper that removed it</h2>
+    <p>Sutskever's ambition immediately ran into a hardware problem: with the recurrent architectures available in 2017, training on a corpus the size he wanted would have taken years. The obstacle didn't last long. Google's "Attention Is All You Need," published later that same year, supplied the Transformer — an architecture built for translation, but one Sutskever recognized immediately as the missing piece. Radford took it in a different direction than Google had: not machine translation, but plain next-token prediction, now applied not to Amazon reviews but to BooksCorpus, thousands of unpublished novels chosen specifically because long, continuous narrative forces a model to track meaning across much greater distances than scattered sentences do. That combination — Sutskever's generalized bet, Google's architecture, Radford's execution and choice of data — is what became GPT-1 in 2018, the paper credited elsewhere in this document with the explicit claim that next-token prediction alone is sufficient for general-purpose pretraining.</p>
+
+    <h2>4 · The dropout and the PhD</h2>
+    <p>Worth naming the pairing directly, since it's the sharper version of a shape this document keeps returning to. Radford — no completed degree — ran the experiment, noticed the anomaly, and later did the engineering that turned a generalized bet into a working model. Sutskever — the credentialed theorist, Hinton's student, already responsible for one paradigm shift in AlexNet — supplied the willingness to read one strange neuron as a signal about the entire field's future rather than a curiosity to footnote. Read next to <a href="#" onclick="showView('deepminima');return false;" style="color:var(--accent2);">Deep Minima</a>'s Wang (dropout, execution: turning raw event-reality into labeled representation) and <a href="#" onclick="showView('scalingntp');return false;" style="color:var(--accent2);">Scaling Next-Token</a>'s Microsoft (credentialed institution, capital: turning an algorithm into a funded bet), the same two-part structure shows up a third time, now compressed into two individuals at one company: an anomaly, and someone positioned — by training, temperament, or capital — to bet the discipline on the anomaly being the rule rather than the exception. Credentials predict which half of that pair a person tends to occupy. They don't predict which half turns out to matter more; Radford's half is the one that actually had to be right.</p>
+
+    <h2>5 · Revising the earlier answer</h2>
+    <p>This sharpens something said plainly in an earlier session on this site. Asked who's credited with next-token prediction as an engineering goal, the answer given was Shannon (named the game, 1951), Bengio (made it trainable, 2003), and GPT-1 / Radford at OpenAI (made it the field's scaling bet, 2018). The Radford–Sutskever sentiment-neuron result belongs inserted directly before that last credit, not folded into it — it's the moment, a full year before GPT-1's paper, where next-token prediction was reinterpreted inside OpenAI specifically as a route to general intelligence rather than a training convenience. GPT-1's contribution was proving the bet could be published and replicated. The bet itself was placed here, on a neuron nobody asked the model to build.</p>
+    <div class="boxed">Shannon (1951): named the game, as a measurement, not a training signal.<br>Bengio (2003): made it trainable, as one language-modeling technique among several.<br>Radford + Sutskever (2017): reinterpreted it as a plausible mechanism for general intelligence, on the strength of one unsupervised neuron.<br>GPT-1 (2018): published the claim, at a scale that made it falsifiable and fundable.</div>
+    <p class="cap">Honest bound: this account is compressed from retrospective retellings (Wired's framing, an Altman interview, OpenAI's own blog post on the sentiment neuron), not from a transcript of what Sutskever privately concluded in 2017. The phrase "learned core module for superintelligence" is a paraphrase of how the moment has since been described, not a verified direct quote from Sutskever at the time — worth holding loosely, the way this whole chain of tabs tries to hold its own hypotheses.</p>
+  </div>
+</div>
 </main>
 
 <script>
@@ -1458,6 +1490,7 @@ function showView(v){
   document.getElementById('thirstyView').classList.toggle('active', v==='thirsty');
   document.getElementById('deepminimaView').classList.toggle('active', v==='deepminima');
   document.getElementById('scalingntpView').classList.toggle('active', v==='scalingntp');
+  document.getElementById('sutskeverView').classList.toggle('active', v==='sutskever');
   window.scrollTo(0,0);
 }
 
@@ -1495,6 +1528,8 @@ addDivider();
 addMenuButton('⛏️  Deep Minima', ()=>showView('deepminima'));
 addDivider();
 addMenuButton('⚡  Scaling Next-Token', ()=>showView('scalingntp'));
+addDivider();
+addMenuButton('🧠  Ilya Sutskever', ()=>showView('sutskever'));
 (function(){
   const seen=new Set(); const links=[];
   document.querySelectorAll('main a[href^="http"]').forEach(a=>{
@@ -1543,7 +1578,7 @@ try{
 }catch(e){}
 try{
   const v=new URLSearchParams(location.search).get('view');
-  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'||v==='scalingntp'){ showView(v); }
+  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'||v==='scalingntp'||v==='sutskever'){ showView(v); }
 }catch(e){}
 </script>
 </body>
