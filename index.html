@@ -108,6 +108,10 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
 /* --- Gifted Hands (merged view) --- */
 #giftedView{display:none;}
 #giftedView.active{display:block;}
+
+/* --- Civic Pentad (merged view) --- */
+#civicView{display:none;}
+#civicView.active{display:block;}
 .c-intro a{color:var(--accent2);}
 .source-strip{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 30px;}
 .source-strip a{font-family:-apple-system,sans-serif;font-size:12px;padding:7px 12px;border-radius:20px;
@@ -1002,9 +1006,79 @@ echo -e "${YELLOW}=========================================================${NC}
 
     <h2>4 · The gap this document owes the argument</h2>
     <p class="cap">Honest caveat, in the same spirit as Section I's Bejan caveat: clearing the two technical unknowns above does not by itself maximize access, because a surgical robot at the bedside still sits behind a Level IV physical bottleneck a distributed chatbot never faces — FDA clearance, hospital capital cost, malpractice liability, who is legally allowed to hold the instrument. That's a Level II — Matrix / Objective — problem: who is liable, who pays, what counts as care, not a search-space or dexterity problem. So the honest version of this section's claim is narrower than "engineering solves it": engineering removes the scale bottleneck; a separate, non-engineering renegotiation of liability and reimbursement is still required to convert that removed bottleneck into actual access. Silicon Valley is good at the first move and has no comparable track record forcing the second.</p>
+    <p class="src">That renegotiation doesn't run through one institution — it runs through an entire second pentad, mapped at <a href="#" onclick="showView('civic');return false;" style="color:var(--accent2);">Civic Pentad</a>.</p>
 
     <h2>5 · Where this sits against Section 9</h2>
     <p>Section 9 traced Yafe's own Hopkins credential as a Level IV branch that produced, almost as a side effect, the course that let it exit. <em>Gifted Hands</em> is the earlier tensor — the book-signing origin that sent the credential-branch out in the first place. Read back against Section 9, the two decades at Hopkins are the same structure the table above describes: an embodied, non-transferable skill, correctly diagnosed by this artefact's own history as failing to scale, but only now — in this section — separated out from the further, harder claim that clearing the scale problem is the same thing as maximizing access to it.</p>
+  </div>
+</div>
+
+<div id="civicView">
+  <div class="backbar">
+    <button onclick="showView('pentad')">← Back to the pentad</button>
+  </div>
+  <div class="eyebrow">Ukubona working note</div>
+  <h1 class="title">The civic pentad: Event → Constitution → Judiciary → Legislature → Executive → Event′</h1>
+  <p class="intro">Gifted Hands forced this one out. Once a skill can be embodied outside the one body it was trained into, the events it produces don't just enter a market — they enter a nation's own T→M→V→E→S loop, run at civilizational scale. Below is that loop mapped onto the shape of a constitutional government; the constraints this creates for embodied AI follow in the closing note.</p>
+
+  <div id="gpentagramWrap" style="display:flex;justify-content:center;margin:10px 0 30px;">
+    <svg viewBox="0 0 400 400" style="width:min(360px,90vw);height:auto;overflow:visible;">
+      <line class="diag" id="gd02" x1="200" y1="50" x2="288.2" y2="321.4" onclick="showCivic('III')"/>
+      <line class="diag" id="gd13" x1="342.6" y1="153.6" x2="111.8" y2="321.4" onclick="showCivic('IV')"/>
+      <line class="diag" id="gd24" x1="288.2" y1="321.4" x2="57.4" y2="153.6" onclick="showCivic('V')"/>
+      <line class="diag" id="gd30" x1="111.8" y1="321.4" x2="200" y2="50" onclick="showCivic('I')"/>
+      <line class="diag" id="gd41" x1="57.4" y1="153.6" x2="342.6" y2="153.6" onclick="showCivic('II')"/>
+      <circle class="vtx" data-k="I" cx="200" cy="50" r="15" onclick="showCivic('I')"/>
+      <circle class="vtx" data-k="II" cx="342.6" cy="153.6" r="15" onclick="showCivic('II')"/>
+      <circle class="vtx" data-k="III" cx="288.2" cy="321.4" r="15" onclick="showCivic('III')"/>
+      <circle class="vtx" data-k="IV" cx="111.8" cy="321.4" r="15" onclick="showCivic('IV')"/>
+      <circle class="vtx" data-k="V" cx="57.4" cy="153.6" r="15" onclick="showCivic('V')"/>
+      <text class="vlabel" x="200" y="30" text-anchor="middle" onclick="showCivic('I')">I · Event-Stream</text>
+      <text class="vlabel" x="370" y="150" text-anchor="start" onclick="showCivic('II')">II · Constitution</text>
+      <text class="vlabel" x="300" y="358" text-anchor="middle" onclick="showCivic('III')">III · Judiciary</text>
+      <text class="vlabel" x="100" y="358" text-anchor="middle" onclick="showCivic('IV')">IV · Legislature</text>
+      <text class="vlabel" x="30" y="150" text-anchor="start" onclick="showCivic('V')">V · Executive</text>
+    </svg>
+  </div>
+
+  <div class="nav5" id="gnav5"></div>
+
+  <div class="slot" data-k="I">
+    <div class="tag">I · Event-Stream of Nation — Substrate</div>
+    <h2>Everything that happened, tagged only as "in this jurisdiction"</h2>
+    <p>Births, contracts, protests, injuries, filings, trades, migrations — Bejan's uniform rain again, now falling on a nation instead of a market. Nothing here has been read as lawful, protected, or prohibited yet; it is simply what occurred. This is the same substrate role I plays in the Constructal Pentad and in Five Criteria's Search Space — undifferentiated field before any channel is cut through it.</p>
+  </div>
+
+  <div class="slot" data-k="II">
+    <div class="tag">II · Constitution / Surface Reading — Relation</div>
+    <h2>The fixed frame every event gets measured against</h2>
+    <p>A surface reading is next-token prediction in the literal sense: read the clause, apply the plain words, get a verdict — and most events never leave this layer. A fence is or isn't conforming to zoning, a filing is or isn't timely, a contract is or isn't enforceable, almost always in one pass. The Constitution plays the same role here that the fixed shelf plays for Walmart in the Constructal Pentad's slot II: a stationary reference frame, not itself an optimization target.</p>
+    <p class="cap">As with Bejan's objective-function caveat above: the Constitution fixes a frame to read against, not a score to maximize. Treating it as the latter is exactly the confusion the Constructal Pentad warns against one level down.</p>
+  </div>
+
+  <div class="slot" data-k="III">
+    <div class="tag">III · Judiciary — Branching, where next-token prediction fails</div>
+    <h2>Two adversarial readers, one clause, no surface answer</h2>
+    <p>The judiciary exists for the residue the surface layer can't close: cases where opposing counsel — two adversarial next-token predictors — reach genuinely different plain readings of the same clause applied to the same facts. That divergence is a branching search, not a computation: precedent, competing canons of construction, oral argument, explored adversarially until a ruling fixes the new local reading. It's the same mechanism a river uses to cut a channel — erosion concentrated exactly at the point of highest resistance — except the resistance here is real textual ambiguity and the erosion tool is argument plus stare decisis.</p>
+    <p class="cap">Unlike Amazon's catalog search — an afternoon's A/B test — this branch runs on the calendar of litigation: months at the fastest, years or decades at the constitutional level. That asymmetry becomes the whole constraint below.</p>
+  </div>
+
+  <div class="slot" data-k="IV">
+    <div class="tag">IV · Legislature — Hypothesis, over wider bounds than the existing text</div>
+    <h2>Bills and amendments as falsifiable hypotheses</h2>
+    <p>Where III interprets bounds that already exist, IV proposes bounds that don't: a bill widens or narrows what the Matrix itself covers, tested not against a scoring function but against committee, floor vote, veto, and — eventually — a III that reviews whether the new law survives the frame it was supposed to extend. A statute is a Popperian hypothesis in the strict sense: it can be struck down. An amendment is the harder, rarer case — testing whether the reference frame itself (II) can be moved, not just what sits inside it.</p>
+  </div>
+
+  <div class="slot" data-k="V">
+    <div class="tag">V · Executive — Trial &amp; Error, implementation of the whole stack (→ I′)</div>
+    <h2>Where every prior vertex becomes an observable event again</h2>
+    <p>An agency implements the statute; a court order gets enforced; an executive order tests — sometimes deliberately — the edge of Article II authority, betting a decision either survives judicial review (back into III) or gets struck down and re-enters I as a new fact for the next cycle. This is Bejan's actual arrow, "existing configurations are replaced by globally easier-flowing configurations," running on the calendar of a presidency instead of a fiscal quarter. The loop closes here: I′ is the nation the instant after implementation, already carrying whatever V just did back into the undifferentiated stream the next case draws from.</p>
+  </div>
+
+  <div class="synth"><strong style="color:var(--fg);">Constraints from Gifted Hands and embodied AI</strong>
+  <p>Gifted Hands forced this pentad out because embodied AI doesn't just add a product category at Level III/IV of the Constructal Pentad — it adds a new class of event to civic-pentad I that II's surface reading was never written to cover. A robot-assisted or fully autonomous surgical action is, at the plain-text layer, unclassifiable: not obviously "the practice of medicine" under licensure statutes written for a human practitioner, not obviously a plain product-liability case either, since judgment as well as manufacture is involved. That gap doesn't resolve at II. It falls straight to III, exactly where two adversarial readings meet and the text alone doesn't decide — which means the Level II problem flagged in the Gifted Hands section (who is liable, who is licensed, who pays) is not, in the first instance, a legislative problem. It's a judicial one, and only becomes a legislative one once enough adversarial cases have generated case law that IV can codify.</p>
+  <p>That sequencing is the real constraint on maximizing access to embodied AI, and it's harder than the engineering problem Gifted Hands names in §3. The Constructal Pentad's Level V digital leverage let Amazon and frontier-AI products cycle their own I→V→I′ loop in an afternoon. The civic pentad has no equivalent afternoon: III runs on the calendar of litigation, IV on the calendar of a legislative session, and only V moves at executive speed — and an executive order that outruns III/IV is exactly the "outside constitutional bounds" case that gets challenged and, more often than not, reversed rather than ratified. So the bottleneck on deploying gifted hands at scale, once the model-intelligence and dexterity problems clear, isn't primarily technical anymore. It's this pentad's own cycle time, and the engineering curve cannot compress a branch it doesn't run on.</p>
+  <p class="cap">Honest bound on the claim above: most near-term embodied-AI deployment won't need a fresh constitutional answer at all — device-approval statutes already contemplate physician-supervised robotic tools (the da Vinci system has operated inside existing FDA and licensure frameworks for two decades without a landmark III ruling). The slow, uncompressible III→IV sequence above applies specifically to the frontier case Gifted Hands names — full decoupling of surgical judgment from a licensed human body — not to today's supervised-robotic middle ground.</p>
   </div>
 </div>
 </main>
