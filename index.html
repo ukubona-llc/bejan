@@ -132,6 +132,8 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
 /* --- The Wanderer's Cadence (merged view) --- */
 #wandererView{display:none;}
 #wandererView.active{display:block;}
+#chordPentadView{display:none;}
+#chordPentadView.active{display:block;}
 .video-embed{position:relative;width:100%;padding-top:56.25%;margin:14px 0 26px;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#000;}
 .video-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
 .chat-turn{margin:18px 0;}
@@ -1394,6 +1396,39 @@ E |-------| </pre>
   </div>
 </div>
 
+<div id="chordPentadView">
+  <div class="backbar">
+    <button onclick="showView('pentad')">← Back to the pentad</button>
+  </div>
+  <div class="history-doc">
+    <h1>The Harmonic Pentad: I → V → I′ run directly on the chords</h1>
+    <div class="sub">Every other tab on this site uses the five-stage architecture as a lens on something else — clicks, credentials, corpora. This is the one place the pentad is run on the thing it was always secretly describing: a Berklee gospel vamp, in its own vocabulary.</div>
+
+    <div class="boxed">I &nbsp;Home Chord<br>→ II &nbsp;Stack<br>→ III &nbsp;Classification<br>→ IV &nbsp;Collision<br>→ V &nbsp;Dominant 7<br>→ I′</div>
+
+    <h2>I — Home Chord</h2>
+    <p>The tonic. The chord the ear treats as gravity — the one every other chord in the key is, functionally, a distance away from. Not yet extended, not yet voiced any particular way: just the fact of a key center, the same role Tensor plays for Amazon's undifferentiated clicks or Event Stream plays for GPT's raw corpus elsewhere in this document. Nothing has been built on top of it yet.</p>
+
+    <h2>II — Stack</h2>
+    <p>The cache: every diatonic chord available in the key, built as a stack of thirds above each scale degree, with Berklee's tension-and-extension vocabulary layered on top — 9ths, 11ths, 13ths, alterations. In gospel-keys Berklee usage specifically, that stack is deliberately narrowed at the seventh: chords are described only as 7 (major or dominant), b7 (minor 7 / half-diminished), or bb7 (fully diminished) — the genre doesn't reach for the wider jazz alteration set (#9, b13, etc.) as its default vocabulary the way it reaches for those three seventh-qualities. This is the identical move <a href="#" onclick="showView('thirsty');return false;" style="color:var(--accent2);">Thirsty</a> named directly: "II. Constitution is cache." The raw diatonic material is small — seven scale degrees, seven stacks — but naming each one with a 7, b7, or bb7 is what constitutes it as a searchable, playable cache rather than an unindexed collection of intervals.</p>
+
+    <h2>III — Classification</h2>
+    <p>Every chord pulled from the stack still has to be classified before it can be voiced at the instrument: is it being played as a root-position or inverted reading of itself, or is it being reinterpreted entirely — a rootless dominant 7th, built from some other stack's triad sitting over a bass note that isn't its own root? This is exactly the GMaj7/A → A13sus4 move from <em>Thirsty</em> §1–2: the same four notes get classified two different ways depending on which pitch the ear is told is gravity. Classification is where a stack-chord decides which functional identity it's going to wear in this instant — inversion of itself, or borrowed upper structure over someone else's bass.</p>
+
+    <h2>IV — Collision</h2>
+    <p>This is where every classified reading gets tested against every other one, simultaneously, the same way GPT's contribution to the <a href="#" onclick="showView('sutskever');return false;" style="color:var(--accent2);">Sutskever</a> tab describes millions of agents colliding inside a single corpus. At the keyboard: a static bass note held under a right hand that cycles through several different diatonic or borrowed triads, so multiple classifications compete for the ear's attention over the same instant — GMaj7/A collides with Gmin/A collides with a passing Bbmaj7(13, no 5) collides with a D#7#9 that's actually an A13#11 wearing a costume, per <em>Thirsty</em> §8. The chord that survives the collision — the reading the ear actually locks onto — is a selection, not a given; nothing about the underlying pitches forces one classification to win over another until context (the key center, the bass line, what came before) breaks the tie.</p>
+
+    <h2>V — Dominant 7</h2>
+    <p>Whatever wins the collision, it resolves into the one chord built to carry the tension: the dominant 7th, sitting a fifth above home. <em>Thirsty</em> §5 already made this claim directly — V7 is the load-bearing chord of the whole style, because the tritone between its 3rd and b7 is the one interval that keeps demanding resolution no matter which upper structure gets dressed on top of it. Every stack, every classification, every collision in stages II–IV was, functionally, decoration on top of that one tritone. V is not a new chord arriving from outside the system; it's the stage where the system admits what it was building toward the whole time.</p>
+
+    <p class="cap">→ I′. The resolution, when it comes, is rarely the same Home Chord that started the cycle. <a href="#" onclick="showView('wanderer');return false;" style="color:var(--accent2);">The Wanderer's Cadence</a> already named what actually lands: I in second inversion, a comma rather than a full stop, before the bass climbs straight back onto V7 and runs the whole stack-classify-collide cycle again. I′ carries forward everything the vamp discovered about itself in stages II through V — which borrowed triads worked, which collisions the ear tolerated — the same way V → I′ means selection and inheritance rather than plain correction in the corpus-level reading of this pentad elsewhere on this site. The chord that survives becomes next cycle's substrate.</p>
+
+    <div class="boxed">Small diatonic stack (I–VII, tagged 7 / b7 / bb7) + constant reclassification of inversion vs. rootless-dominant reading + simultaneous collision among competing readings over a held bass + a tritone-bearing V7 that resolves the collision by demanding motion = the same I → V → I′ this document runs on clicks, corpora, and credentials, here run on the chords that were the model for all of it.</div>
+    <p class="src">Read together with <a href="#" onclick="showView('thirsty');return false;" style="color:var(--accent2);">Thirsty</a>, <a href="#" onclick="showView('wanderer');return false;" style="color:var(--accent2);">The Wanderer's Cadence</a>, and GPT's contribution inside <a href="#" onclick="showView('sutskever');return false;" style="color:var(--accent2);">Ilya Sutskever</a> — three domains, one pentad, run here on the instrument itself rather than on a metaphor for it.</p>
+    <p class="cap">Honest bound: this stage-by-stage mapping is a structural analogy, asserted directly rather than derived from a transcribed vamp bar by bar. Stages II–IV in particular compress a lot of real-time harmonic judgment (which stack, which classification, which collision resolves) into a five-box diagram; a working player is making dozens of these calls per measure, not five per song.</p>
+  </div>
+</div>
+
 <div id="deepminimaView">
   <div class="backbar">
     <button onclick="showView('pentad')">← Back to the pentad</button>
@@ -1709,6 +1744,7 @@ function showView(v){
   document.getElementById('economistView').classList.toggle('active', v==='economist');
   document.getElementById('thirstyView').classList.toggle('active', v==='thirsty');
   document.getElementById('wandererView').classList.toggle('active', v==='wanderer');
+  document.getElementById('chordPentadView').classList.toggle('active', v==='chordpentad');
   document.getElementById('deepminimaView').classList.toggle('active', v==='deepminima');
   document.getElementById('scalingntpView').classList.toggle('active', v==='scalingntp');
   document.getElementById('sutskeverView').classList.toggle('active', v==='sutskever');
@@ -1752,6 +1788,7 @@ addMenuButton('📰  The Economist', ()=>showView('economist'));
 addDivider();
 addMenuButton('🎹  Thirsty (Marvin Sapp)', ()=>showView('thirsty'));
 addMenuButton('🚶  The Wanderer\'s Cadence', ()=>showView('wanderer'));
+addMenuButton('🎼  The Harmonic Pentad', ()=>showView('chordpentad'));
 addDivider();
 addMenuButton('⛏️  Deep Minima', ()=>showView('deepminima'));
 addDivider();
@@ -1810,7 +1847,7 @@ try{
 }catch(e){}
 try{
   const v=new URLSearchParams(location.search).get('view');
-  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'||v==='scalingntp'||v==='sutskever'||v==='manufacturingtaste'||v==='preface'||v==='epilogue'){ showView(v); }
+  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'||v==='scalingntp'||v==='sutskever'||v==='manufacturingtaste'||v==='preface'||v==='epilogue'||v==='chordpentad'){ showView(v); }
 }catch(e){}
 </script>
 </body>
