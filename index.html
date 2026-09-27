@@ -1124,13 +1124,28 @@ function showCrit(k){
 }
 showCrit('I');
 
-/* Top-level view switcher: pentad | history | criteria */
+/* Civic Pentad view controls */
+const gnav5=document.getElementById('gnav5');
+const civicLabels={I:'Event-Stream',II:'Constitution',III:'Judiciary',IV:'Legislature',V:'Executive'};
+order.forEach(k=>{
+  const b=document.createElement('button'); b.textContent=k; b.onclick=()=>showCivic(k); gnav5.appendChild(b);
+});
+function showCivic(k){
+  document.querySelectorAll('#civicView .slot').forEach(s=>s.classList.toggle('active', s.dataset.k===k));
+  document.querySelectorAll('#civicView .vtx').forEach(v=>v.classList.toggle('active', v.dataset.k===k));
+  document.querySelectorAll('#gnav5 button').forEach(b=>b.classList.toggle('active', b.textContent===k));
+  document.querySelectorAll('#civicView .diag').forEach(l=>l.classList.remove('active'));
+}
+showCivic('I');
+
+/* Top-level view switcher: pentad | history | criteria | escape | gifted | civic */
 function showView(v){
   document.getElementById('pentadView').style.display = v==='pentad' ? 'block' : 'none';
   document.getElementById('historyView').classList.toggle('active', v==='history');
   document.getElementById('criteriaView').classList.toggle('active', v==='criteria');
   document.getElementById('escapeView').classList.toggle('active', v==='escape');
   document.getElementById('giftedView').classList.toggle('active', v==='gifted');
+  document.getElementById('civicView').classList.toggle('active', v==='civic');
   window.scrollTo(0,0);
 }
 
@@ -1153,6 +1168,11 @@ addDivider();
 addMenuButton('⛓  Sandbox Escape', ()=>showView('escape'));
 addDivider();
 addMenuButton('✋  Gifted Hands', ()=>showView('gifted'));
+addDivider();
+addGroupLabel('Civic Pentad');
+order.forEach(k=>{
+  addMenuButton(k+' — '+civicLabels[k], ()=>{showView('civic'); showCivic(k);});
+});
 (function(){
   const seen=new Set(); const links=[];
   document.querySelectorAll('main a[href^="http"]').forEach(a=>{
@@ -1201,7 +1221,7 @@ try{
 }catch(e){}
 try{
   const v=new URLSearchParams(location.search).get('view');
-  if(v==='history'||v==='criteria'||v==='escape'){ showView(v); }
+  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'){ showView(v); }
 }catch(e){}
 </script>
 </body>
