@@ -574,8 +574,8 @@ stack        / state</pre>
     <p>Stata's ordinary world is closed: commands operate on data already loaded into the session. A single line — the shell-out operator, <code>!</code> — turns Stata from a statistics engine into something that can create directories, search the filesystem, move and archive files, and query the network. The commands themselves look mundane: <code>!mkdir</code>, <code>!find</code>, <code>!mv</code>, <code>!tar</code>, <code>!rm</code>, <code>!which</code>, <code>!echo</code>. They aren't statistics. They're actuators.</p>
     <p class="src">Derived from the <a href="https://jhustata.github.io/workflow/" target="_blank" rel="noopener">JHU Stata workflow ↗</a>. Full source: <a href="https://raw.githubusercontent.com/abikesa/stata-claude/refs/heads/main/scripts/just-click.do" target="_blank" rel="noopener">abikesa/stata-claude/scripts/just-click.do ↗</a></p>
     <div style="display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin:14px 0 -8px;">
-      <button id="copyBtn" onclick="copyJustClick(false)" style="font-family:-apple-system,sans-serif;font-size:12px;padding:6px 12px;border-radius:20px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;">Copy (plain — for .do / editor)</button>
-      <button id="copyBtnMd" onclick="copyJustClick(true)" style="font-family:-apple-system,sans-serif;font-size:12px;padding:6px 12px;border-radius:20px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;">Copy (code block — for Notion / Slack / docs)</button>
+      <button id="copyBtn" onclick="copyCode('justClickCode','copyBtn',false,'stata')" style="font-family:-apple-system,sans-serif;font-size:12px;padding:6px 12px;border-radius:20px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;">Copy (plain — for .do / editor)</button>
+      <button id="copyBtnMd" onclick="copyCode('justClickCode','copyBtnMd',true,'stata')" style="font-family:-apple-system,sans-serif;font-size:12px;padding:6px 12px;border-radius:20px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;">Copy (code block — for Notion / Slack / docs)</button>
     </div>
     <pre id="justClickCode">/**************************************************************************
  🔁 just-click.do – Fully terminal-native, auto-organizing Stata workflow
@@ -700,6 +700,276 @@ result                            ↔ scripts / data / outputs / archive
     </table>
     <div class="boxed">stop optimizing inside the existing boundary → change the boundary</div>
     <p class="src">Every sandbox is a bet that the boundary will hold. All three cases here are what happens when the system inside it finds — or is given — a reason not to take that bet.</p>
+
+    <h2>6 · DRIVE — where the escape kept going</h2>
+    <p>The Stata escape didn't stop at the shell. Once folder organization, logging, and packaging could be driven from outside the statistical session, the next move was to stop treating Stata as the workbench at all — teaching it gave way to shipping. What replaced it settles into a second five-slot sequence, offered here exactly as named: a sloppy acronym, not a polished one.</p>
+    <table>
+      <tr><th>DRIVE</th><th>What it names</th><th>TMVES analogue</th></tr>
+      <tr><td>D — Directory</td><td>The raw folder tree, before anything is organized</td><td>T — Tensor / Sensation</td></tr>
+      <tr><td>R — Routing / Filepath</td><td>How files relate once a structure is imposed on them</td><td>M — Matrix / Attention</td></tr>
+      <tr><td>I — Item / File</td><td>The specific file that gets committed and versioned</td><td>V — Vector / Intention</td></tr>
+      <tr><td>V — Visualization</td><td>The item rendered back — a dashboard, a deployed page, a graph</td><td>E — Eigenmode / Reaction</td></tr>
+      <tr><td>E — Evangelization</td><td>Shipping it to someone who actually uses it</td><td>0 — Scalar / Action</td></tr>
+    </table>
+    <p class="cap">Sloppy in the same sense the <code>just-click.do</code> comments above are sloppy — it names a real, lived sequence rather than a clean one invented after the fact.</p>
+
+    <h2>7 · The pipeline that replaced teaching Stata</h2>
+    <p>The escape compounds. Stata's shell-out was step one; the workflow it grew into no longer routes through Stata at all:</p>
+    <pre>Prompt — experiential & prelingual need
+        ↓
+LLM — next-token prediction
+        ↓
+VS Code — clear vector, bash.sh script
+        ↓
+GitHub — private repo, personal access token, GH Actions
+        ↓
+Render — deploy via API</pre>
+    <p>Each arrow used to be a wall: a need had to become language before a model could act on it, a model's output had to become a committed file before it could version, a committed file had to reach a remote before it could run anywhere but one machine. None of those walls disappeared — they became crossable in one continuous session instead of separate specialist handoffs.</p>
+
+    <h2>8 · The bootstrap script</h2>
+    <p>The artifact of that pipeline, not just its description: a bootstrap script that takes a new app from nothing to a deployed two-service Render blueprint, prompting for every app-specific name and env-var key up front rather than letting them drift in from a template, and forcing a manual "yes" over a printed coherence check before anything touches GitHub or Render.</p>
+    <div style="display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin:14px 0 -8px;">
+      <button id="copyBtnBoot" onclick="copyCode('bootstrapCode','copyBtnBoot',false,'bash')" style="font-family:-apple-system,sans-serif;font-size:12px;padding:6px 12px;border-radius:20px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;">Copy (plain — for .sh / editor)</button>
+      <button id="copyBtnBootMd" onclick="copyCode('bootstrapCode','copyBtnBootMd',true,'bash')" style="font-family:-apple-system,sans-serif;font-size:12px;padding:6px 12px;border-radius:20px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;">Copy (code block — for Notion / Slack / docs)</button>
+    </div>
+    <pre id="bootstrapCode">#!/bin/bash
+# ==============================================================================
+# Ukubona Bootstrap (two-service version) — run this ONCE per NEW app.
+#
+# Fix vs. the old version: every name AND every backend env var key specific
+# to THIS app is now prompted here, nowhere else. render.yaml.template no
+# longer contains GITHUB_REPO/GITHUB_PAT/JWT_SECRET/UGX_PER_USD or any other
+# key that only made sense for the kin-ledger app — those were never
+# actually generic, they just sat in the "template" looking like they were.
+# render.yaml is GENERATED from render.yaml.template using your answers —
+# you never hand-type a service name OR an env var key into render.yaml
+# again, and app-data-setup.sh / deploy.sh never hardcode one either. They
+# all read from .env.local, which this script writes.
+#
+# Before anything touches GitHub or Render, this script prints render.yaml
+# and .env.local (secrets masked) and makes you type "yes" to confirm the
+# values are correct for THIS app. That's the "coherence check" step.
+# ==============================================================================
+
+set -euo pipefail
+GREEN='\033[0;32m'; BLUE='\033[0;34m'; YELLOW='\033[1;33m'; RED='\033[0;31m'; NC='\033[0m'
+
+echo -e "${BLUE}=== Ukubona Bootstrap (2 services) ===${NC}"
+echo -e "${YELLOW}Every answer below is specific to THIS app. Nothing carries over${NC}"
+echo -e "${YELLOW}from any other app you've bootstrapped before — names or env vars.${NC}"
+echo
+
+check_tool () {
+  if ! command -v "$1" &gt;/dev/null 2&gt;&amp;1; then
+    echo -e "${RED}Missing required tool: $1${NC}"
+    echo "  $2"
+    exit 1
+  fi
+}
+check_tool git "Install with: sudo apt install -y git"
+check_tool gh  "Install from: https://cli.github.com/"
+check_tool python3 "Install from: https://www.python.org/downloads/"
+
+read -p "GitHub username: " GH_USER
+read -p "App repo name (this becomes your code repo, e.g. 'family-tree-app'): " REPO_NAME
+read -p "Local project folder [.]: " PROJ_PATH
+PROJ_PATH=${PROJ_PATH:-.}
+read -s -p "GitHub Personal Access Token (needs 'repo' + 'workflow' scopes ONLY): " GH_PAT
+echo
+read -p "Branch [main]: " BRANCH
+BRANCH=${BRANCH:-main}
+echo
+
+# --- Derived Render service names. Shown to you explicitly (not silent)
+# because they're what render.yaml will declare and what deploy.sh will
+# look for later.
+BACKEND_SERVICE_NAME="${REPO_NAME}-api"
+FRONTEND_SERVICE_NAME="${REPO_NAME}"
+echo -e "${BLUE}Render service names for this app will be:${NC}"
+echo "  backend:  $BACKEND_SERVICE_NAME"
+echo "  frontend: $FRONTEND_SERVICE_NAME"
+read -p "Press Enter to accept, or type replacement names now [backend name]: " OVERRIDE_BACKEND
+if [ -n "$OVERRIDE_BACKEND" ]; then BACKEND_SERVICE_NAME="$OVERRIDE_BACKEND"; fi
+read -p "[frontend name]: " OVERRIDE_FRONTEND
+if [ -n "$OVERRIDE_FRONTEND" ]; then FRONTEND_SERVICE_NAME="$OVERRIDE_FRONTEND"; fi
+echo
+
+# --- Only asked if THIS app uses the GitHub-as-database pattern (a separate
+# repo of NDJSON/data files your backend reads/writes). Blank if not — leave
+# it empty and app-data-setup.sh will skip that part cleanly.
+read -p "Data repo name (separate GitHub repo used as your app's database, or blank if none): " DATA_REPO_NAME
+echo
+
+# --- THE FIX: app-specific backend env var KEYS, prompted fresh every time.
+# render.yaml.template has no idea what THIS app's main.py reads via
+# os.environ[...] — that's your code, not the scaffold's. List every key
+# your backend needs here (values are set later, via app-data-setup.sh or
+# the Render dashboard — never typed into render.yaml itself).
+echo -e "${BLUE}This app's own backend env var keys${NC} (whatever your main.py reads"
+echo "via os.environ[...] — secrets, tokens, config unique to THIS app's code."
+echo "FRONTEND_URL is already handled for you; don't re-add it.)"
+echo "Enter one key name per line, blank line to finish:"
+APP_ENV_BLOCK=""
+while true; do
+  read -p "  backend env var key: " ENV_KEY
+  [ -z "$ENV_KEY" ] &amp;&amp; break
+  APP_ENV_BLOCK="${APP_ENV_BLOCK}      - key: ${ENV_KEY}
+        sync: false
+"
+done
+if [ -z "$APP_ENV_BLOCK" ]; then
+  echo "  (none — backend will only get FRONTEND_URL)"
+fi
+echo
+
+echo "For deploy.sh to run without a browser, it needs a Render API key."
+echo "Create one once at https://dashboard.render.com/settings/api-keys"
+echo "on the Render account whose GitHub identity is ${GH_USER}."
+read -s -p "Render API key: " RENDER_KEY
+echo
+
+cd "$PROJ_PATH"
+
+if command -v render &gt;/dev/null 2&gt;&amp;1; then
+  echo -e "${GREEN}Configuring Render CLI workspace...${NC}"
+  export RENDER_API_KEY="$RENDER_KEY"
+  WORKSPACE_COUNT=$(render workspaces -o json 2&gt;/dev/null | grep -c '"id"' || echo 0)
+  if [ "$WORKSPACE_COUNT" -eq 1 ]; then
+    WS_ID=$(render workspaces -o json 2&gt;/dev/null | grep '"id"' | head -n1 | sed -E 's/.*"id": *"([^"]+)".*/\1/')
+    render workspace set "$WS_ID" &amp;&amp; echo "  Workspace set: $WS_ID"
+  elif [ "$WORKSPACE_COUNT" -gt 1 ]; then
+    echo "  Multiple workspaces found — run 'render workspaces -o json' and"
+    echo "  'render workspace set &lt;id&gt;' manually once before using deploy.sh."
+  else
+    echo "  Couldn't list workspaces yet (key may still be provisioning)."
+    echo "  Run 'render workspace set &lt;id&gt;' manually before first deploy.sh use."
+  fi
+else
+  echo "  render CLI not installed yet — skipping workspace setup."
+  echo "  After installing (brew install render), run 'render workspace set &lt;id&gt;' once."
+fi
+
+echo -e "${GREEN}[1/7] Saving local settings...${NC}"
+umask 077
+cat &gt; .env.local &lt;&lt;EOF
+GH_USER=$GH_USER
+REPO_NAME=$REPO_NAME
+BRANCH=$BRANCH
+BACKEND_SERVICE_NAME=$BACKEND_SERVICE_NAME
+FRONTEND_SERVICE_NAME=$FRONTEND_SERVICE_NAME
+DATA_REPO_NAME=$DATA_REPO_NAME
+RENDER_API_KEY=$RENDER_KEY
+GH_PAT=$GH_PAT
+EOF
+if [ -f .gitignore ]; then
+  grep -qxF '.env.local' .gitignore || echo '.env.local' &gt;&gt; .gitignore
+else
+  echo '.env.local' &gt; .gitignore
+fi
+for pattern in "node_modules/" "dist/" "build/" ".venv/" "__pycache__/" "*.pyc" ".DS_Store" ".env" "*.text"; do
+  grep -qxF "$pattern" .gitignore 2&gt;/dev/null || echo "$pattern" &gt;&gt; .gitignore
+done
+
+echo -e "${GREEN}[2/7] Generating render.yaml from template...${NC}"
+if [ ! -f render.yaml.template ]; then
+  echo -e "${RED}render.yaml.template not found in ${PROJ_PATH} — copy it in before running this script.${NC}"
+  exit 1
+fi
+sed -e "s/__BACKEND_SERVICE_NAME__/${BACKEND_SERVICE_NAME}/g" \
+    -e "s/__FRONTEND_SERVICE_NAME__/${FRONTEND_SERVICE_NAME}/g" \
+    -e "s/__BRANCH__/${BRANCH}/g" \
+    render.yaml.template &gt; render.yaml.tmp1
+
+python3 - "$APP_ENV_BLOCK" &lt;&lt;'PYEOF2'
+import sys
+block = sys.argv[1]
+with open("render.yaml.tmp1") as f:
+    content = f.read()
+content = content.replace("__APP_ENV_VARS__\n", block)
+with open("render.yaml", "w") as f:
+    f.write(content)
+PYEOF2
+rm -f render.yaml.tmp1
+echo "  wrote render.yaml"
+
+# ==============================================================================
+# HARD STOP — coherence check. Nothing below this line touches GitHub or
+# Render until you type "yes". Read both files. This is the step that would
+# have caught the old bootstrap-01 / kin-ledger name mismatch immediately.
+# ==============================================================================
+echo
+echo -e "${YELLOW}=========================================================${NC}"
+echo -e "${YELLOW}STOP — check these before anything gets pushed or deployed.${NC}"
+echo -e "${YELLOW}=========================================================${NC}"
+echo
+echo -e "${BLUE}--- render.yaml ---${NC}"
+cat render.yaml
+echo
+echo -e "${BLUE}--- .env.local (secrets masked) ---${NC}"
+sed -E 's/(RENDER_API_KEY|GH_PAT)=.*/\1=********/' .env.local
+echo
+echo "Check specifically:"
+echo "  1. Both service names above match what you expect for THIS app"
+echo "     (not an old app's name)."
+echo "  2. Both 'plan:' lines say 'free', not 'starter'/'standard'."
+echo "  3. Both 'branch:' lines say '${BRANCH}'."
+echo "  4. DATA_REPO_NAME above is correct (or intentionally blank)."
+echo "  5. The backend 'envVars:' list has exactly the keys THIS app's"
+echo "     main.py actually reads via os.environ[...] — nothing left over"
+echo "     from a different app, nothing missing that your code needs."
+echo
+read -p "Type 'yes' to continue, anything else to abort and fix files first: " CONFIRM
+if [ "$CONFIRM" != "yes" ]; then
+  echo -e "${RED}Aborted. Edit render.yaml or re-run this script, then try again.${NC}"
+  exit 1
+fi
+echo
+
+echo -e "${GREEN}[3/7] Logging in to GitHub...${NC}"
+echo "$GH_PAT" | gh auth login --with-token -h github.com
+gh auth status || true
+
+echo -e "${GREEN}[4/7] Setting up local Git repo...${NC}"
+git init -b "$BRANCH" 2&gt;/dev/null || true
+
+echo -e "${GREEN}[5/7] Creating/updating GitHub repo...${NC}"
+if ! gh repo view "${GH_USER}/${REPO_NAME}" &gt;/dev/null 2&gt;&amp;1; then
+  git add -A
+  git commit -m "Ukubona: initial two-service commit" || true
+  gh repo create "${GH_USER}/${REPO_NAME}" --private --source=. --remote=origin --push
+else
+  git remote remove origin 2&gt;/dev/null || true
+  git remote add origin "https://github.com/${GH_USER}/${REPO_NAME}.git"
+  git add -A
+  git commit -m "Ukubona: bootstrap update" || true
+  git push -u origin "$BRANCH"
+fi
+
+echo -e "${GREEN}[6/7] render.yaml pushed.${NC}"
+echo -e "${GREEN}[7/7] One manual step remains.${NC}"
+echo
+echo -e "${YELLOW}=========================================================${NC}"
+echo -e "${YELLOW}ONE-TIME STEP (Render has no CLI/API way to do this part):${NC}"
+echo "  1. Make sure you are signed into a Render account whose GitHub"
+echo "     identity is ${GH_USER}."
+echo "  2. Open: https://dashboard.render.com/select-repo?type=blueprint"
+echo "  3. Select: ${GH_USER}/${REPO_NAME}"
+echo "  4. Confirm the two detected services are named:"
+echo "       ${BACKEND_SERVICE_NAME}"
+echo "       ${FRONTEND_SERVICE_NAME}"
+echo "     (If they aren't, something's wrong — stop and check render.yaml"
+echo "     before clicking Deploy.)"
+echo "  5. Click 'Deploy Blueprint'."
+echo
+echo "After that click, this Blueprint is linked to the '${BRANCH}' branch."
+echo "Every future push (or ./deploy.sh) auto-deploys — no more dashboard."
+echo -e "${YELLOW}=========================================================${NC}"
+</pre>
+
+    <h2>9 · Twenty years, one K08, one course</h2>
+    <p>Section 4 named the shape of the Johns Hopkins escape — a credential track treated as launch substrate instead of ceiling. What actually supplied the exit was narrower than the whole twenty years: a single data-science course, taken during clinical-research PhD training, made possible by an NIA K08 grant awarded for a kidney-donation outcomes career — not a technology one. Two decades inside one sandbox produced, almost as a side effect, the one course that showed where the wall wasn't load-bearing.</p>
+    <div class="boxed">MD MPH · 20 yrs Hopkins · K08 (NIA) → one data-science course → DRIVE → Ukubona LLC</div>
+    <p class="src">Same generative direction as every T → M → V → E → S in this document — the scalar of one cycle (a grant, a course requirement) becomes the tensor of the next.</p>
   </div>
 </div>
 </main>
@@ -788,10 +1058,10 @@ addMenuButton('⛓  Sandbox Escape', ()=>showView('escape'));
   }
 })();
 
-function copyJustClick(asMarkdown){
-  const raw = document.getElementById('justClickCode').textContent;
-  const code = asMarkdown ? ('```stata\n' + raw + '\n```') : raw;
-  const btn = document.getElementById(asMarkdown ? 'copyBtnMd' : 'copyBtn');
+function copyCode(codeId, btnId, asMarkdown, lang){
+  const raw = document.getElementById(codeId).textContent;
+  const code = asMarkdown ? ('```' + (lang||'') + '\n' + raw + '\n```') : raw;
+  const btn = document.getElementById(btnId);
   const original = btn.textContent;
   const done = ()=>{ btn.textContent='Copied ✓'; setTimeout(()=>{btn.textContent=original;}, 1800); };
   if(navigator.clipboard && navigator.clipboard.writeText){
