@@ -205,6 +205,11 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
 #originsView.active{display:block;}
 #uuqView{display:none;}
 #uuqView.active{display:block;}
+#jimjamView{display:none;}
+#jimjamView.active{display:block;}
+.chat-turn.grok .who{color:var(--accent2);}
+.chat-turn blockquote{margin:8px 0;padding:2px 0 2px 12px;border-left:3px solid var(--accent2);color:var(--muted);}
+.chat-turn blockquote p{margin:0 0 6px;}
 .gl-fig{margin:16px 0 4px;padding:0;}
 .gl-fig svg{width:100%;max-width:100%;height:auto;display:block;}
 .cap-fig{font:12.5px/1.5 -apple-system,sans-serif;color:var(--muted);margin:4px 0 16px;}
@@ -1970,6 +1975,69 @@ document.getElementById('glTicks').innerHTML=t;
   </div>
 </div>
 
+<div id="jimjamView">
+  <div class="backbar"><button onclick="showView('pentad')">← Back to the pentad</button></div>
+  <div class="history-doc">
+    <h1>Jam &amp; Lewis: not knowing the rules</h1>
+    <div class="sub">Jimmy Jam on Minneapolis, ignorance as licence, and the genre lines nobody had told them about. Filed as a latent-thought tab: the interview, then the Grok exchange that located the passage, kept as supplied.</div>
+
+    <h2>1 · The video</h2>
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/G68ugA-lYTg?start=1358" title="Jimmy Jam Dives Deep, opened at 22:38" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <div class="src">
+      <strong>Jimmy Jam Dives Deep – Fired by Prince, Making 'Scream' with Janet &amp; MJ, and Producing R&amp;B History</strong><br>
+      Shawn Stockman's On That Note · 225K subscribers · 179,631 views · Apr 16, 2025<br>
+      <a href="https://www.youtube.com/watch?v=G68ugA-lYTg" target="_blank" rel="noopener" style="color:var(--accent2);">youtube.com/watch?v=G68ugA-lYTg</a> ·
+      <a href="https://www.youtube.com/@ShawnStockmansOnThatNote" target="_blank" rel="noopener" style="color:var(--accent2);">channel</a>
+    </div>
+    <p>Video description, as supplied: Jimmy Jam helped shape the sound of modern music—now he's telling the stories behind the moments that made history. From being fired by Prince to crafting Janet Jackson's breakthrough and producing the iconic "Scream" with Janet and Michael, Jimmy dives deep into the legacy he built with Terry Lewis. This episode is a rare, intimate look into the genius, the grind, and the groundbreaking records that defined generations.</p>
+    <p>Tags: #JimmyJam #JanetJackson #MichaelJackson #Prince #TerryLewis #MusicLegends #Control #Scream #MusicHistory #RNB. Subscribe link in the description: <a href="https://www.youtube.com/@ByronScottsFastBreak" target="_blank" rel="noopener" style="color:var(--accent2);">Fast Break</a>.</p>
+
+    <h2>2 · The claim</h2>
+    <div class="chat-turn user"><div class="who">Ilya</div><div class="bubble">
+      <p>I prompted Grok. The .html has my latent thoughts. https://www.youtube.com/watch?v=G68ugA-lYTg Watching this, Jam talks of how he "didn't know his musical boundaries" as a Minnesota person. And very comfortably inserted stuff that would violate genres from NewYork, Detroit, Philly, LA, etc. To me this makes Jam &amp; Lewis closer to generalists. Also helps that Jam listened to more white pop by the time he met Terry who listened to more black music. And so that fusion broke boundaries.. So many minesota ingredients (only 3% black in their time)/.. Can you extract a transcript and identify the exact time stamps where these points are made and quote them?</p>
+    </div></div>
+
+    <h2>3 · Grok's answer, as supplied</h2>
+    <div class="chat-turn grok"><div class="who">Grok</div><div class="bubble">
+      <p><strong>Yes — the relevant section is in the interview "Jimmy Jam Dives Deep…" (Shawn Stockman's <em>On That Note</em>, YouTube ID <code>G68ugA-lYTg</code>).</strong> The points you noted land in a continuous stretch roughly <strong>22:30–24:00</strong>, where Jimmy explicitly frames the Minneapolis isolation + demographic reality as the reason they freely crossed genre lines that more "territorial" scenes policed.</p>
+      <p><strong>Exact timestamps and quotes (auto-generated transcript)</strong></p>
+      <p><strong>~22:38–23:05</strong> (ignorance-is-bliss framing + the territorial contrast)<br>Jimmy Jam:</p>
+      <blockquote>
+        <p>"We we we loved living up there and a lot of it was I guess I call it ignorance. What they say ignorance is bliss.<br>I think we didn't know what everybody else was doing.<br>We and we were and we weren't it wasn't an East Coast thing where you know I know New York was very territorial with the music that you know the way the music sounded and and what was happening there. I'm sure Philly, Detroit, all these different places and LA had a whole different scene going on."</p>
+      </blockquote>
+      <p><strong>~23:05–23:25</strong> (the actual boundary-crossing mechanism)</p>
+      <blockquote>
+        <p>"Yeah. We got it all. Right. Right. We heard everything. Yeah.<br>And so when we created music, some of it was based on not knowing what we weren't supposed to do.<br>Like if we made a a funky song, like in the time if we made a song like Get It Up and it's like, 'Okay, that's funky.' But then in the middle of it we put a loud ass guitar solo, a rock guitar solo, right? We didn't know that's you not supposed to do that.<br>Yeah, we were like, 'Okay, yeah, let's that's cool.'"</p>
+      </blockquote>
+      <p><strong>~23:25 onward</strong> (extends the same logic to gear, synths, studio choices — same "we didn't know the rules" posture).</p>
+      <p>Earlier in the same conversation he also supplies the demographic and listening-diet context you referenced:</p>
+      <ul>
+        <li>Minnesota/Minneapolis was "probably about <strong>3% black</strong> when Terry and I were growing up."</li>
+        <li>He grew up on the two local <strong>pop</strong> stations (Seals &amp; Crofts, America, Chicago, etc.) because "there was really no black radio" that reached the south side reliably; Terry introduced him to Earth, Wind &amp; Fire, New Birth, Tower of Power, P-Funk-era material, etc.</li>
+        <li>The resulting "funky bottom and the pretty top" partnership is repeatedly framed as the fusion that let them insert rock-guitar, pop-melody, and other "violating" elements into funk/R&amp;B without local gatekeepers telling them it was illegal.</li>
+      </ul>
+      <p><strong>How this maps to your generalist reading</strong></p>
+      <p>The clip is almost a textbook illustration of the Type-I / generalist posture in the HTML artefact: because the local "sandbox" (tiny Black population, no strong territorial Black-radio/scene orthodoxy, heavy white-pop ambient exposure) never installed the genre boundaries that New York / Detroit / Philly / LA musicians internalized, Jam &amp; Lewis treated those boundaries as optional variables rather than load-bearing walls. The result is exactly the boundary-crossing you describe — rock solos inside funk tracks, pop chord language inside R&amp;B, etc. — and it is presented as <em>ignorance of the rules</em> rather than deliberate rebellion. That is the same mechanism the document keeps returning to (Stata shell-out, credential-as-substrate, untagged harmonic memory becoming queryable only once labels arrive, etc.).</p>
+      <p>If you want the surrounding 60–90 seconds for fuller context (the gear-choice continuation or the earlier 3%-Black / pop-radio section), the auto-captions on the video itself are accurate enough around those timestamps to scrub directly.</p>
+    </div></div>
+
+    <h2>4 · The claim, laid out</h2>
+    <table>
+      <tr><th>Point</th><th>Where (per Grok)</th><th>Status</th></tr>
+      <tr><td>"Ignorance is bliss": they didn't know what other scenes were doing; New York "very territorial"</td><td>~22:38–23:05</td><td>Quoted from auto-captions</td></tr>
+      <tr><td>Made music "not knowing what we weren't supposed to do"; rock guitar solo mid-funk</td><td>~23:05–23:25</td><td>Quoted from auto-captions</td></tr>
+      <tr><td>Gear, synths, studio choices under the same posture</td><td>~23:25 onward</td><td>Paraphrase only</td></tr>
+      <tr><td>Minneapolis about 3% Black</td><td>"Earlier", no timestamp given</td><td>Quoted fragment, unlocated</td></tr>
+      <tr><td>Pop radio for Jam; Terry brought Black music (EW&amp;F, P-Funk-era, etc.)</td><td>"Earlier", no timestamp given</td><td>Paraphrase and fragments, unlocated</td></tr>
+    </table>
+    <div class="boxed">Open: locate the 3%-Black and pop-radio passages and add timestamps.</div>
+
+    <p class="cap">Honest bound, added by Claude: I can't open YouTube, so I haven't checked any quote or timestamp here against the video; they are Grok's, and two of the five points carry no timestamp at all. The framing of "ignorance" is Jam's own retrospective self-account, told decades later by a man with every reason to enjoy the origin story. The generalist reading also has a competing one: Minneapolis had its own strong orthodoxy in Prince's orbit, which was itself genre-defying, so what Jam describes may be a local norm of crossing lines rather than an absence of norms. And a rock solo in a funk record is one data point, so the step from anecdote to "generalists" is the tab's hypothesis, not something the interview establishes.</p>
+  </div>
+</div>
+
 <div id="epilogueView">
   <div class="backbar">
     <button onclick="showView('pentad')">← Back to the pentad</button>
@@ -2135,6 +2203,7 @@ function showView(v){
   document.getElementById('gptlineageView').classList.toggle('active', v==='gptlineage');
   document.getElementById('originsView').classList.toggle('active', v==='origins');
   document.getElementById('uuqView').classList.toggle('active', v==='uuq');
+  document.getElementById('jimjamView').classList.toggle('active', v==='jimjam');
   window.scrollTo(0,0);
 }
 
@@ -2189,6 +2258,7 @@ addDivider();
 addMenuButton('⚔️  Adversarial Intelligence', ()=>showView('adversarial'));
 addDivider();
 addMenuButton('🎶  Midnight Star, Not Atlantic Starr', ()=>showView('babyface'));
+addMenuButton('🎚  Jam & Lewis: Not Knowing the Rules', ()=>showView('jimjam'));
 addDivider();
 addMenuButton('🌀  Epilogue', ()=>showView('epilogue'));
 (function(){
@@ -2239,7 +2309,7 @@ try{
 }catch(e){}
 try{
   const v=new URLSearchParams(location.search).get('view');
-  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'||v==='scalingntp'||v==='sutskever'||v==='manufacturingtaste'||v==='preface'||v==='epilogue'||v==='chordpentad'||v==='adversarial'||v==='babyface'||v==='gptlineage'||v==='origins'||v==='uuq'){ showView(v); }
+  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'||v==='scalingntp'||v==='sutskever'||v==='manufacturingtaste'||v==='preface'||v==='epilogue'||v==='chordpentad'||v==='adversarial'||v==='babyface'||v==='gptlineage'||v==='origins'||v==='uuq'||v==='jimjam'){ showView(v); }
 }catch(e){}
 </script>
 </body>
