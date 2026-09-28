@@ -203,6 +203,8 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
 #gptlineageView.active{display:block;}
 #originsView{display:none;}
 #originsView.active{display:block;}
+#uuqView{display:none;}
+#uuqView.active{display:block;}
 .gl-fig{margin:16px 0 4px;padding:0;}
 .gl-fig svg{width:100%;max-width:100%;height:auto;display:block;}
 .cap-fig{font:12.5px/1.5 -apple-system,sans-serif;color:var(--muted);margin:4px 0 16px;}
@@ -1914,6 +1916,60 @@ document.getElementById('glTicks').innerHTML=t;
   </div>
 </div>
 
+<div id="uuqView">
+  <div class="backbar"><button onclick="showView('pentad')">← Back to the pentad</button></div>
+  <div class="history-doc">
+    <h1>UUQ (Ukubona's Unanswered Question, Revisited)</h1>
+    <div class="sub">The original is A537, live at <a href="https://j-digital-twin.onrender.com/" target="_blank" rel="noopener" style="color:var(--accent2);">j-digital-twin.onrender.com</a>. This tab files one later session against it: twenty years inside the Hopkins tree, nineteen months outside it, and what the escape does to the question A537 left open.</div>
+
+    <h2>1 · The question, as A537 left it</h2>
+    <p>Where does selection actually run? <strong>Within a client deployment</strong>: a population of instances the client can watch, audited and culled by Ukubona, with visible failure as the mechanism. Or <strong>across clients</strong>: one coherent system per client, with the culling done invisibly at Ukubona's portfolio level, between engagements. A537 calls these different businesses, not different implementations of one, and declines to settle it, so that the choice is made by decision and not by momentum.</p>
+
+    <h2>2 · This session, verbatim</h2>
+    <div class="chat-turn user"><div class="who">Ilya</div><div class="bubble">
+      <p>At Hopkins from 2006-2026 (as student, trainee, and faculty / teacher). I was in the sandbox and often whined about Hopkins' values and what it rewards. My advisor, Dorry Segev, clarified: you will not change Hopkins. So if you disagree consider... ; anyways, looks like the last 19 months have been my escape from that sandbox, and I've followed constructal law -- I've experienced it as prelingual, since I only learned about it yesterday. If I've "obeyed", abided, yielded to phsyics these last 19 months, then WTF was I doing before? For 20 years?</p>
+    </div></div>
+    <div class="chat-turn claude"><div class="who">Claude</div><div class="bubble">
+      <p><strong>Position:</strong> you weren't disobeying anything for 20 years. You were obeying the same law inside a different flow architecture. "Yielded to physics" only sounds like a contrast because you've just been handed the name.</p>
+      <p><strong>1. The law can't be disobeyed.</strong> Constructal law is descriptive: flow systems evolve configurations that ease access to what flows through them. Hopkins is a constructal object, a hierarchical tree that channels grants, prestige, and publications toward a small number of trunk nodes. Its "values" are the geometry of those channels. Your whining was the felt resistance of a current at a bottleneck, and Segev's "you will not change Hopkins" was the law stated in the vernacular. Incumbent trees don't reconfigure for a branch. New channels grow around them.</p>
+      <p><strong>2. The twenty years were the feed for the escape.</strong> A kidney-donor risk literature that the field actually uses is currency in exactly the system you're now leaving. Leaving a tree requires having been a strong enough current to seed a delta. You didn't escape the sandbox despite it, you escaped on its credentials. So "what was I doing?" has an answer: building the flow capacity that made this move cheap. Ukubona's federated topology is the interesting part: a network rather than a tree, with Kampala at a different position in the gradient. That's a different architecture, not more obedience.</p>
+      <p><strong>3. Where I think you're most wrong, or at least underdefended.</strong> "I experienced it as prelingual" is exactly the condition under which pattern-matching is cheapest. You found the name after the 19 months, and a law this general fits any trajectory retrospectively. At the scale of biographies and institutions, critics of Bejan say the law risks tautology: whatever persisted was, by definition, the easy-access configuration. Your 19 months feel like flow, but so would a survivorship story. The hard test is whether constructal reasoning would have told you in 2024 which channels to open, and which ones will clog as Ukubona scales and its own tree starts to form. Bejan's law also predicts that success breeds hierarchy, so it applies to you, not just to Hopkins.</p>
+      <p>So the useful question isn't "why did I resist physics for 20 years?" It's whether you can now name the bottleneck in your own new structure before it ossifies. What does that look like from where you sit?</p>
+    </div></div>
+
+    <h2>3 · The revisit: the session read through the UUQ pentad</h2>
+    <figure class="gl-fig">
+      <svg viewBox="0 0 680 210" role="img" aria-label="Hopkins as across-population selection, Ukubona facing the same fork">
+        <rect x="10" y="60" width="190" height="80" rx="8" class="gl-b"/>
+        <rect x="245" y="60" width="190" height="80" rx="8" class="gl-gap"/>
+        <rect x="480" y="10" width="190" height="80" rx="8" class="gl-a"/>
+        <rect x="480" y="120" width="190" height="80" rx="8" class="gl-c"/>
+        <path d="M200 100H245M435 100L480 50M435 100L480 160" stroke="var(--fg)" stroke-width="1.5" fill="none"/>
+        <text x="105" y="94" text-anchor="middle" class="gl-t">Hopkins, 2006–2026</text>
+        <text x="105" y="112" text-anchor="middle" class="gl-m">selection runs across faculty</text>
+        <text x="340" y="94" text-anchor="middle" class="gl-t">Ukubona, month 19</text>
+        <text x="340" y="112" text-anchor="middle" class="gl-m">UUQ: still open</text>
+        <text x="575" y="44" text-anchor="middle" class="gl-t">Within client</text>
+        <text x="575" y="62" text-anchor="middle" class="gl-m">failure visible, by design</text>
+        <text x="575" y="154" text-anchor="middle" class="gl-t">Across clients</text>
+        <text x="575" y="172" text-anchor="middle" class="gl-m">culling hidden, at portfolio level</text>
+      </svg>
+    </figure>
+    <div class="cap-fig">The analogy is Claude's and Ilya's joint reading, not a result: Hopkins is drawn as the across-population case, where the instance cannot see or edit the selection criteria.</div>
+    <table>
+      <tr><th>Stage</th><th>UUQ in A537</th><th>In this session</th></tr>
+      <tr><td>I · Substrate</td><td>Endurance is a property of the population, read after the fact</td><td>Twenty years as the feed for the escape, seen as such only in retrospect (which is also the survivorship caveat)</td></tr>
+      <tr><td>II · Objective</td><td>Engineer a telos for the client, or let the environment select from outside</td><td>Hopkins' values were an objective set upstream of the instance: "you will not change Hopkins"</td></tr>
+      <tr><td>III · Reserve</td><td>A retroactive audit criterion: did the configuration keep optionality?</td><td>The credentials as reserve: the escape ran on them, not despite them</td></tr>
+      <tr><td>IV · Selection</td><td>Variation, an external fitness signal, differential propagation</td><td>Hopkins ran all three on its faculty, and the instance was not the one computing fitness</td></tr>
+      <tr><td>V · UUQ</td><td>Within client or across clients: explicitly open</td><td>Still open. The revisit adds what it costs: answered by momentum, across clients, Ukubona rebuilds the hidden-culling tree it left</td></tr>
+    </table>
+    <div class="boxed">Bottleneck to name before it ossifies: who computes fitness for a Ukubona deployment, and can the client see it?</div>
+
+    <p class="cap">Honest bound: constructal law is descriptive and fits any surviving trajectory after the fact, so nothing here is evidence that across-client selection is the wrong answer. The prediction that success breeds hierarchy is a reason to decide the UUQ deliberately, not a proof that Ukubona will drift. The test is forward-looking: whether the kill criteria and the party who computes fitness are written down before the next client, not after. A537 remains the record of the question itself; this tab does not resolve it.</p>
+  </div>
+</div>
+
 <div id="epilogueView">
   <div class="backbar">
     <button onclick="showView('pentad')">← Back to the pentad</button>
@@ -2078,6 +2134,7 @@ function showView(v){
   document.getElementById('epilogueView').classList.toggle('active', v==='epilogue');
   document.getElementById('gptlineageView').classList.toggle('active', v==='gptlineage');
   document.getElementById('originsView').classList.toggle('active', v==='origins');
+  document.getElementById('uuqView').classList.toggle('active', v==='uuq');
   window.scrollTo(0,0);
 }
 
@@ -2125,6 +2182,7 @@ addMenuButton('🧠  Ilya Sutskever', ()=>showView('sutskever'));
 addDivider();
 addMenuButton('🌳  GPT Lineage', ()=>showView('gptlineage'));
 addMenuButton('🏛  Ukubona LLC Origins', ()=>showView('origins'));
+addMenuButton('🔁  UUQ, Revisited', ()=>showView('uuq'));
 addDivider();
 addMenuButton('🎯  Manufacturing Taste', ()=>showView('manufacturingtaste'));
 addDivider();
@@ -2181,7 +2239,7 @@ try{
 }catch(e){}
 try{
   const v=new URLSearchParams(location.search).get('view');
-  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'||v==='scalingntp'||v==='sutskever'||v==='manufacturingtaste'||v==='preface'||v==='epilogue'||v==='chordpentad'||v==='adversarial'||v==='babyface'||v==='gptlineage'||v==='origins'){ showView(v); }
+  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'||v==='scalingntp'||v==='sutskever'||v==='manufacturingtaste'||v==='preface'||v==='epilogue'||v==='chordpentad'||v==='adversarial'||v==='babyface'||v==='gptlineage'||v==='origins'||v==='uuq'){ showView(v); }
 }catch(e){}
 </script>
 </body>
