@@ -201,6 +201,8 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
 /* --- GPT Lineage (merged view) --- */
 #gptlineageView{display:none;}
 #gptlineageView.active{display:block;}
+#originsView{display:none;}
+#originsView.active{display:block;}
 .gl-fig{margin:16px 0 4px;padding:0;}
 .gl-fig svg{width:100%;max-width:100%;height:auto;display:block;}
 .cap-fig{font:12.5px/1.5 -apple-system,sans-serif;color:var(--muted);margin:4px 0 16px;}
@@ -1865,6 +1867,53 @@ document.getElementById('glTicks').innerHTML=t;
 })();
 </script>
 
+<div id="originsView">
+  <div class="backbar"><button onclick="showView('pentad')">← Back to the pentad</button></div>
+  <div class="history-doc">
+    <h1>Ukubona LLC: origins</h1>
+    <div class="sub">The company was set up with the same machine it now studies. OpenAI's model trajectory, read through the pentad, and one worked case of what it did to administrative friction.</div>
+
+    <h2>1 · The trajectory through the pentad</h2>
+    <figure class="gl-fig">
+      <svg viewBox="0 0 680 150" role="img" aria-label="ChatGPT as Stage II, o-series as Stage III, ending in boundary crossing">
+        <rect x="10" y="30" width="190" height="70" rx="8" class="gl-a"/>
+        <rect x="245" y="30" width="190" height="70" rx="8" class="gl-c"/>
+        <rect x="480" y="30" width="190" height="70" rx="8" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <path d="M200 65H245M435 65H480" stroke="var(--fg)" stroke-width="1.5" fill="none"/>
+        <text x="105" y="58" text-anchor="middle" class="gl-t">Stage II · ChatGPT</text>
+        <text x="105" y="76" text-anchor="middle" class="gl-m">RLHF: expectation, delivery</text>
+        <text x="340" y="58" text-anchor="middle" class="gl-t">Stage III · o-series</text>
+        <text x="340" y="76" text-anchor="middle" class="gl-m">RL for thinking and search</text>
+        <text x="575" y="58" text-anchor="middle" class="gl-t">Boundary crossing</text>
+        <text x="575" y="76" text-anchor="middle" class="gl-m">agency multiplier in use</text>
+        <text x="105" y="122" text-anchor="middle" class="gl-m">surface friction</text>
+        <text x="340" y="122" text-anchor="middle" class="gl-m">agentic routing</text>
+        <text x="575" y="122" text-anchor="middle" class="gl-m">administrative friction</text>
+      </svg>
+    </figure>
+    <table>
+      <tr><th>Stage</th><th>Models</th><th>What it handles</th></tr>
+      <tr><td>II</td><td>Early ChatGPT</td><td>A definitive Stage II victory: user expectation and conversational delivery, mastered through standard RLHF</td></tr>
+      <tr><td>III</td><td>The "o" series</td><td>A deeper structural change. Large-scale reinforcement learning for active thinking and search, in place of surface-level RLHF, gives agentic routing that directly addresses Stage III mismatches</td></tr>
+    </table>
+
+    <h2>2 · GPT as an agency multiplier</h2>
+    <p>In use, these models accelerate boundary crossing. Rather than only answering queries, the model works as a high-speed convection system: it collapses the time needed to breach an administrative boundary and get to operational flow.</p>
+    <div class="boxed">GPT-4o → Virginia LLC, tax filings, E-Verify and SEVIS requirements, in under ten hours.</div>
+
+    <h2>3 · The origin record</h2>
+    <table>
+      <tr><th>Boundary</th><th>Outcome</th></tr>
+      <tr><td>Entity formation</td><td>Virginia LLC registered independently</td></tr>
+      <tr><td>Tax</td><td>Filings completed</td></tr>
+      <tr><td>Employment and student-status compliance</td><td>E-Verify and SEVIS requirements navigated</td></tr>
+      <tr><td>Reporting</td><td>Website <a href="https://ukubona-llc.github.io/" target="_blank" rel="noopener" style="color:var(--accent2);">ukubona-llc.github.io</a> reported to DHS/ICE and to JHU, the SEVIS institution</td></tr>
+    </table>
+
+    <p class="cap">Honest bound: GPT-4o is not an o-series model, so by this tab's own mapping the origin story shows a Stage II model doing Stage III work. Either the mapping needs a line for a human operator supplying the routing, or the multiplier is the operator plus the model, not the model alone. The under-ten-hours figure is self-reported and not independently timed.</p>
+  </div>
+</div>
+
 <div id="epilogueView">
   <div class="backbar">
     <button onclick="showView('pentad')">← Back to the pentad</button>
@@ -2028,6 +2077,7 @@ function showView(v){
   document.getElementById('prefaceView').classList.toggle('active', v==='preface');
   document.getElementById('epilogueView').classList.toggle('active', v==='epilogue');
   document.getElementById('gptlineageView').classList.toggle('active', v==='gptlineage');
+  document.getElementById('originsView').classList.toggle('active', v==='origins');
   window.scrollTo(0,0);
 }
 
@@ -2074,6 +2124,7 @@ addDivider();
 addMenuButton('🧠  Ilya Sutskever', ()=>showView('sutskever'));
 addDivider();
 addMenuButton('🌳  GPT Lineage', ()=>showView('gptlineage'));
+addMenuButton('🏛  Ukubona LLC Origins', ()=>showView('origins'));
 addDivider();
 addMenuButton('🎯  Manufacturing Taste', ()=>showView('manufacturingtaste'));
 addDivider();
@@ -2130,7 +2181,7 @@ try{
 }catch(e){}
 try{
   const v=new URLSearchParams(location.search).get('view');
-  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'||v==='scalingntp'||v==='sutskever'||v==='manufacturingtaste'||v==='preface'||v==='epilogue'||v==='chordpentad'||v==='adversarial'||v==='babyface'||v==='gptlineage'){ showView(v); }
+  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'||v==='scalingntp'||v==='sutskever'||v==='manufacturingtaste'||v==='preface'||v==='epilogue'||v==='chordpentad'||v==='adversarial'||v==='babyface'||v==='gptlineage'||v==='origins'){ showView(v); }
 }catch(e){}
 </script>
 </body>
