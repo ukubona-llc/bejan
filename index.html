@@ -1184,6 +1184,54 @@ echo -e "${YELLOW}=========================================================${NC}
   </div>
 </div>
 
+<div id="b9View">
+  <div class="backbar">
+    <button onclick="showView('pentad')">← Back to the pentad</button>
+  </div>
+  <div class="history-doc">
+    <h1>&flat;9: Doorway vs. House</h1>
+    <div class="sub">Black gospel, flamenco, and Qur'anic recitation, read through where each tradition lets a half-step of tension live — plus the constructal line already sitting inside the source material.</div>
+
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/zlTo0ocyWjY" title="Buler&iacute;a — Angelita Montoya (cante) &amp; Jos&eacute; G&aacute;lvez (toque)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <p class="cap">Angelita Montoya (cante) with Jos&eacute; G&aacute;lvez (toque), palmas and jaleos by Juan Mateos and Diego Amaya — a private cuadro session repeatedly described in the room as duende, "esto es gloria." The Phrygian friction discussed below is audible throughout, held rather than resolved.</p>
+
+    <h2>1 · Three traditions, one shape</h2>
+    <p>Call, response, altered state — the architecture is the same across all three even though the harmonic vocabulary isn't. The voice in each case isn't performing a melody so much as revealing a condition: a great reciter or cantaor is judged by submission to the line — breath, elongation, the pause held past comfort — not by polish.</p>
+    <table>
+      <tr><th>Tradition</th><th>Lead</th><th>Response / environment</th><th>Goal</th></tr>
+      <tr><td>Black gospel</td><td>Preacher / vocalist</td><td>Hammond, choir, congregation</td><td>Spirit / transformation</td></tr>
+      <tr><td>Flamenco</td><td>Cantaor</td><td>Tocaor + palmas</td><td>Duende</td></tr>
+      <tr><td>Mosque</td><td>Im&#257;m / q&#257;ri&#702; / muezzin</td><td>Congregation + acoustic space</td><td>Khush&#363;&#697; (humble attentiveness)</td></tr>
+    </table>
+    <p>Where mosque practice actually diverges from the other two: there's no chordal instrument doing the call-and-response work. The building itself — reverberant architecture, collective synchronized movement — carries what the Hammond or the guitar carries elsewhere. The response to the adh&#257;n isn't musical imitation, it's embodied participation: standing, bowing, prostrating in silence rather than clapping back.</p>
+
+    <h2>2 · Two different jobs for the same half-step</h2>
+    <p>Gospel and flamenco both lean on a &flat;9 against the root, but they use it for opposite purposes. Gospel treats it as an <em>applied</em> alteration — a temporary crisis on a passing dominant chord that must collapse downward into the next chord:</p>
+    <pre>Voice leading in C Major:
+G7(&flat;9) [Rootless: B-D-F-A&flat;]  --->  Cmaj7 [C-E-G-B]
+                      A&flat; ---------->  G   (&flat;9 resolves down a half-step to the 5th)
+                      F    ---------->  E   (4th resolves down a half-step to the 3rd)</pre>
+    <p>Flamenco's E Phrygian-dominant chord isn't a dominant preparing to resolve to A minor — it <em>is</em> the tonic, built from the 5th mode of A harmonic minor. The F natural is a <em>diatonic</em> &flat;9 against the E root, not a borrowed alteration, so there's nowhere for it to resolve to:</p>
+    <pre>Flamenco Phrygian friction:
+F Natural (&flat;9)  --- (rubs against) --->  E Root
+C Natural (&flat;13) --- (rubs against) --->  B (5th)</pre>
+    <table>
+      <tr><th>Dimension</th><th>Black Gospel</th><th>Flamenco</th></tr>
+      <tr><td>Harmonic role of &flat;9</td><td>Applied extension on a passing dominant chord</td><td>Diatonic root-neighbor built into the modal tonic</td></tr>
+      <tr><td>Voice leading</td><td>A&flat; &rarr; G — collapses downward into resolution</td><td>F &harr; E — rubbed together in place, unresolved</td></tr>
+      <tr><td>Emotional arc</td><td>Transformation: suffering leads to redemption</td><td>Endurance: suffering is integrated into existence</td></tr>
+    </table>
+    <p>Gospel uses the half-step as a doorway to get somewhere else. Flamenco builds a house inside the half-step and stays there.</p>
+
+    <h2>3 · The constructal line already sitting in the source</h2>
+    <p>The material this view is drawn from makes the connection itself, in passing: both genres endure in a confined harmonic space by maximizing flow through it — staying diatonic while still leaking into chromatic alteration, rather than either resolving the tension away entirely or collapsing into noise. That's the same persistence criterion as <a href="#" onclick="showView('sapata');return false;" style="color:var(--accent2);">SAPATA &sect;5</a>: a configuration survives by increasing access through its own constraint, not by escaping the constraint. Gospel resolves its &flat;9 and immediately opens a new one further down the cycle of fifths — a channel that keeps re-morphing. Flamenco keeps one channel permanently open — a single load-bearing tension held rather than resolved. Two different constructal solutions to the same access problem, not one tradition doing it "right" and the other merely enduring.</p>
+    <div class="boxed">Gospel: &flat;9 &rarr; resolve &rarr; re-open elsewhere. A re-morphing channel.<br>Flamenco: &flat;9 &rarr; hold as tonic. A single channel, permanently open.<br>Both: access maintained through the diatonic constraint, not around it — Bejan's criterion, met two different ways.</div>
+    <p class="cap">Convergent evolution and shared ancestry (North African and Moorish rhythmic pathways into Andalusia) aren't mutually exclusive, and nothing here adjudicates between them — worth leaving open rather than reaching for the more romantic answer. "Endurance vs. transformation" as the emotional-arc axis is a real distinction in the harmonic mechanics, but it's this document's own reading of that mechanics, not a claim either tradition makes about itself in those terms.</p>
+  </div>
+</div>
+
 <div id="economistView">
   <div class="backbar">
     <button onclick="showView('pentad')">← Back to the pentad</button>
@@ -2270,6 +2318,7 @@ function showView(v){
   document.getElementById('boundaryView').classList.toggle('active', v==='boundary');
   document.getElementById('giftedView').classList.toggle('active', v==='gifted');
   document.getElementById('kingdomView').classList.toggle('active', v==='kingdom');
+  document.getElementById('b9View').classList.toggle('active', v==='b9');
   document.getElementById('civicView').classList.toggle('active', v==='civic');
   document.getElementById('sapataView').classList.toggle('active', v==='sapata');
   document.getElementById('economistView').classList.toggle('active', v==='economist');
@@ -2322,6 +2371,8 @@ order.forEach(k=>{
 });
 addDivider();
 addMenuButton('🌲  SAPATA', ()=>showView('sapata'));
+addDivider();
+addMenuButton('🎼  ♭9: Doorway vs. House', ()=>showView('b9'));
 addDivider();
 addMenuButton('📰  The Economist', ()=>showView('economist'));
 addDivider();
@@ -2395,7 +2446,7 @@ try{
 }catch(e){}
 try{
   const v=new URLSearchParams(location.search).get('view');
-  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='kingdom'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'||v==='scalingntp'||v==='sutskever'||v==='manufacturingtaste'||v==='preface'||v==='epilogue'||v==='chordpentad'||v==='adversarial'||v==='babyface'||v==='gptlineage'||v==='origins'||v==='uuq'||v==='jimjam'){ showView(v); }
+  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='kingdom'||v==='b9'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'||v==='scalingntp'||v==='sutskever'||v==='manufacturingtaste'||v==='preface'||v==='epilogue'||v==='chordpentad'||v==='adversarial'||v==='babyface'||v==='gptlineage'||v==='origins'||v==='uuq'||v==='jimjam'){ showView(v); }
 }catch(e){}
 </script>
 </body>
