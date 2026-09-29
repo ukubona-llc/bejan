@@ -117,6 +117,10 @@ svg{width:min(360px,90vw);height:auto;overflow:visible;}
 #civicView{display:none;}
 #civicView.active{display:block;}
 
+/* --- Thy Kingdom Come (merged view) --- */
+#kingdomView{display:none;}
+#kingdomView.active{display:block;}
+
 /* --- SAPATA (merged view) --- */
 #sapataView{display:none;}
 #sapataView.active{display:block;}
@@ -1208,6 +1212,64 @@ echo -e "${YELLOW}=========================================================${NC}
   </div>
 </div>
 
+<div id="kingdomView">
+  <div class="backbar">
+    <button onclick="showView('pentad')">← Back to the pentad</button>
+  </div>
+  <div class="history-doc">
+    <h1>Thy Kingdom Come: The Compression Table</h1>
+    <div class="sub">Martin Muhwezi's <em>Thy Kingdom Come</em>, the Ukubona bootstrap, and the Constructal Pentad, read as one spine — plus where the first and second bifurcations actually sit.</div>
+
+    <h2>1 · Two bifurcations, not one</h2>
+    <p>The Constructal Pentad's own working notes split bifurcation into two regimes: <em>fast, local, high-urgency channels</em> — non-teleological, checked immediately, no grand plan required — and <em>slow, global, high-complexity channels</em> — deliberative, long-horizon, revisable. Matthew 22:37&ndash;40 (love God, love neighbor) and Matthew 25:40 (whatever you did for the least of these) belong in the fast channel: an always-on, non-negotiable check that runs prior to any question about how to organize anything. Bejan's constructal law &mdash; hierarchy vs. uniform channels, how a flow system structures itself over time &mdash; is the slow channel: real, load-bearing, but downstream. It has to pass through the first check; it is not a peer to it.</p>
+    <div class="boxed">First bifurcation (fast, invariant): Matt 22:37&ndash;40 / Matt 25:40 &mdash; checked before deliberation, never after.
+Second bifurcation (slow, structural): Bejan / constructal &mdash; hierarchy vs. uniformity, how the organization is built to sustain the first check at scale.</div>
+
+    <h2>2 · The table</h2>
+    <table>
+      <tr><th></th><th>Big Picture (theological / ethical)</th><th>Thy Kingdom Come</th><th>Tech / Bootstrap</th><th>Bejan / Constructal</th></tr>
+      <tr>
+        <td><b>I &middot; Origin</b></td>
+        <td>Matt 22:37&ndash;40 &mdash; love God, love neighbor. The axiom, not a policy choice. Prior to any structure.</td>
+        <td>Kingdonomics &mdash; the business exists because of calling.</td>
+        <td>The trunk: <code>organize.sh</code>, <code>ukubona_bootstrap.sh</code>. Must work before anything personalizes it.</td>
+        <td>The soil / finite-size domain &mdash; a place for flow to go, before any channel exists.</td>
+      </tr>
+      <tr>
+        <td><b>II &middot; Formation</b></td>
+        <td>A single, simple, repeated objective: form disciples. (Next-token-prediction analog &mdash; narrow, supervised.)</td>
+        <td>People &mdash; Dignity, Discipleship, Deployment.</td>
+        <td>Stage B (<code>workflow-2.md</code>): one <code>main.py</code>, one <code>App.jsx</code>, one clear objective per client.</td>
+        <td>The primary channel &mdash; first, largest conduit the current passes through.</td>
+      </tr>
+      <tr>
+        <td><b>III &middot; Action / First Bifurcation</b></td>
+        <td>Matt 25:40 &mdash; the concrete, enacted test. Fast, reflexive, non-negotiable.</td>
+        <td>Spirit and Systems &mdash; rhythms, accountability.</td>
+        <td>The event ledger &mdash; commitments, check-ins; the routing layer between objective and lived outcome.</td>
+        <td>The fork itself. "Immediate survival vs. complex reasoning" lives here.</td>
+      </tr>
+      <tr>
+        <td><b>IV &middot; Eigenmodes / Second Bifurcation</b></td>
+        <td>Named hypotheses about social structure (egalitarian vs. hierarchical readings) &mdash; labeled, not yet emergent in the technical sense.</td>
+        <td>Multiplication &mdash; ecosystems, innovation, land/property, SACCO.</td>
+        <td>The branch layer &mdash; each client's personalized instance. Where real eigenmodes, if any, would surface across many branches.</td>
+        <td>Hierarchy vs. uniform channels. Bejan's actual territory &mdash; downstream of III, not a replacement for it.</td>
+      </tr>
+      <tr>
+        <td><b>V &middot; Fruit / Feedback</b></td>
+        <td>Galatians 5 &mdash; Fruit of the Spirit. The scalar outcome the tree existed to produce. God&prime; closes the loop.</td>
+        <td>Legacy &mdash; succession, generational impact.</td>
+        <td>Canopy (not yet built) &mdash; cross-branch fruit, <code>fruit_observed</code>, calling-revisited review.</td>
+        <td>max(Access) &mdash; the configuration that persists is the one that keeps maximizing access over time.</td>
+      </tr>
+    </table>
+
+    <h2>3 · Honest bound on IV</h2>
+    <p class="cap">"Socialist" and "capitalist" as labels for Row IV's two poles are modern political-economy terms retrofitted onto older material: Acts 2's shared goods isn't 19th-century socialism, and Ephesians' household code isn't market capitalism &mdash; it predates markets as we mean them by seventeen centuries. Useful shorthand for a working hypothesis, but still a named axis someone proposed &mdash; the same status as the Part IV checklist (ecosystems, SACCO, etc.), not the sentiment-neuron kind of structure that shows up unbidden. A true second-bifurcation eigenmode, if one exists, would come from looking across many branches' event ledgers for an axis nobody named going in.</p>
+  </div>
+</div>
+
 <div id="civicView">
   <div class="backbar">
     <button onclick="showView('pentad')">← Back to the pentad</button>
@@ -2186,6 +2248,7 @@ function showView(v){
   document.getElementById('escapeView').classList.toggle('active', v==='escape');
   document.getElementById('boundaryView').classList.toggle('active', v==='boundary');
   document.getElementById('giftedView').classList.toggle('active', v==='gifted');
+  document.getElementById('kingdomView').classList.toggle('active', v==='kingdom');
   document.getElementById('civicView').classList.toggle('active', v==='civic');
   document.getElementById('sapataView').classList.toggle('active', v==='sapata');
   document.getElementById('economistView').classList.toggle('active', v==='economist');
@@ -2229,6 +2292,8 @@ addMenuButton('⛓  Sandbox Escape', ()=>showView('escape'));
 addMenuButton('👑  Boundary Crossing', ()=>showView('boundary'));
 addDivider();
 addMenuButton('✋  Gifted Hands', ()=>showView('gifted'));
+addDivider();
+addMenuButton('📜  Thy Kingdom Come', ()=>showView('kingdom'));
 addDivider();
 addGroupLabel('Civic Pentad');
 order.forEach(k=>{
@@ -2309,7 +2374,7 @@ try{
 }catch(e){}
 try{
   const v=new URLSearchParams(location.search).get('view');
-  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'||v==='scalingntp'||v==='sutskever'||v==='manufacturingtaste'||v==='preface'||v==='epilogue'||v==='chordpentad'||v==='adversarial'||v==='babyface'||v==='gptlineage'||v==='origins'||v==='uuq'||v==='jimjam'){ showView(v); }
+  if(v==='history'||v==='criteria'||v==='escape'||v==='gifted'||v==='kingdom'||v==='civic'||v==='sapata'||v==='economist'||v==='thirsty'||v==='deepminima'||v==='scalingntp'||v==='sutskever'||v==='manufacturingtaste'||v==='preface'||v==='epilogue'||v==='chordpentad'||v==='adversarial'||v==='babyface'||v==='gptlineage'||v==='origins'||v==='uuq'||v==='jimjam'){ showView(v); }
 }catch(e){}
 </script>
 </body>
